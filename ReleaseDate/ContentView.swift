@@ -9,8 +9,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var fetcher = Fetcher()
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            List(fetcher.shows) { show in
+                VStack (alignment: .leading) {
+                    Text(show.name)
+                        .font(.system(size: 11))
+                        .foregroundColor(Color.gray)
+                }
+            }
+        }
     }
 }
 
