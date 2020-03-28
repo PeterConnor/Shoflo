@@ -13,6 +13,11 @@
  Get TV Details
  https://developers.themoviedb.org/3/tv/get-tv-details
  
+ Icons
+ -Magnifying
+ -Star or heart
+ -lightbulb or glasses
+ 
  Search -> DetailView -> Add to ListView and set notifications
  ListView -> DetailView -> set/edit notifications
  Discover, based on user's saved shows

@@ -9,8 +9,20 @@
 import SwiftUI
 
 struct SearchView: View {
+    @ObservedObject var services = Services()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TextField("", text: $services.query, onCommit: services.load)
+            List(services.shows) { show in
+                VStack (alignment: .leading) {
+                    Text(show.name ?? "")
+                        .font(.system(size: 11))
+                        .foregroundColor(Color.gray)
+                    }
+                }
+            }
+
     }
 }
 

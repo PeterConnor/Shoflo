@@ -28,8 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window
             window.makeKeyAndVisible()
-            let net = NetworkManager()
-            print(net.getReleaseDate())
+            //let test = Services()
+            //print(test.load())
             
         }
     }

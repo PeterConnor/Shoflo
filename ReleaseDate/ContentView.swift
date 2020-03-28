@@ -12,13 +12,21 @@ struct ContentView: View {
     @ObservedObject var fetcher = Fetcher()
     
     var body: some View {
-        VStack {
-            List(fetcher.shows) { show in
-                VStack (alignment: .leading) {
-                    Text(show.name)
-                        .font(.system(size: 11))
-                        .foregroundColor(Color.gray)
-                }
+        TabView {
+            SearchView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
+            }
+            MyShowsView()
+                .tabItem {
+                Image(systemName: "heart")
+                Text("Favorites")
+            }
+            DiscoverView()
+                .tabItem {
+                    Image(systemName: "lightbulb")
+                    Text("Discover")
             }
         }
     }

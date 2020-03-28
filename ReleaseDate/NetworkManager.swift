@@ -27,7 +27,7 @@ class NetworkManager {
         let task: URLSessionDataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
             if let data = data {
                 if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                           print("\(responseDictionary)")
+                           //print("\(responseDictionary)")
                            
                     self.movies = responseDictionary["results"] as? [NSDictionary]
                        }
