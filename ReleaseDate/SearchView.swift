@@ -19,6 +19,7 @@ struct SearchView: View {
                     Text(show.name ?? "")
                         .font(.system(size: 11))
                         .foregroundColor(Color.gray)
+                    Image(uiImage: self.services.showImage!)
                     }
                 }
             }

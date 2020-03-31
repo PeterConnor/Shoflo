@@ -16,12 +16,14 @@ struct Response: Decodable {
 struct Result: Decodable, Identifiable {
     var id: Int
     let name: String?
+    let poster_path: String?
 }
 
 
 public class Services: ObservableObject {
     @Published var shows = [Result]()
-    @Published var query = "hello"
+    @Published var query = "farscape"
+    @Published var showImage = UIImage(systemName: "magnifyingglass")
     
     init() {
         load()
@@ -38,6 +40,21 @@ public class Services: ObservableObject {
                         self.shows = response.results
                         //print("shows: \(self.shows)")
                         print("decoded: \(response.results)")
+                        for i in self.shows {
+                            if let posterPath = i.poster_path as? String {
+                                let imageUrl = URL(string: "http://image.tmdb.org/t/p/w500" + posterPath)
+                                if let data = try? Data(contentsOf: imageUrl!) {
+                                    if let image = UIImage(data: data) {
+                                        self.showImage = image
+                                        print(self.showImage)
+                                    }
+                                }
+                                
+                            }
+                            
+                            
+                            
+                        }
                     }
                 } else {
                 print("No Data")
