@@ -12,18 +12,23 @@ struct SearchView: View {
     @ObservedObject var services = Services()
     
     var body: some View {
-        VStack {
-            TextField("", text: $services.query, onCommit: services.load)
-            List(services.shows) { show in
-                VStack (alignment: .leading) {
-                    Text(show.name ?? "")
-                        .font(.system(size: 11))
-                        .foregroundColor(Color.gray)
-                    Image(uiImage: self.services.showImage!)
+        NavigationView {
+                VStack {
+                TextField("", text: $services.query, onCommit: services.load)
+                List(services.shows) { show in
+                    VStack (alignment: .leading) {
+                        NavigationLink(destination: DetailView(name: show.name ?? "")) {
+                        Text(show.name ?? "")
+                            Text("\(show.vote_average)")
+                            Text(show.overview ?? "")
+                            
+                        //Image(uiImage: self.services.showImage!)
+                        }
                     }
                 }
             }
-
+            .navigationBarTitle("Search Shows")
+        }
     }
 }
 

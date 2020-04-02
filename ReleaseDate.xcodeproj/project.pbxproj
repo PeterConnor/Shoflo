@@ -22,6 +22,7 @@
 		FA452CA2242C4FDE0069120C /* MyShowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA452CA1242C4FDE0069120C /* MyShowsView.swift */; };
 		FA452CA6242D6FBA0069120C /* DataSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA452CA5242D6FBA0069120C /* DataSearch.swift */; };
 		FA452CAA242FB2D90069120C /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA452CA9242FB2D90069120C /* DiscoverView.swift */; };
+		FA6AC994243426F200FA9170 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC993243426F200FA9170 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		FA452CA1242C4FDE0069120C /* MyShowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsView.swift; sourceTree = "<group>"; };
 		FA452CA5242D6FBA0069120C /* DataSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSearch.swift; sourceTree = "<group>"; };
 		FA452CA9242FB2D90069120C /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		FA6AC993243426F200FA9170 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				FA452C9F242C4EE20069120C /* SearchView.swift */,
 				FA452CA1242C4FDE0069120C /* MyShowsView.swift */,
 				FA452CA9242FB2D90069120C /* DiscoverView.swift */,
+				FA6AC993243426F200FA9170 /* DetailView.swift */,
 				FA02799824299C7300599C81 /* Notes.swift */,
 				FA02796C2428555500599C81 /* Assets.xcassets */,
 				FA0279712428555500599C81 /* LaunchScreen.storyboard */,
@@ -293,6 +296,7 @@
 				FA452C9E242C02310069120C /* Data.swift in Sources */,
 				FA02799924299C7300599C81 /* Notes.swift in Sources */,
 				FA452CA0242C4EE20069120C /* SearchView.swift in Sources */,
+				FA6AC994243426F200FA9170 /* DetailView.swift in Sources */,
 				FA0279672428555200599C81 /* AppDelegate.swift in Sources */,
 				FA0279692428555200599C81 /* SceneDelegate.swift in Sources */,
 				FA452CAA242FB2D90069120C /* DiscoverView.swift in Sources */,

@@ -14,9 +14,11 @@ struct Response: Decodable {
 
 
 struct Result: Decodable, Identifiable {
-    var id: Int
+    let id: Int
     let name: String?
     let poster_path: String?
+    let vote_average: Double
+    let overview: String?
 }
 
 
@@ -27,6 +29,8 @@ public class Services: ObservableObject {
     
     init() {
         load()
+        print(shows)
+        print(query)
     }
     
     func load() {
@@ -39,14 +43,14 @@ public class Services: ObservableObject {
                     DispatchQueue.main.async {
                         self.shows = response.results
                         //print("shows: \(self.shows)")
-                        print("decoded: \(response.results)")
+                        //print("decoded: \(response.results)")
                         for i in self.shows {
                             if let posterPath = i.poster_path as? String {
                                 let imageUrl = URL(string: "http://image.tmdb.org/t/p/w500" + posterPath)
                                 if let data = try? Data(contentsOf: imageUrl!) {
                                     if let image = UIImage(data: data) {
                                         self.showImage = image
-                                        print(self.showImage)
+                                        //print(self.showImage)
                                     }
                                 }
                                 
