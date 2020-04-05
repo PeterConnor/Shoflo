@@ -12,7 +12,6 @@ struct DetailView: View {
     @ObservedObject var detailServices: DetailServices
     var name: String
     
-    
     var body: some View {
         VStack {
             Text("Detail View")
@@ -20,12 +19,14 @@ struct DetailView: View {
                 .resizable()
             Text(name)
             Text("\(detailServices.showID)")
+            Text("Rating: \(detailServices.vote_average, specifier: "%.1f")")
+
         }
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(detailServices: DetailServices(showID: 55555, poster_path: "jjj"), name: "Name")
+        DetailView(detailServices: DetailServices(showID: 55555, poster_path: "jjj", vote_average: 0.0), name: "Name")
     }
 }

@@ -21,7 +21,9 @@ struct DetailResponse: Decodable {
     let overview: String
     let popularity: Float
     let status: String
-    let poster_path: String?
+    let poster_path: String
+    let vote_average: Double
+    let vote_count: Int
 }
 
 struct Next_Episode_To_Air: Decodable {
@@ -39,10 +41,12 @@ class DetailServices: ObservableObject {
     @Published var showImage = UIImage()
     var showID: Int
     var poster_path: String?
+    var vote_average: Double
 
-    init(showID: Int, poster_path: String?) {
+    init(showID: Int, poster_path: String?, vote_average: Double) {
         self.showID = showID
         self.poster_path = poster_path
+        self.vote_average = vote_average
         load()
         getImage(path: poster_path ?? "placeholder")
     }
@@ -57,6 +61,7 @@ class DetailServices: ObservableObject {
                         let response = try JSONDecoder().decode(DetailResponse.self, from: d)
                         DispatchQueue.main.async {
                             self.showDetail = response
+                            print(response)
                             
                             }
                     } else {
