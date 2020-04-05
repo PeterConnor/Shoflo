@@ -25,12 +25,10 @@ struct Result: Decodable, Identifiable {
 public class Services: ObservableObject {
     @Published var shows = [Result]()
     @Published var query = "farscape"
-    @Published var showImage = UIImage(systemName: "magnifyingglass")
     
     init() {
         load()
-        print(shows)
-        print(query)
+        
     }
     
     func load() {
@@ -42,23 +40,7 @@ public class Services: ObservableObject {
                     let response = try JSONDecoder().decode(Response.self, from: d)
                     DispatchQueue.main.async {
                         self.shows = response.results
-                        //print("shows: \(self.shows)")
-                        //print("decoded: \(response.results)")
-                        for i in self.shows {
-                            if let posterPath = i.poster_path as? String {
-                                let imageUrl = URL(string: "http://image.tmdb.org/t/p/w500" + posterPath)
-                                if let data = try? Data(contentsOf: imageUrl!) {
-                                    if let image = UIImage(data: data) {
-                                        self.showImage = image
-                                        //print(self.showImage)
-                                    }
-                                }
-                                
-                            }
-                            
-                            
-                            
-                        }
+                        
                     }
                 } else {
                 print("No Data")
@@ -70,5 +52,45 @@ public class Services: ObservableObject {
         }
         .resume()
     }
+    
+//    for i in self.shows {
+//        if let posterPath = i.poster_path as? String {
+//            let imageUrl = URL(string: "http://image.tmdb.org/t/p/w500" + posterPath)
+//            if let data = try? Data(contentsOf: imageUrl!) {
+//                if let image = UIImage(data: data) {
+//                self.showImage.append(image)
+//                } else {
+//                    print(1)
+//                   self.showImage.append(UIImage(systemName: "magnifyingglass")!)
+//                }
+//            } else {
+//                print(2)
+//                self.showImage.append(UIImage(systemName: "magnifyingglass")!)
+//            }
+//        } else {
+//            print(3)
+//            self.showImage.append(UIImage(systemName: "magnifyingglass")!)
+//        }
+//    }
+    func getImage(path: String) {
+        var finalImage = UIImage()
+        if let imagePath = path as? String {
+            print(1)
+            let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath)
+            DispatchQueue.global().async { [weak self] in
+                if let data = try? Data(contentsOf: imageURL!) {
+                    print(2)
+                    if let image = UIImage(data: data) {
+                        print(3)
+                        DispatchQueue.main.async {
+                            print(4)
+                            finalImage = image
+                        }
+                    }
+                }
+            }
+            print(5)
+            //I've tried returning a UIImage, which doesn't work.
+        }
+    }
 }
-

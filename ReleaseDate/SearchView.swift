@@ -17,13 +17,12 @@ struct SearchView: View {
                 TextField("", text: $services.query, onCommit: services.load)
                 List(services.shows) { show in
                     VStack (alignment: .leading) {
-                        NavigationLink(destination: DetailView(name: show.name ?? "")) {
+                        NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path), name: show.name ?? "")) {
                         Text(show.name ?? "")
                             Text("\(show.vote_average)")
                             Text(show.overview ?? "")
                             
-                        //Image(uiImage: self.services.showImage!)
-                        }
+                        }.onAppear()
                     }
                 }
             }

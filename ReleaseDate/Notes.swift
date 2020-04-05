@@ -12,9 +12,8 @@
  
  ***To Do***
  -Need to remove list row and make it its own view
- -Add ratings and other relevant properties to datasearch, and then to searchview, and ultimately to detail view.
- -Allow user to save detailview 
- -Add image to searchview results?
+ -Allow user to save detailview to MyShowsView
+ -Add image to searchview results, eventually =/
  
  ***APP FLOW / IDEAS ***
  Search -> DetailView -> Add to ListView and set notifications
@@ -31,4 +30,9 @@
  https://developers.themoviedb.org/3/search/search-tv-shows
  Get TV Details
  https://developers.themoviedb.org/3/tv/get-tv-details
+ 
+ ***QUESTIONS***
+ -what's the difference between list and forEach? (can't manipulate list?)
+ 
+ 
  */
