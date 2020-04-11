@@ -9,8 +9,38 @@
 import SwiftUI
 
 struct MyShowsView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(
+        entity: MyShow.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \MyShow.name, ascending: true)
+        ]
+    )
+    
+    var myShows: FetchedResults<MyShow>
+    
+    func removeMyShow(at offsets: IndexSet) {
+        for index in offsets {
+            let myShow = myShows[index]
+            managedObjectContext.delete(myShow)
+            do {
+                try self.managedObjectContext.save()
+                print("save successful")
+            } catch {
+                "error saving managedObjectContext in detail view"
+            }
+        }
+    }
+    
     var body: some View {
-        Text("My Shows")
+        List {
+            ForEach(myShows, id: \.self) { show in
+                Text(show.name ?? "")
+            }.onDelete(perform: removeMyShow)
+        }
+        
+        //You can delete with swipe, but maybe add
+        //.navigationBarItems(trailing: EditButton())
     }
 }
 

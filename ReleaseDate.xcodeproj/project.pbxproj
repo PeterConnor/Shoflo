@@ -24,6 +24,7 @@
 		FA452CAA242FB2D90069120C /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA452CA9242FB2D90069120C /* DiscoverView.swift */; };
 		FA6AC994243426F200FA9170 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC993243426F200FA9170 /* DetailView.swift */; };
 		FA6AC998243588F600FA9170 /* DataDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC997243588F600FA9170 /* DataDetail.swift */; };
+		FA6AC99B243BDEEF00FA9170 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		FA452CA9242FB2D90069120C /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		FA6AC993243426F200FA9170 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		FA6AC997243588F600FA9170 /* DataDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetail.swift; sourceTree = "<group>"; };
+		FA6AC99A243BDEEF00FA9170 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 		FA0279652428555200599C81 /* ReleaseDate */ = {
 			isa = PBXGroup;
 			children = (
+				FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */,
 				FA0279662428555200599C81 /* AppDelegate.swift */,
 				FA0279682428555200599C81 /* SceneDelegate.swift */,
 				FA452CA5242D6FBA0069120C /* DataSearch.swift */,
@@ -304,6 +307,7 @@
 				FA0279672428555200599C81 /* AppDelegate.swift in Sources */,
 				FA0279692428555200599C81 /* SceneDelegate.swift in Sources */,
 				FA452CAA242FB2D90069120C /* DiscoverView.swift in Sources */,
+				FA6AC99B243BDEEF00FA9170 /* DataModel.xcdatamodeld in Sources */,
 				FA452CA6242D6FBA0069120C /* DataSearch.swift in Sources */,
 				FA02796B2428555200599C81 /* ContentView.swift in Sources */,
 			);
@@ -630,6 +634,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FA6AC99A243BDEEF00FA9170 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = FA6AC99A243BDEEF00FA9170 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FA02795B2428555200599C81 /* Project object */;
 }

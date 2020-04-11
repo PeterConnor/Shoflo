@@ -10,6 +10,8 @@ import SwiftUI
 
 struct DetailView: View {
     @ObservedObject var detailServices: DetailServices
+    @Environment(\.managedObjectContext) var managedObjectContext
+
     var name: String
     
     var body: some View {
@@ -20,6 +22,18 @@ struct DetailView: View {
             Text(name)
             Text("\(detailServices.showID)")
             Text("Rating: \(detailServices.vote_average, specifier: "%.1f")")
+            Button(action: {
+                let show = MyShow(context: self.managedObjectContext)
+                show.name = self.name
+                show.id = Int32(self.detailServices.showID)
+                do {
+                    try self.managedObjectContext.save()
+                    print("save successful")
+                } catch {
+                    "error saving managedObjectContext in detail view"
+                }
+            }) { Text("Insert example show")
+            }
 
         }
     }
