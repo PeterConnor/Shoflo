@@ -13,7 +13,8 @@
  
  ***To Do***
  -notifications. how are these going to look?
- -Discover?
+ -Discover - for recommended, Need to pass through id of favorited shows from core data list.
+ -delete network manager file?
  Segmented Control with 3 options:
  1. Get Recommendations returns good results based on ids of shows. Could check against saved shows or user could enter show.
  2. Get Popular - Get a list of the current popular TV shows on TMDb. This list updates daily.

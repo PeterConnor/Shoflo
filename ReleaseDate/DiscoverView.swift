@@ -9,9 +9,35 @@
 import SwiftUI
 
 struct DiscoverView: View {
+    @ObservedObject var discoverServices = DiscoverServices()
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(
+        entity: MyShow.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \MyShow.name, ascending: true)
+        ]
+    )
+    
+    var myShows: FetchedResults<MyShow>
+
+    
     var body: some View {
-        Text("Discover")
+       VStack {
+        Picker(selection: $discoverServices.discoverNumber, label: Text("Discover Shows")) {
+               Text("Recommended").tag(0)
+               Text("Popular").tag(1)
+               Text("Top Rated").tag(2)
+           }.pickerStyle(SegmentedPickerStyle())
+        Text("Value: \(discoverServices.discoverNumber)")
+        if discoverServices.discoverNumber == 0 {
+            Picker(selection: $discoverServices.showID, label: Text("Select Show")) {
+                ForEach(0..<myShows.count) {
+                    Text("\(self.myShows[$0].id)" ?? "No Favorites")
+                }
+            }.pickerStyle(WheelPickerStyle())
+       }
     }
+}
 }
 
 struct DiscoverView_Previews: PreviewProvider {
