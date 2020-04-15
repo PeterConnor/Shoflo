@@ -7,8 +7,31 @@
 //
 
 import SwiftUI
+import CoreData
 
 public class DiscoverServices: ObservableObject {
+    
+@Environment(\.managedObjectContext) var managedObjectContext
+
+//    @FetchRequest(
+//    entity: MyShow.entity(),
+//    sortDescriptors: [
+//        NSSortDescriptor(keyPath: \MyShow.name, ascending: true)
+//    ]
+//)
+
+    var myShows = [MyShow]()
+    
+    let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "MyShow")
+     
+    func fetchFunc() {
+        do {
+            myShows = try managedObjectContext.fetch(fetch) as! [MyShow]
+           } catch {
+               fatalError("Failed to fetch employees: \(error)")
+           }
+    }
+    
 @Published var shows = [Result]()
 //@Published var query = "farscape"
     @Published var discoverNumber = 0 {
@@ -17,24 +40,31 @@ public class DiscoverServices: ObservableObject {
             print(self.discoverNumber)
         }
     }
-    @Published var showID = 71446 {
+    
+    var showID = 0
+    
+    @Published var myShowIndex = 0 {
         didSet {
-            load(num: self.discoverNumber, id: self.showID)
+            print(self.myShowIndex)
+            //self.showID = Int(self.myShows[myShowIndex].id)
+            print(showID)
+            fetchFunc()
+            print(myShows)
         }
     }
 
 init() {
-    load(num: 0, id: showID)
+    load(num: 0, id: 71446)
 }
 
     func load(num: Int, id: Int) {
     //todo - don't force unwrap all of these urls.
     let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        guard var url = URL(string: "https://api.themoviedb.org/3/tv/\(showID)/recommendations?api_key=\(apiKey)&language=en-US&page=1") else { return }
+        guard var url = URL(string: "https://api.themoviedb.org/3/tv/\(71446)/recommendations?api_key=\(apiKey)&language=en-US&page=1") else { return }
         switch discoverNumber {
         case 0:
             print("case 0 recommended")
-            url = URL(string: "https://api.themoviedb.org/3/tv/\(showID)/recommendations?api_key=\(apiKey)&language=en-US&page=1")!
+            url = URL(string: "https://api.themoviedb.org/3/tv/\(71446)/recommendations?api_key=\(apiKey)&language=en-US&page=1")!
         case 1:
             print("case 1 popular")
             url = URL(string: "https://api.themoviedb.org/3/tv/popular?api_key=\(apiKey)&language=en-US&page=1")!

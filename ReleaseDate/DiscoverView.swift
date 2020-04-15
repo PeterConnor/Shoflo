@@ -19,7 +19,6 @@ struct DiscoverView: View {
     )
     
     var myShows: FetchedResults<MyShow>
-
     
     var body: some View {
        VStack {
@@ -30,11 +29,11 @@ struct DiscoverView: View {
            }.pickerStyle(SegmentedPickerStyle())
         Text("Value: \(discoverServices.discoverNumber)")
         if discoverServices.discoverNumber == 0 {
-            Picker(selection: $discoverServices.showID, label: Text("Select Show")) {
-                ForEach(0..<myShows.count) {
-                    Text("\(self.myShows[$0].id)" ?? "No Favorites")
+            Picker(selection: $discoverServices.myShowIndex, label: Text("Select Show")) {
+                ForEach(0..<myShows.count) { i in
+                    Text("\(self.myShows[i].name!)")
                 }
-            }.pickerStyle(WheelPickerStyle())
+            }.pickerStyle(SegmentedPickerStyle())
        }
     }
 }
