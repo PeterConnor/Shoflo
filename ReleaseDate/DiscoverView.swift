@@ -21,22 +21,34 @@ struct DiscoverView: View {
     var myShows: FetchedResults<MyShow>
     
     var body: some View {
-       VStack {
-        Picker(selection: $discoverServices.discoverNumber, label: Text("Discover Shows")) {
-               Text("Recommended").tag(0)
-               Text("Popular").tag(1)
-               Text("Top Rated").tag(2)
-           }.pickerStyle(SegmentedPickerStyle())
-        Text("Value: \(discoverServices.discoverNumber)")
-        if discoverServices.discoverNumber == 0 {
-            Picker(selection: $discoverServices.myShowIndex, label: Text("Select Show")) {
-                ForEach(0..<myShows.count) { i in
-                    Text("\(self.myShows[i].name!)")
+        NavigationView {
+            VStack {
+            Picker(selection: $discoverServices.discoverNumber, label: Text("Discover Shows")) {
+                   Text("Recommended").tag(0)
+                   Text("Popular").tag(1)
+                   Text("Top Rated").tag(2)
+               }.pickerStyle(SegmentedPickerStyle())
+            Text("Value: \(discoverServices.discoverNumber)")
+            if discoverServices.discoverNumber == 0 {
+                Picker(selection: $discoverServices.myShowIndex, label: Text("Select Show")) {
+                    ForEach(0..<myShows.count) { i in
+                        Text("\(self.myShows[i].name!)")
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+            }
+            List(discoverServices.shows) { show in
+                VStack (alignment: .leading) {
+                    NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
+                    Text(show.name ?? "")
+                        Text(show.overview ?? "")
+                        Text("Rating: \(show.vote_average, specifier: "%.1f")")
+                        
+                    }
                 }
-            }.pickerStyle(SegmentedPickerStyle())
-       }
+            }
+        }.navigationBarTitle("Discover")
+        }
     }
-}
 }
 
 struct DiscoverView_Previews: PreviewProvider {
