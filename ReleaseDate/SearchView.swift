@@ -21,7 +21,6 @@ struct SearchView: View {
                         Text(show.name ?? "")
                             Text(show.overview ?? "")
                             Text("Rating: \(show.vote_average, specifier: "%.1f")")
-                            
                         }
                     }
                 }

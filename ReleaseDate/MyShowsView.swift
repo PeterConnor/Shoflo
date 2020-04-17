@@ -33,12 +33,17 @@ struct MyShowsView: View {
     }
     
     var body: some View {
-        List {
-            ForEach(myShows, id: \.self) { show in
-                Text(show.name ?? "")
-            }.onDelete(perform: removeMyShow)
+        NavigationView {
+            List {
+                ForEach(myShows, id: \.self) { show in
+                    VStack {
+                        NavigationLink(destination: DetailView(detailServices: DetailServices(showID: 999, poster_path: "TestPosterPath", vote_average: 20), name: "TestName" ?? "")) {
+                        Text(show.name ?? "")
+                        }
+                    }
+                }.onDelete(perform: removeMyShow)
+            }
         }
-        
         //You can delete with swipe, but maybe add
         //.navigationBarItems(trailing: EditButton())
     }
