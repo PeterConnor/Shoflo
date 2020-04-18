@@ -35,9 +35,9 @@ struct MyShowsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(myShows, id: \.self) { show in
+                ForEach(myShows, id: \.self) { (show: MyShow) in
                     VStack {
-                        NavigationLink(destination: DetailView(detailServices: DetailServices(showID: 999, poster_path: "TestPosterPath", vote_average: 20), name: "TestName" ?? "")) {
+                        NavigationLink(destination: DetailView(detailServices: DetailServices(showID: Int(show.id), poster_path: "TestPosterPath", vote_average: 20), name: show.name ?? "")) {
                         Text(show.name ?? "")
                         }
                     }
