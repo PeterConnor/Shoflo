@@ -12,7 +12,7 @@
  -Try Image with ForEach
  
  ***To Do***
-
+just saved detail to core data. now, open detail from favorites to see if core data loads into the view
  -i dont think discover recommended works correctly after deleting something from favorites because myshows is already initialized with the core data, but not updated after the delete. the core data is update, but not myshows in discoverview. (i think) A good way to test is to have multiple shows in a row.
  -in discover view, allow user to sort by popularity or rating, anything else?
  -make my favorites go to detail and make discover view go to detail. (why is discover greyed).

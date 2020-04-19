@@ -14,10 +14,10 @@ struct DetailResponse: Decodable {
     let id: Int
     let in_production: Bool
     let name: String
-    let next_episode_to_air: Next_Episode_To_Air //todo - this might not be a list
-    let networks: [Networks]
+    let next_episode_to_air: Next_Episode_To_Air?
+    let networks: [Networks] // Need to add this to core data
     let number_of_seasons: Int
-    var origin_country: [String]
+    var origin_country: [String] // Didn't inlcude this in core data
     let overview: String
     let popularity: Float
     let status: String
@@ -49,6 +49,7 @@ class DetailServices: ObservableObject {
         self.vote_average = vote_average
         load()
         getImage(path: poster_path ?? "placeholder")
+        print("detailServices showID: \(showID)")
     }
     
     func load() {

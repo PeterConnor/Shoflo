@@ -33,7 +33,7 @@ public class DiscoverServices: ObservableObject {
         //3
         do {
             myShows = try managedContext.fetch(fetchRequest)
-            print("myshows: \(myShows)")
+            //print("myshows: \(myShows)")
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -45,7 +45,7 @@ public class DiscoverServices: ObservableObject {
         @Published var discoverNumber = 0 {
             didSet {
                 load(num: self.discoverNumber, id: showID)
-                print(self.discoverNumber)
+                //print(self.discoverNumber)
             }
         }
 
@@ -54,20 +54,19 @@ public class DiscoverServices: ObservableObject {
     
     @Published var myShowIndex = 0 {
         didSet {
-            print(self.myShowIndex)
+            //print(self.myShowIndex)
             self.showID = Int(self.myShows[myShowIndex].id)
-            print(showID)
+            //print(showID)
             load(num: self.discoverNumber, id: showID)
         }
     }
 
 init() {
     getCoreData()
-    self.showID = Int(self.myShows[myShowIndex].id)
+    if myShows != [] {
+        self.showID = Int(self.myShows[myShowIndex].id)
+    }
     load(num: 0, id: showID)
-    
-    
-    
 }
 
     func load(num: Int, id: Int) {
@@ -93,7 +92,7 @@ init() {
                 let response = try JSONDecoder().decode(Response.self, from: d)
                 DispatchQueue.main.async {
                     self.shows = response.results
-                    print(response)
+                    //print(response)
                 }
             } else {
             print("No Data")
