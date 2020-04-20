@@ -49,12 +49,12 @@ class DetailServices: ObservableObject {
         self.vote_average = vote_average
         load()
         getImage(path: poster_path ?? "placeholder")
-        print("detailServices showID: \(showID)")
+        //print("detailServices showID: \(showID)")
     }
     
     func load() {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-            guard let url = URL(string: "https://api.themoviedb.org/3/tv/100757?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"
+        guard let url = URL(string: "https://api.themoviedb.org/3/tv/\(self.showID)?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"
 ) else { return }
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 do {

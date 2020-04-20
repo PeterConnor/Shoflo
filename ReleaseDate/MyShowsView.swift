@@ -37,8 +37,11 @@ struct MyShowsView: View {
             List {
                 ForEach(myShows, id: \.self) { (show: MyShow) in
                     VStack {
-                        NavigationLink(destination: DetailView(detailServices: DetailServices(showID: Int(show.id), poster_path: "TestPosterPath", vote_average: show.vote_average), name: show.name ?? "")) {
+                        NavigationLink(destination: DetailView(detailServices: DetailServices(showID: Int(show.id), poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
                         Text(show.name ?? "")
+                        Text(show.overview ?? "")
+                        Text("Rating: \(show.vote_average, specifier: "%.1f")")
+                            Text("status \(show.status ?? "N/A")")
                         }
                     }
                 }.onDelete(perform: removeMyShow)

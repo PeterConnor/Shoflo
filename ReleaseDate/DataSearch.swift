@@ -23,8 +23,19 @@ struct Result: Decodable, Identifiable {
 
 
 public class Services: ObservableObject {
-    @Published var shows = [Result]()
+    @Published var shows = [Result]() {
+        didSet {
+            imageList.removeAll()
+            if shows != nil {
+                for i in shows {
+                    getImage(path: i.poster_path ?? "no path")
+                    //imageList.append(UIImage(systemName: "magnifyingglass")) this was just to check to see if the for loop puts an image in each row, which it does.
+                }
+            }
+        }
+    }
     @Published var query = "farscape"
+    @Published var imageList: [UIImage?] = [UIImage]()
     
     init() {
         load()
@@ -72,25 +83,25 @@ public class Services: ObservableObject {
 //            self.showImage.append(UIImage(systemName: "magnifyingglass")!)
 //        }
 //    }
-    func getImage(path: String) {
-        var finalImage = UIImage()
+    func getImage(path: String?) {
+        var finalImage: UIImage?
         if let imagePath = path as? String {
-            //print(1)
-            let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath)
+            print("step 1")
+            if let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath) {
             DispatchQueue.global().async { [weak self] in
-                if let data = try? Data(contentsOf: imageURL!) {
-                    //print(2)
+                if let data = try? Data(contentsOf: imageURL) {
+                    print("step 2")
                     if let image = UIImage(data: data) {
-                        //print(3)
+                        print("step 3")
                         DispatchQueue.main.async {
-                            //print(4)
-                            finalImage = image
+                            print("step 4")
+                            self?.imageList.append(image)
+                            print("imageList: \(self?.imageList)")
+                        }
                         }
                     }
                 }
             }
-            //print(5)
-            //I've tried returning a UIImage, which doesn't work.
         }
     }
 }

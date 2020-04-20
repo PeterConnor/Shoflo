@@ -15,12 +15,20 @@ struct SearchView: View {
         NavigationView {
                 VStack {
                 TextField("", text: $services.query, onCommit: services.load)
-                List(services.shows) { show in
+                List {
+                    ForEach(services.shows) { show in
+                        ForEach(Array(self.services.shows.enumerated()), id: \.1.id) { (index, shows) in
                     VStack (alignment: .leading) {
                         NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
-                        Text(show.name ?? "")
+                            if self.services.imageList != [UIImage]() {
+                                Image(uiImage: self.services.imageList[0] ?? UIImage(systemName: "magnifyingglass")!)
+                                .resizable()
+                            }
+                            Text("index # \(index)")
                             Text(show.overview ?? "")
                             Text("Rating: \(show.vote_average, specifier: "%.1f")")
+                        }
+                        }
                         }
                     }
                 }
