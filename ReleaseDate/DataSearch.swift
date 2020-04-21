@@ -23,17 +23,20 @@ struct Result: Decodable, Identifiable {
 
 
 public class Services: ObservableObject {
-    @Published var shows = [Result]() {
-        didSet {
-            imageList.removeAll()
-            if shows != nil {
-                for i in shows {
-                    getImage(path: i.poster_path ?? "no path")
-                    //imageList.append(UIImage(systemName: "magnifyingglass")) this was just to check to see if the for loop puts an image in each row, which it does.
-                }
-            }
-        }
-    }
+    @Published var shows = [Result]()
+//        {
+//        didSet {
+//            print("shows.count: \(shows.count)")
+//            imageList.removeAll()
+//            if shows != nil {
+//                for i in shows {
+//                    getImage(path: i.poster_path ?? "no path")
+//                    //imageList.append(UIImage(systemName: "magnifyingglass")) this was just to check to see if the for loop puts an image in each row, which it does.
+//                }
+//                print("imageList.count: \(imageList.count)")
+//            }
+//        }
+//    }
     @Published var query = "farscape"
     @Published var imageList: [UIImage?] = [UIImage]()
     
@@ -83,25 +86,50 @@ public class Services: ObservableObject {
 //            self.showImage.append(UIImage(systemName: "magnifyingglass")!)
 //        }
 //    }
-    func getImage(path: String?) {
+    func getImage(path: String?) -> UIImage {
         var finalImage: UIImage?
         if let imagePath = path as? String {
             print("step 1")
             if let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath) {
-            DispatchQueue.global().async { [weak self] in
+                print("here")
+                print(imageURL)
+            //DispatchQueue.global().async { [weak self] in
                 if let data = try? Data(contentsOf: imageURL) {
                     print("step 2")
                     if let image = UIImage(data: data) {
                         print("step 3")
-                        DispatchQueue.main.async {
+                        //DispatchQueue.main.async {
                             print("step 4")
-                            self?.imageList.append(image)
-                            print("imageList: \(self?.imageList)")
-                        }
-                        }
+                            //self?.imageList.append(image)
+                            finalImage = image
+                            print("finalImage changed")
+                            //print("imageList: \(self?.imageList)")
+                        //}
+                    } else {
+                        print("xxxno image")
+                        //self?.imageList.append(UIImage(systemName: "hifispeaker"))
+                        finalImage = UIImage(systemName: "hifispeaker")
                     }
+                } else {
+                    print("xxxno data")
+                    //self?.imageList.append(UIImage(systemName: "printer"))
+                    finalImage = UIImage(systemName: "printer")
+
                 }
+                //}
+            } else {
+                print("xxxno imageURL")
+                //self.imageList.append(UIImage(systemName: "tv"))
+                finalImage = UIImage(systemName: "tv")
+
             }
+        } else {
+            print("xxxno imagePath")
+            //self.imageList.append(UIImage(systemName: "keyboard"))
+            finalImage = UIImage(systemName: "keyboard")
+
         }
+        return finalImage!
     }
+    
 }

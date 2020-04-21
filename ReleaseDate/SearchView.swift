@@ -17,18 +17,21 @@ struct SearchView: View {
                 TextField("", text: $services.query, onCommit: services.load)
                 List {
                     ForEach(services.shows) { show in
-                        ForEach(Array(self.services.shows.enumerated()), id: \.1.id) { (index, shows) in
+                        ForEach(Array(self.services.shows.enumerated()), id: \.1.id) { (index, show) in
                     VStack (alignment: .leading) {
                         NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
-                            if self.services.imageList != [UIImage]() {
-                                Image(uiImage: self.services.imageList[0] ?? UIImage(systemName: "magnifyingglass")!)
+//                            if self.services.imageList.count == self.services.shows.count {
+//                                Image(uiImage: self.services.imageList[index] ?? UIImage(systemName: "magnifyingglass")!)
+//                                    .resizable()
+//
+//                            }
+                            Image(uiImage: self.services.getImage(path: show.poster_path))
                                 .resizable()
-                            }
                             Text("index # \(index)")
-                            Text(show.overview ?? "")
+                            Text(show.name ?? "")
                             Text("Rating: \(show.vote_average, specifier: "%.1f")")
-                        }
-                        }
+                                }
+                            }
                         }
                     }
                 }
