@@ -86,6 +86,11 @@ public class Services: ObservableObject {
 //            self.showImage.append(UIImage(systemName: "magnifyingglass")!)
 //        }
 //    }
+    
+    func completedImage(image: UIImage) -> UIImage {
+        return image
+    }
+    
     func getImage(path: String?) -> UIImage {
         var finalImage: UIImage?
         if let imagePath = path as? String {
@@ -100,32 +105,24 @@ public class Services: ObservableObject {
                         print("step 3")
                         //DispatchQueue.main.async {
                             print("step 4")
-                            //self?.imageList.append(image)
                             finalImage = image
                             print("finalImage changed")
-                            //print("imageList: \(self?.imageList)")
                         //}
                     } else {
                         print("xxxno image")
-                        //self?.imageList.append(UIImage(systemName: "hifispeaker"))
                         finalImage = UIImage(systemName: "hifispeaker")
                     }
                 } else {
                     print("xxxno data")
-                    //self?.imageList.append(UIImage(systemName: "printer"))
                     finalImage = UIImage(systemName: "printer")
-
                 }
                 //}
             } else {
                 print("xxxno imageURL")
-                //self.imageList.append(UIImage(systemName: "tv"))
                 finalImage = UIImage(systemName: "tv")
-
             }
         } else {
             print("xxxno imagePath")
-            //self.imageList.append(UIImage(systemName: "keyboard"))
             finalImage = UIImage(systemName: "keyboard")
 
         }
