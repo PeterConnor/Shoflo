@@ -25,8 +25,11 @@ struct SearchView: View {
 //                                    .resizable()
 //
 //                            }
-                            Image(uiImage: self.services.getImage(path: show.poster_path))
+                            if self.services.shows.count == self.services.imageList.count && self.services.imageList.count > 0 {
+                                Image(uiImage: self.services.imageList[index] ?? UIImage(systemName: "wifi")!)
                                 .resizable()
+                            }
+                            
                             Text("index # \(index)")
                             Text(show.name ?? "")
                             Text("Rating: \(show.vote_average, specifier: "%.1f")")

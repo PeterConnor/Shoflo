@@ -62,8 +62,7 @@ class DetailServices: ObservableObject {
                         let response = try JSONDecoder().decode(DetailResponse.self, from: d)
                         DispatchQueue.main.async {
                             self.showDetail = response
-                            print(response)
-                            
+                            //print(response)
                             }
                     } else {
                     print("No Data")
