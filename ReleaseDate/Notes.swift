@@ -11,11 +11,7 @@
  -navigation link does work if you go to detailview and back, unless u search first and then hit nav link and back. Might need to update.
  
  ***To Do***
- -add image to myshows/favorites and discover
- need to put everything in the getImage async to avoid UI lag? How to do Async/Await with Result and GCD. CALLBACK* Result. PromiseKit.
- ***THIS LOOKS TO BE THE BEST ANSWER -> https://stackoverflow.com/questions/25203556/returning-data-from-async-call-in-swift-function
- https://www.hackingwithswift.com/books/ios-swiftui/understanding-swifts-result-type
- 
+ -add image to myshows
  -i dont think discover recommended works correctly after deleting something from favorites because myshows is already initialized with the core data, but not updated after the delete. the core data is update, but not myshows in discoverview. (i think) A good way to test is to have multiple shows in a row.
  -notifications. how are these going to look?
  -delete network manager file?

@@ -36,13 +36,19 @@ struct DiscoverView: View {
                     }
                 }.pickerStyle(SegmentedPickerStyle())
             }
-            List(discoverServices.shows) { show in
+            List {
+                ForEach(Array(self.discoverServices.shows.enumerated()), id: \.1.id) { (index, show) in
                 VStack (alignment: .leading) {
                     NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
-                    Text(show.name ?? "")
+                        if self.discoverServices.shows.count == self.discoverServices.imageList.count && self.discoverServices.imageList.count > 0 {
+                            Image(uiImage: self.discoverServices.imageList[index] ?? UIImage(systemName: "wifi")!)
+                            .resizable()
+                        }
+                        Text(show.name ?? "")
                         Text(show.overview ?? "")
                         Text("Rating: \(show.vote_average, specifier: "%.1f")")
-                        
+                    
+                        }
                     }
                 }
             }

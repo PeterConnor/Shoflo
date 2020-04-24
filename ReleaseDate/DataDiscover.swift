@@ -40,9 +40,25 @@ public class DiscoverServices: ObservableObject {
        
     }
         
-    @Published var shows = [Result]()
+    @Published var shows = [Result]() {
+        didSet {
+            print("didSet shows - shows.count: \(shows.count)")
+            imageList.removeAll()
+            if shows.count > 0 {
+                for (index, i) in shows.enumerated() {
+                    getImage(path: i.poster_path ?? "", index: index)
+                    //imageList.append(UIImage(systemName: "magnifyingglass")) this was just to check to see if the for loop puts an image in each row, which it does.
+                }
+                //print("imageList.count: \(imageList.count)")
+            }
+        }
+    }
+    @Published var imageList: [UIImage?] = [UIImage]()
+
+    
     //@Published var query = "farscape"
-        @Published var discoverNumber = 0 {
+
+    @Published var discoverNumber = 0 {
             didSet {
                 load(num: self.discoverNumber, id: showID)
                 //print(self.discoverNumber)
@@ -104,4 +120,33 @@ init() {
     }
     .resume()
 }
+    
+  func getImage(path: String?, index: Int) {
+        var finalImage = UIImage(systemName: "wifi.slash")
+            imageList.append(finalImage)
+        if let imagePath = path as? String {
+            if let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath) {
+            DispatchQueue.global().async { [weak self] in
+                if let data = try? Data(contentsOf: imageURL) {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self?.imageList[index] = image
+                            print("finalImage changed")
+                        }
+                    } else {
+                        print("xxxno image")
+                    }
+                } else {
+                    print("xxxno data")
+                }
+                }
+            } else {
+                print("xxxno imageURL")
+            }
+        } else {
+            print("xxxno imagePath")
+        }
+    }
+    
+    
 }

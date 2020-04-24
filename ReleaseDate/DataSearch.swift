@@ -70,39 +70,26 @@ public class Services: ObservableObject {
         var finalImage = UIImage(systemName: "wifi.slash")
             imageList.append(finalImage)
         if let imagePath = path as? String {
-            //print("step 1")
             if let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath) {
-                //print("here")
-                //print(imageURL)
             DispatchQueue.global().async { [weak self] in
                 if let data = try? Data(contentsOf: imageURL) {
-                    //print("step 2")
                     if let image = UIImage(data: data) {
-                        //print("step 3")
                         DispatchQueue.main.async {
-                            //print("step 4")
-                            //finalImage = image
                             self?.imageList[index] = image
-
-                            //print("finalImage changed")
+                            print("finalImage changed")
                         }
                     } else {
-                        //print("xxxno image")
-                        //finalImage = UIImage(systemName: "hifispeaker")
+                        print("xxxno image")
                     }
                 } else {
-                    //print("xxxno data")
-                    //finalImage = UIImage(systemName: "printer")
+                    print("xxxno data")
                 }
                 }
             } else {
                 print("xxxno imageURL")
-                //finalImage = UIImage(systemName: "tv")
             }
         } else {
             print("xxxno imagePath")
-            //finalImage = UIImage(systemName: "keyboard")
         }
     }
-    
 }

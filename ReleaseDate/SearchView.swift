@@ -16,8 +16,7 @@ struct SearchView: View {
                 VStack {
                 TextField("", text: $services.query, onCommit: services.load)
                 List {
-                    ForEach(services.shows) { show in
-                        ForEach(Array(self.services.shows.enumerated()), id: \.1.id) { (index, show) in
+                    ForEach(Array(self.services.shows.enumerated()), id: \.1.id) { (index, show) in
                     VStack (alignment: .leading) {
                         NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
 //                            if self.services.imageList.count == self.services.shows.count {
@@ -33,7 +32,7 @@ struct SearchView: View {
                             Text("index # \(index)")
                             Text(show.name ?? "")
                             Text("Rating: \(show.vote_average, specifier: "%.1f")")
-                                }
+                                
                             }
                         }
                     }

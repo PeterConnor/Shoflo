@@ -45,7 +45,7 @@ struct MyShowsView: View {
                         }
                     }
                 }.onDelete(perform: removeMyShow)
-            }
+            }.navigationBarTitle("Favorites")
         }
         //You can delete with swipe, but maybe add
         //.navigationBarItems(trailing: EditButton())
