@@ -39,6 +39,9 @@ struct DetailView: View {
                 
                 show.status = self.detailServices.showDetail?.status
                 show.vote_count = Int32(self.detailServices.showDetail?.vote_count ?? 0)
+                show.image = self.detailServices.showImage.pngData()
+                       // Handle operations with data here...
+                
                 //todo need to save the image too
                 
                 do {

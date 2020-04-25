@@ -19,6 +19,17 @@ struct MyShowsView: View {
     
     var myShows: FetchedResults<MyShow>
     
+    func getImageFromData(show: MyShow) -> UIImage  {
+        //this is just a placeholder
+        var finalImage = (UIImage(systemName: "xmark"))
+        if let data = show.image {
+            if let image = UIImage(data: data as Data) {
+                finalImage = image
+                }
+            }
+            return finalImage!
+        }
+    
     func removeMyShow(at offsets: IndexSet) {
         for index in offsets {
             let myShow = myShows[index]
@@ -26,6 +37,7 @@ struct MyShowsView: View {
             do {
                 try self.managedObjectContext.save()
                 print("save successful")
+                print("myShows: \(myShows)")
             } catch {
                 "error saving managedObjectContext in detail view"
             }
@@ -38,9 +50,11 @@ struct MyShowsView: View {
                 ForEach(myShows, id: \.self) { (show: MyShow) in
                     VStack {
                         NavigationLink(destination: DetailView(detailServices: DetailServices(showID: Int(show.id), poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
-                        Text(show.name ?? "")
-                        Text(show.overview ?? "")
-                        Text("Rating: \(show.vote_average, specifier: "%.1f")")
+                            Image(uiImage: self.getImageFromData(show: show))
+                                .resizable()
+                            Text(show.name ?? "")
+                            Text(show.overview ?? "")
+                            Text("Rating: \(show.vote_average, specifier: "%.1f")")
                             Text("status \(show.status ?? "N/A")")
                         }
                     }
