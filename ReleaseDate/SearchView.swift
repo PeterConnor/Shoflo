@@ -14,31 +14,41 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
                 VStack {
-                TextField("", text: $services.query, onCommit: services.load)
+                TextField("Enter Show Name", text: $services.query, onCommit: services.load)
+                    .padding(.leading, 20)
                 List {
                     ForEach(Array(self.services.shows.enumerated()), id: \.1.id) { (index, show) in
-                    VStack (alignment: .leading) {
+                    HStack {
                         NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
-//                            if self.services.imageList.count == self.services.shows.count {
-//                                Image(uiImage: self.services.imageList[index] ?? UIImage(systemName: "magnifyingglass")!)
-//                                    .resizable()
-//
-//                            }
                             if self.services.shows.count == self.services.imageList.count && self.services.imageList.count > 0 {
-                                Image(uiImage: self.services.imageList[index] ?? UIImage(systemName: "wifi")!)
-                                .resizable()
+                                Image(uiImage: self.services.imageList[index] ?? UIImage(named: "ImageNotAvailable")!)
+                                    .resizable()
+                                    .cornerRadius(10)
+                                    .shadow(color: .black, radius: 2)
+                                    .aspectRatio(contentMode: .fit)
+                                    .padding(5)
+                                    .frame(width: 80, height: 120)
                             }
-                            
-                            Text("index # \(index)")
-                            Text(show.name ?? "")
-                            Text("Rating: \(show.vote_average, specifier: "%.1f")")
-                                
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text(show.name ?? "")
+                                        .fontWeight(.black)
+                                    Text("⭐️ \(show.vote_average, specifier: "%.1f")")
+                                }
+                                Text(show.overview ?? "")
                             }
+            
                         }
                     }
+                    }
+                    .frame(height: 120)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(color: .black, radius: 2)
+                    
                 }
             }
-            .navigationBarTitle("Search Shows")
+            .navigationBarTitle("Search")
         }
     }
 }

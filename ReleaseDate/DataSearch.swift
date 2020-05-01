@@ -36,7 +36,7 @@ public class Services: ObservableObject {
             }
         }
     }
-    @Published var query = "farscape"
+    @Published var query: String = "homeland"
     @Published var imageList: [UIImage?] = [UIImage]()
     
     init() {
@@ -67,7 +67,7 @@ public class Services: ObservableObject {
     }
     
     func getImage(path: String?, index: Int) {
-        var finalImage = UIImage(systemName: "wifi.slash")
+        var finalImage = UIImage(named: "ImageNotAvailable")
             imageList.append(finalImage)
         if let imagePath = path as? String {
             if let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath) {

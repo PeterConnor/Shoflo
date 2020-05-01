@@ -41,7 +41,7 @@ struct DiscoverView: View {
                 VStack (alignment: .leading) {
                     NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
                         if self.discoverServices.shows.count == self.discoverServices.imageList.count && self.discoverServices.imageList.count > 0 {
-                            Image(uiImage: self.discoverServices.imageList[index] ?? UIImage(systemName: "wifi")!)
+                            Image(uiImage: self.discoverServices.imageList[index] ?? UIImage(systemName: "xmark.square")!)
                             .resizable()
                         }
                         Text(show.name ?? "")

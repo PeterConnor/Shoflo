@@ -52,6 +52,11 @@ struct MyShowsView: View {
                         NavigationLink(destination: DetailView(detailServices: DetailServices(showID: Int(show.id), poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
                             Image(uiImage: self.getImageFromData(show: show))
                                 .resizable()
+                                .cornerRadius(10)
+                                .shadow(color: .black, radius: 2)
+                                .aspectRatio(contentMode: .fit)
+                                .padding(5)
+                                .frame(width: 80, height: 120)
                             Text(show.name ?? "")
                             Text(show.overview ?? "")
                             Text("Rating: \(show.vote_average, specifier: "%.1f")")
