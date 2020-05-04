@@ -17,6 +17,7 @@ struct DetailResponse: Decodable {
     let next_episode_to_air: Next_Episode_To_Air?
     let networks: [Networks] // Need to add this to core data
     let number_of_seasons: Int
+    let number_of_episodes: Int
     var origin_country: [String] // Didn't inlcude this in core data
     let overview: String
     let popularity: Float
@@ -24,6 +25,8 @@ struct DetailResponse: Decodable {
     let poster_path: String
     let vote_average: Double
     let vote_count: Int
+    let episode_run_time: [Int]
+    
 }
 
 struct Next_Episode_To_Air: Decodable {

@@ -11,9 +11,14 @@
  -navigation link does work if you go to detailview and back, unless u search first and then hit nav link and back. Might need to update.
  
  ***To Do***
- -pretty sure the app crashed if there's no image and you try to save something to core data.
- -add no image available icon
- -add sort to the lists, so no image availables go to bottom.
+ -I'm saving too much to core data because im not loading detail view from core data =/
+ -add genres, last episode to air to detail?, original_language?, type?  .
+ -segmented controller looks bad if there are too many favorites
+ -app crashes if you add a show to favs and then try to click last recommended show in discover view.
+ -cant search by multiple words.
+ -prevent dupes from saving to favs?
+ -pretty sure the app crashes if there's no image and you try to save something to core data.
+  -add sort to the lists, so no image availables go to bottom.
  -filter out results that dont have anything besides a name?
  -i dont think discover recommended works correctly after deleting something from favorites because myshows is already initialized with the core data, but not updated after the delete. the core data is update, but not myshows in discoverview. (i think) A good way to test is to have multiple shows in a row.
  -notifications. how are these going to look?

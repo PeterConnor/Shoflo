@@ -28,29 +28,43 @@ struct DiscoverView: View {
                    Text("Popular").tag(1)
                    Text("Top Rated").tag(2)
                }.pickerStyle(SegmentedPickerStyle())
-            Text("Value: \(discoverServices.discoverNumber)")
             if discoverServices.discoverNumber == 0 {
                 Picker(selection: $discoverServices.myShowIndex, label: Text("Select Show")) {
                     ForEach(0..<myShows.count) { i in
                         Text("\(self.myShows[i].name!)")
                     }
                 }.pickerStyle(SegmentedPickerStyle())
+                
             }
             List {
                 ForEach(Array(self.discoverServices.shows.enumerated()), id: \.1.id) { (index, show) in
                 VStack (alignment: .leading) {
                     NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
                         if self.discoverServices.shows.count == self.discoverServices.imageList.count && self.discoverServices.imageList.count > 0 {
-                            Image(uiImage: self.discoverServices.imageList[index] ?? UIImage(systemName: "xmark.square")!)
+                            Image(uiImage: self.discoverServices.imageList[index] ?? UIImage(named: "ImageNotAvailable")!)
                             .resizable()
+                            .cornerRadius(10)
+                            .shadow(color: .black, radius: 2)
+                            .aspectRatio(contentMode: .fit)
+                            .padding(5)
+                            .frame(width: 80, height: 120)
                         }
-                        Text(show.name ?? "")
-                        Text(show.overview ?? "")
-                        Text("Rating: \(show.vote_average, specifier: "%.1f")")
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Text(show.name ?? "")
+                                    .fontWeight(.black)
+                                Text("⭐️ \(show.vote_average, specifier: "%.1f")")
+                            }
+                            Text(show.overview ?? "")
+                        }
                     
                         }
                     }
                 }
+                .frame(height: 120)
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(color: .black, radius: 2)
             }
         }.navigationBarTitle("Discover")
         }

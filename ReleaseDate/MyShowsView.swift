@@ -21,7 +21,7 @@ struct MyShowsView: View {
     
     func getImageFromData(show: MyShow) -> UIImage  {
         //this is just a placeholder
-        var finalImage = (UIImage(systemName: "xmark"))
+        var finalImage = (UIImage(named: "ImageNotAvailable"))
         if let data = show.image {
             if let image = UIImage(data: data as Data) {
                 finalImage = image
@@ -57,12 +57,20 @@ struct MyShowsView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .padding(5)
                                 .frame(width: 80, height: 120)
-                            Text(show.name ?? "")
-                            Text(show.overview ?? "")
-                            Text("Rating: \(show.vote_average, specifier: "%.1f")")
-                            Text("status \(show.status ?? "N/A")")
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text(show.name ?? "")
+                                        .fontWeight(.black)
+                                    Text("⭐️ \(show.vote_average, specifier: "%.1f")")
+                                }
+                                Text(show.overview ?? "")
+                            }
                         }
                     }
+                    .frame(height: 120)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(color: .black, radius: 2)
                 }.onDelete(perform: removeMyShow)
             }.navigationBarTitle("Favorites")
         }
