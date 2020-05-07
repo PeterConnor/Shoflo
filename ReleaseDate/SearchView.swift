@@ -14,7 +14,7 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
                 VStack {
-                TextField("Enter Show Name", text: $services.query, onCommit: services.load)
+                    TextField("Enter Show Name", text: $services.query, onCommit: services.load)
                     .padding(.leading, 20)
                 List {
                     ForEach(Array(self.services.shows.enumerated()), id: \.1.id) { (index, show) in

@@ -26,6 +26,10 @@ struct DetailResponse: Decodable {
     let vote_average: Double
     let vote_count: Int
     let episode_run_time: [Int]
+    let genres: [Genre]
+    let original_language: String
+    let last_episode_to_air: Last_Episode_To_Air
+    let type: String
     
 }
 
@@ -37,6 +41,14 @@ struct Next_Episode_To_Air: Decodable {
 
 struct Networks: Decodable {
     let name: String //todo - this might have more than one name, list of networks. need to test/find a show that has multiple.
+}
+
+struct Genre: Decodable {
+    let name: String
+}
+
+struct Last_Episode_To_Air: Decodable {
+    let air_date: String
 }
 
 class DetailServices: ObservableObject {
@@ -56,8 +68,8 @@ class DetailServices: ObservableObject {
     }
     
     func load() {
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        guard let url = URL(string: "https://api.themoviedb.org/3/tv/\(self.showID)?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"
+        let apiKey = "dd1fed7eede948d0697c67af77a4e3af"
+        guard let url = URL(string: "https://api.themoviedb.org/3/tv/\(self.showID)?api_key=dd1fed7eede948d0697c67af77a4e3af&language=en-US"
 ) else { return }
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 do {

@@ -87,7 +87,7 @@ init() {
 
     func load(num: Int, id: Int) {
     //todo - don't force unwrap all of these urls.
-    let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+    let apiKey = "dd1fed7eede948d0697c67af77a4e3af"
         guard var url = URL(string: "https://api.themoviedb.org/3/tv/\(showID)/recommendations?api_key=\(apiKey)&language=en-US&page=1") else { return }
         switch discoverNumber {
         case 0:

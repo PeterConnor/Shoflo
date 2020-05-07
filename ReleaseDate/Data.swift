@@ -22,7 +22,7 @@ public class Fetcher: ObservableObject {
     }
     
     func load() {
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+        let apiKey = "dd1fed7eede948d0697c67af77a4e3af"
         guard let url = URL(string: "https://api.themoviedb.org/3/tv/69740?api_key=\(apiKey)&language=en-US") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             do {
