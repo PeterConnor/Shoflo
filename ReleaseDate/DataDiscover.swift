@@ -42,7 +42,7 @@ public class DiscoverServices: ObservableObject {
         
     @Published var shows = [Result]() {
         didSet {
-            print("didSet shows - shows.count: \(shows.count)")
+            //print("didSet shows - shows.count: \(shows.count)")
             imageList.removeAll()
             if shows.count > 0 {
                 for (index, i) in shows.enumerated() {
@@ -70,7 +70,9 @@ public class DiscoverServices: ObservableObject {
     
     @Published var myShowIndex = 0 {
         didSet {
-            //print(self.myShowIndex)
+            getCoreData()
+            print(self.myShowIndex)
+            print(myShows.count)
             self.showID = Int(self.myShows[myShowIndex].id)
             //print(showID)
             load(num: self.discoverNumber, id: showID)
@@ -131,7 +133,7 @@ init() {
                     if let image = UIImage(data: data) {
                         DispatchQueue.main.async {
                             self?.imageList[index] = image
-                            print("finalImage changed")
+                            //print("finalImage changed")
                         }
                     } else {
                         print("xxxno image")

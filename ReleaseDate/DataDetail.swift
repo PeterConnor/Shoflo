@@ -64,7 +64,7 @@ class DetailServices: ObservableObject {
         self.vote_average = vote_average
         load()
         getImage(path: poster_path ?? "placeholder")
-        print("detailServices showID: \(showID)")
+        //print("detailServices showID: \(showID)")
     }
     
     func load() {

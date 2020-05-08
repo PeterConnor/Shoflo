@@ -176,7 +176,6 @@ struct DetailView: View {
 //                    Text("No Longer In Production")
 //            }
 
-                Text("Overview: \(detailServices.showDetail?.overview ?? "N/A")")
 
             Button(action: {
                 let show = MyShow(context: self.managedObjectContext)
@@ -215,6 +214,8 @@ struct DetailView: View {
                 }
             }) { Text("Insert example show")
             }
+            Text("Overview: \(detailServices.showDetail?.overview ?? "N/A")")
+
         }
     }
 }

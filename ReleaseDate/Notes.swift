@@ -11,12 +11,10 @@
  -navigation link doesn't work if you go to detailview and back, unless u search first and then hit nav link and back. Might need to update.
  
  ***To Do***
+ -if i click around really fast in discover view, it crashes.
  -need to put overview in...scroll view?
  -need to fix date format in detail view
- -I'm saving too much to core data because im not loading detail view from core data. i stopped saving the last few additions. =/
  -segmented controller looks bad if there are too many favorites
- -app crashes if you add a show to favs and then try to click last recommended show in discover view.
- -cant search by multiple words.
  -prevent dupes from saving to favs?
  -pretty sure the app crashes if there's no image and you try to save something to core data.
   -add sort to the lists, so no image availables go to bottom.

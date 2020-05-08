@@ -76,7 +76,7 @@ public class Services: ObservableObject {
                     if let image = UIImage(data: data) {
                         DispatchQueue.main.async {
                             self?.imageList[index] = image
-                            print("finalImage changed")
+                            //print("finalImage changed")
                         }
                     } else {
                         print("xxxno image")
