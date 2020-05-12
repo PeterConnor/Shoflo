@@ -29,12 +29,16 @@ struct DiscoverView: View {
                    Text("Top Rated").tag(2)
                }.pickerStyle(SegmentedPickerStyle())
             if discoverServices.discoverNumber == 0 {
-                Picker(selection: $discoverServices.myShowIndex, label: Text("Select Show")) {
-                    ForEach(0..<myShows.count) { i in
-                        Text("\(self.myShows[i].name!)")
-                    }
-                }.pickerStyle(SegmentedPickerStyle())
-                
+                VStack {
+                    Picker(selection: $discoverServices.myShowIndex, label: Text("Select Show")) {
+                            ForEach(0..<myShows.count) { i in
+                                Text("\(self.myShows[i].name!)")
+                        }
+                    }.pickerStyle(WheelPickerStyle())
+                        .labelsHidden()
+                    .frame(height: 60)
+                    .clipped()
+                }
             }
             List {
                 ForEach(Array(self.discoverServices.shows.enumerated()), id: \.1.id) { (index, show) in
@@ -67,6 +71,10 @@ struct DiscoverView: View {
                 .shadow(color: .black, radius: 2)
             }
         }.navigationBarTitle("Discover")
+        }.onAppear {
+            if self.myShows.count > 2 {
+                self.discoverServices.myShowIndex = 1
+            }
         }
     }
 }

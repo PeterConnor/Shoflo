@@ -45,7 +45,6 @@ struct SearchView: View {
                     .background(Color.white)
                     .cornerRadius(10)
                     .shadow(color: .black, radius: 2)
-                    
                 }
             }
             .navigationBarTitle("Search")

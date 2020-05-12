@@ -11,28 +11,19 @@
  -navigation link doesn't work if you go to detailview and back, unless u search first and then hit nav link and back. Might need to update.
  
  ***To Do***
- -if i click around really fast in discover view, it crashes.
- -need to put overview in...scroll view?
  -need to fix date format in detail view
- -segmented controller looks bad if there are too many favorites
- -prevent dupes from saving to favs?
- -pretty sure the app crashes if there's no image and you try to save something to core data.
-  -add sort to the lists, so no image availables go to bottom.
- -filter out results that dont have anything besides a name?
- -i dont think discover recommended works correctly after deleting something from favorites because myshows is already initialized with the core data, but not updated after the delete. the core data is update, but not myshows in discoverview. (i think) A good way to test is to have multiple shows in a row.
+ -add sort to the lists, so no image availables go to bottom (should i filter those out altogether?).
  -notifications. how are these going to look?
- Segmented Control with 3 options:
--need to run code in background for shows that have null next episode date.
+ -need to run code in background for shows that have null next episode date.
  https://www.hackingwithswift.com/example-code/system/how-to-run-code-when-your-app-is-terminated
- -Need to remove list row and make it its own view?
- -simple animations
- -your rating, with ability to submit rating.
+ ***Post MVP***
  -watched, to watch.
-
- Look at similar apps for ideas
- 
- ***Ideas for Polish***
- 
+ -your rating, with ability to submit rating.
+ -simple animations
+ -Look at similar apps for ideas
+ -Polish
+ -more pages in results
+ -add other ways to sort
  ***QUESTIONS***
  -what's the difference between list and forEach? (can't manipulate each item in list?). DOES IMAGE WORK WITH FOREACH?
  -Why does navigationlink load detailview for each item in list?

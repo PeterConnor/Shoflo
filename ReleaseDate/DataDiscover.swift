@@ -71,9 +71,12 @@ public class DiscoverServices: ObservableObject {
     @Published var myShowIndex = 0 {
         didSet {
             getCoreData()
-            print(self.myShowIndex)
-            print(myShows.count)
-            self.showID = Int(self.myShows[myShowIndex].id)
+            print("myshowindex: \(self.myShowIndex)")
+            //print(myShows.count)
+            if myShows.count > 0 && myShows != nil {
+               self.showID = Int(self.myShows[myShowIndex].id)
+            }
+            
             //print(showID)
             load(num: self.discoverNumber, id: showID)
         }
