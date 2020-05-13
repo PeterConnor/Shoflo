@@ -11,6 +11,8 @@
  -navigation link doesn't work if you go to detailview and back, unless u search first and then hit nav link and back. Might need to update.
  
  ***To Do***
+ -DO THE DATES FIRST, then put each detail vertical stack in its own hstack with spacers on either side.
+ -push to remote
  -need to fix date format in detail view
  -add sort to the lists, so no image availables go to bottom (should i filter those out altogether?).
  -notifications. how are these going to look?
@@ -24,7 +26,9 @@
  -Polish
  -more pages in results
  -add other ways to sort
+ -to watch list
  ***QUESTIONS***
+
  -what's the difference between list and forEach? (can't manipulate each item in list?). DOES IMAGE WORK WITH FOREACH?
  -Why does navigationlink load detailview for each item in list?
  -difference between global async vs main async
