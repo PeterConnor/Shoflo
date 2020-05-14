@@ -7,6 +7,8 @@
 //
 
 /*
+ Did this work?
+ 
  ***BUGS***
  -navigation link doesn't work if you go to detailview and back, unless u search first and then hit nav link and back. Might need to update.
  
