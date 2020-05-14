@@ -11,9 +11,9 @@
  -navigation link doesn't work if you go to detailview and back, unless u search first and then hit nav link and back. Might need to update.
  
  ***To Do***
- -DO THE DATES FIRST, then put each detail vertical stack in its own hstack with spacers on either side.
+ -put each detail vertical stack in its own hstack with spacers on either side.
  -push to remote
- -need to fix date format in detail view
+ -add saved alert
  -add sort to the lists, so no image availables go to bottom (should i filter those out altogether?).
  -notifications. how are these going to look?
  -need to run code in background for shows that have null next episode date.
