@@ -32,6 +32,17 @@ struct DetailView: View {
         return count / list.count
     }
     
+    func getDate(dateString: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        if let formattedDate = formatter.date(from: dateString) {
+            formatter.dateFormat = "MMM d, yyyy"
+            return formatter.string(from: formattedDate)
+        } else {
+            return "N/A"
+        }
+    }
+    
     var body: some View {
             ScrollView {
             VStack {
@@ -105,7 +116,7 @@ struct DetailView: View {
                                     }
                             if detailServices.showDetail?.first_air_date != nil {
                                 Text("First Aired ").fontWeight(.black)
-                                Text("\(detailServices.showDetail!.first_air_date)")
+                                Text("\(getDate(dateString: detailServices.showDetail!.first_air_date))")
                             } else {
                                 Text("First Aired ").fontWeight(.black)
                                 Text("N/A").foregroundColor(Color.gray)
@@ -115,7 +126,7 @@ struct DetailView: View {
                                 if detailServices.showDetail?.next_episode_to_air?.air_date != nil {
                                     VStack {
                                         Text("Next Air Date ").fontWeight(.black)
-                                        Text("\(detailServices.showDetail!.next_episode_to_air!.air_date)")
+                                        Text("\(getDate(dateString: detailServices.showDetail!.next_episode_to_air!.air_date))")
                                     }
                                     
                                 } else {
@@ -196,7 +207,7 @@ struct DetailView: View {
                             
                             if detailServices.showDetail?.last_episode_to_air.air_date != nil {
                                 Text("Last Aired ").fontWeight(.black)
-                                Text("\(detailServices.showDetail!.last_episode_to_air.air_date)")
+                                Text("\(getDate(dateString: detailServices.showDetail!.last_episode_to_air.air_date))")
                             } else {
                                 Text("Last Aired ").fontWeight(.black)
                                 Text("N/A").foregroundColor(Color.gray)
