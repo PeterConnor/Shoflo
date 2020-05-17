@@ -14,13 +14,14 @@
  
  ***To Do***
  -put each detail vertical stack in its own hstack with spacers on either side.
- -push to remote
  -add saved alert
  -add sort to the lists, so no image availables go to bottom (should i filter those out altogether?).
  -notifications. how are these going to look?
+ https://www.hackingwithswift.com/example-code/system/how-to-set-local-alerts-using-unnotificationcenter
  -need to run code in background for shows that have null next episode date.
  https://www.hackingwithswift.com/example-code/system/how-to-run-code-when-your-app-is-terminated
  ***Post MVP***
+ -maybe just do recommended based off all shows, and filter out dupes.
  -watched, to watch.
  -your rating, with ability to submit rating.
  -simple animations

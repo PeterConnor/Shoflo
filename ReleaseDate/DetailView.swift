@@ -21,6 +21,7 @@ struct DetailView: View {
     var myShows: FetchedResults<MyShow>
     @State private var duplicateShow: Bool = false
 
+    var noteCent = NotificationManager()
     
     var name: String
     
@@ -242,6 +243,7 @@ struct DetailView: View {
                                 }
                             }
                         }
+                        self.noteCent.scheduleNotification()
                         let show = MyShow(context: self.managedObjectContext)
                         show.name = self.name
                         show.id = Int32(self.detailServices.showID)

@@ -127,7 +127,7 @@ init() {
 }
     
   func getImage(path: String?, index: Int) {
-        var finalImage = UIImage(named: "ImageNotAvailable")
+        var finalImage = UIImage(named: "imagenotavailable")
             imageList.append(finalImage)
         if let imagePath = path as? String {
             if let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath) {

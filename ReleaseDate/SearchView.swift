@@ -21,7 +21,7 @@ struct SearchView: View {
                     HStack {
                         NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
                             if self.services.shows.count == self.services.imageList.count && self.services.imageList.count > 0 {
-                                Image(uiImage: self.services.imageList[index] ?? UIImage(named: "ImageNotAvailable")!)
+                                Image(uiImage: self.services.imageList[index] ?? UIImage(named: "imagenotavailable")!)
                                     .resizable()
                                     .cornerRadius(10)
                                     .shadow(color: .black, radius: 2)

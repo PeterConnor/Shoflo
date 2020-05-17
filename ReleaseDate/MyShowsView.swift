@@ -21,7 +21,7 @@ struct MyShowsView: View {
     
     func getImageFromData(show: MyShow) -> UIImage  {
         //this is just a placeholder
-        var finalImage = (UIImage(named: "ImageNotAvailable"))
+        var finalImage = (UIImage(named: "imagenotavailable"))
         if let data = show.image {
             if let image = UIImage(data: data as Data) {
                 finalImage = image
