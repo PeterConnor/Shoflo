@@ -20,8 +20,9 @@ struct DetailView: View {
     
     var myShows: FetchedResults<MyShow>
     @State private var duplicateShow: Bool = false
+    @State private var showSaved: Bool = false
 
-    var noteCent = NotificationManager()
+    var notificationManager = NotificationManager()
     
     var name: String
     
@@ -226,9 +227,14 @@ struct DetailView: View {
                     }
                 }
                 .alert(isPresented: $duplicateShow) {
-                    Alert(title: Text("Duplicate Show"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
+                    Alert(title: Text("Duplicate Show!"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
                 }
+                
+                
                 Text("Overview: \(detailServices.showDetail?.overview ?? "N/A")")
+                .alert(isPresented: $showSaved) {
+                    Alert(title: Text("Show Saved!"), message: nil, dismissButton: .default(Text("Okay")))
+                }
 
             }
         }
@@ -238,12 +244,25 @@ struct DetailView: View {
                             for i in self.myShows {
                                 if i.id == self.detailServices.showID {
                                     self.duplicateShow = true
-                                    print("already exists")
+                                    //print("already exists")
                                     return
                                 }
+                                else {
+                                    self.showSaved = true
+                                }
                             }
-                        }
-                        self.noteCent.scheduleNotification()
+                        } else {
+                            self.showSaved = true
+                    }
+                    
+                        
+                    if self.notificationManager.isAuthorized == false {
+                        //need to show alert
+                        print("notifications are not authorized. need to show alert")
+                    } else {
+                        self.notificationManager.scheduleNotification()
+                    }
+                    
                         let show = MyShow(context: self.managedObjectContext)
                         show.name = self.name
                         show.id = Int32(self.detailServices.showID)

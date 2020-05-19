@@ -36,8 +36,8 @@ struct MyShowsView: View {
             managedObjectContext.delete(myShow)
             do {
                 try self.managedObjectContext.save()
-                print("save successful")
-                print("myShows: \(myShows)")
+                //print("save successful")
+                //print("myShows: \(myShows)")
             } catch {
                 "error saving managedObjectContext in detail view"
             }

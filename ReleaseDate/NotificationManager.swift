@@ -12,21 +12,30 @@ class NotificationManager {
     
     //Does this let the user tap the notification to be taken into the app?
     
+    var isAuthorized: Bool? = nil
+    
     let center = UNUserNotificationCenter.current()
 
     func requestNotificationAuthorization() {
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
                 print("Success")
+                self.isAuthorized = true
             } else {
-                print("Failure")
+                print("Notification Not Authorized")
+                self.isAuthorized = false
             }
         }
+        
+        //center.delegate = self do i need this?
     }
 
     func scheduleNotification() {
-        let center = UNUserNotificationCenter.current()
-
+        
+        //once this works, i need to put date: Date parameter into this fuction (like in outfit tracker), so it fires off of the show next air date.
+        
+        requestNotificationAuthorization()
+        
         let content = UNMutableNotificationContent()
         //pass these into the function as parameters
         content.title = "Title"
@@ -38,16 +47,36 @@ class NotificationManager {
         var dateComponents = DateComponents()
         dateComponents.year = 2020
         dateComponents.month = 5
-        dateComponents.day = 16
-        dateComponents.hour = 13
-        dateComponents.minute = 30
+        dateComponents.day = 18
+        dateComponents.hour = 17
+        dateComponents.minute = 27
+        
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
 
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        center.add(request)
+        //need to make the identifier ShowID
+        
+        center.add(request) { (error: Error?) in
+            
+            if error == nil {
+                print("Notification Scheduled", trigger ?? "Date Nil")
+            } else {
+                print("Error scheduling notification", error?.localizedDescription ?? "")
+            }
+        }
     }
-    
 }
 
 
+/*
+ 
+ let date = Date()
+
+ let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
+ let newDate = Calendar.current.date(byAdding: .day, value: -30, to: Date())
+ print(calendarDate)
+ print(newDate)
+ print("Hello")
+ 
+ */

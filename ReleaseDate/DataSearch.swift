@@ -25,7 +25,7 @@ struct Result: Decodable, Identifiable {
 public class Services: ObservableObject {
     @Published var shows = [Result]() {
         didSet {
-            print("didSet shows - shows.count: \(shows.count)")
+            //print("didSet shows - shows.count: \(shows.count)")
             imageList.removeAll()
             if shows.count > 0 {
                 for (index, i) in shows.enumerated() {
