@@ -34,7 +34,7 @@ struct DetailView: View {
         return count / list.count
     }
     
-    func getDate(dateString: String) -> String {
+    func getDateString(dateString: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         if let formattedDate = formatter.date(from: dateString) {
@@ -42,6 +42,16 @@ struct DetailView: View {
             return formatter.string(from: formattedDate)
         } else {
             return "N/A"
+        }
+    }
+    
+    func getDate(dateString: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        if let formattedDate = formatter.date(from: dateString) {
+            return formattedDate
+        } else {
+            return nil
         }
     }
     
@@ -118,7 +128,7 @@ struct DetailView: View {
                                     }
                             if detailServices.showDetail?.first_air_date != nil {
                                 Text("First Aired ").fontWeight(.black)
-                                Text("\(getDate(dateString: detailServices.showDetail!.first_air_date))")
+                                Text("\(getDateString(dateString: detailServices.showDetail!.first_air_date))")
                             } else {
                                 Text("First Aired ").fontWeight(.black)
                                 Text("N/A").foregroundColor(Color.gray)
@@ -128,7 +138,7 @@ struct DetailView: View {
                                 if detailServices.showDetail?.next_episode_to_air?.air_date != nil {
                                     VStack {
                                         Text("Next Air Date ").fontWeight(.black)
-                                        Text("\(getDate(dateString: detailServices.showDetail!.next_episode_to_air!.air_date))")
+                                        Text("\(getDateString(dateString: detailServices.showDetail!.next_episode_to_air!.air_date))")
                                     }
                                     
                                 } else {
@@ -209,7 +219,7 @@ struct DetailView: View {
                             
                             if detailServices.showDetail?.last_episode_to_air.air_date != nil {
                                 Text("Last Aired ").fontWeight(.black)
-                                Text("\(getDate(dateString: detailServices.showDetail!.last_episode_to_air.air_date))")
+                                Text("\(getDateString(dateString: detailServices.showDetail!.last_episode_to_air.air_date))")
                             } else {
                                 Text("Last Aired ").fontWeight(.black)
                                 Text("N/A").foregroundColor(Color.gray)
@@ -256,12 +266,6 @@ struct DetailView: View {
                     }
                     
                         
-                    if self.notificationManager.isAuthorized == false {
-                        //need to show alert
-                        print("notifications are not authorized. need to show alert")
-                    } else {
-                        self.notificationManager.scheduleNotification()
-                    }
                     
                         let show = MyShow(context: self.managedObjectContext)
                         show.name = self.name
@@ -298,6 +302,15 @@ struct DetailView: View {
                         } catch {
                             "error saving managedObjectContext in detail view"
                         }
+                    if self.notificationManager.isAuthorized == false {
+                        //need to show alert
+                        print("notifications are not authorized. need to show alert")
+                    } else {
+                        if self.detailServices.showDetail?.next_episode_to_air?.air_date != nil {
+                            self.notificationManager.scheduleNotification(myShow: show, date: self.getDate(dateString: self.detailServices.showDetail!.next_episode_to_air!.air_date)!)
+                        }
+                        
+                    }
                 }
             )
     }

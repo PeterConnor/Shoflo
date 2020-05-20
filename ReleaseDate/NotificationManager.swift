@@ -30,7 +30,7 @@ class NotificationManager {
         //center.delegate = self do i need this?
     }
 
-    func scheduleNotification() {
+    func scheduleNotification(myShow: MyShow, date: Date) {
         
         //once this works, i need to put date: Date parameter into this fuction (like in outfit tracker), so it fires off of the show next air date.
         
@@ -38,23 +38,26 @@ class NotificationManager {
         
         let content = UNMutableNotificationContent()
         //pass these into the function as parameters
-        content.title = "Title"
-        content.body = "Body"
-        content.categoryIdentifier = "alarm" //Do I need this?
-        content.userInfo = ["customData": "fizzbuzz"] //Do I need this?
-        content.sound = UNNotificationSound.default //Do I need this?
+        content.title = "\(myShow.name ?? "Show Update")"
+        content.body = "The first episode of a new season of \(myShow.name) is scheduled to air on \(date)"
+        //content.categoryIdentifier = "alarm" //Do I need this?
+        //content.userInfo = ["customData": "fizzbuzz"] //Do I need this?
+        //content.sound = UNNotificationSound.default //Do I need this?
 
-        var dateComponents = DateComponents()
-        dateComponents.year = 2020
-        dateComponents.month = 5
-        dateComponents.day = 18
-        dateComponents.hour = 17
-        dateComponents.minute = 27
         
+        let subtractedDate = Calendar.current.date(byAdding: .day, value: -9, to: date)
+        let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate!)
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = calendarDate.year
+        dateComponents.month = calendarDate.month
+        dateComponents.day = calendarDate.day
+        dateComponents.hour = 23
+        dateComponents.minute = 21
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
 
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: "1", content: content, trigger: trigger)
         //need to make the identifier ShowID
         
         center.add(request) { (error: Error?) in
