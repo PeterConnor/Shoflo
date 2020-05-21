@@ -12,6 +12,10 @@
  -navigation link doesn't work if you go to detailview and back, unless u search first and then hit nav link and back. Might need to update.
  
  ***To Do***
+ -do i need to remove delivered notifications?
+ -notifications for next air date work. Need to make them 30 days out, 7 days out, 1 day out. (Can test this 1 min, 2min, 3min. back2back2back notifications.
+ -Need to clean up notification look. See Screen shot.
+ -need a way to delete notifications. (Does each notification need a unique identifier?)
  -need to show alert if self.notificationManager.isAuthorized == false in detail view
  -put each detail vertical stack in its own hstack with spacers on either side.
  -add sort to the lists, so no image availables go to bottom (should i filter those out altogether?).

@@ -308,6 +308,7 @@ struct DetailView: View {
                     } else {
                         if self.detailServices.showDetail?.next_episode_to_air?.air_date != nil {
                             self.notificationManager.scheduleNotification(myShow: show, date: self.getDate(dateString: self.detailServices.showDetail!.next_episode_to_air!.air_date)!)
+                            self.notificationManager.getPending()
                         }
                         
                     }

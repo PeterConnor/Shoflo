@@ -19,6 +19,8 @@ struct MyShowsView: View {
     
     var myShows: FetchedResults<MyShow>
     
+    var notificationManager = NotificationManager()
+    
     func getImageFromData(show: MyShow) -> UIImage  {
         //this is just a placeholder
         var finalImage = (UIImage(named: "imagenotavailable"))
@@ -33,6 +35,13 @@ struct MyShowsView: View {
     func removeMyShow(at offsets: IndexSet) {
         for index in offsets {
             let myShow = myShows[index]
+            print(myShow.id)
+            notificationManager.center.removeAllDeliveredNotifications()
+            print("before notification deletion")
+            notificationManager.getPending()
+            self.notificationManager.center.removePendingNotificationRequests(withIdentifiers: ["\(myShow.id)", "\(myShow.id)" + "2", "\(myShow.id)" + "3"])
+            print("after notification deletion")
+            notificationManager.getPending()
             managedObjectContext.delete(myShow)
             do {
                 try self.managedObjectContext.save()

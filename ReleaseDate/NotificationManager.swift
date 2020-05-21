@@ -45,21 +45,17 @@ class NotificationManager {
         //content.sound = UNNotificationSound.default //Do I need this?
 
         
-        let subtractedDate = Calendar.current.date(byAdding: .day, value: -9, to: date)
+        let subtractedDate = Calendar.current.date(byAdding: .day, value: 0, to: date)
         let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate!)
-        
         var dateComponents = DateComponents()
         dateComponents.year = calendarDate.year
         dateComponents.month = calendarDate.month
         dateComponents.day = calendarDate.day
-        dateComponents.hour = 23
-        dateComponents.minute = 21
+        dateComponents.hour = 21
+        dateComponents.minute = 55
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-
-        let request = UNNotificationRequest(identifier: "1", content: content, trigger: trigger)
-        //need to make the identifier ShowID
-        
+        let request = UNNotificationRequest(identifier: "\(myShow.id)", content: content, trigger: trigger)
         center.add(request) { (error: Error?) in
             
             if error == nil {
@@ -68,7 +64,57 @@ class NotificationManager {
                 print("Error scheduling notification", error?.localizedDescription ?? "")
             }
         }
+        
+        let subtractedDate2 = Calendar.current.date(byAdding: .day, value: 0, to: date)
+        let calendarDate2 = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate2!)
+        var dateComponents2 = DateComponents()
+        dateComponents2.year = calendarDate2.year
+        dateComponents2.month = calendarDate2.month
+        dateComponents2.day = calendarDate2.day
+        dateComponents2.hour = 21
+        dateComponents2.minute = 57
+        
+        let trigger2 = UNCalendarNotificationTrigger(dateMatching: dateComponents2, repeats: false)
+        let request2 = UNNotificationRequest(identifier: "\(myShow.id)" + "2", content: content, trigger: trigger2)
+        center.add(request2) { (error: Error?) in
+            
+            if error == nil {
+                print("Notification Scheduled", trigger ?? "Date Nil")
+            } else {
+                print("Error scheduling notification", error?.localizedDescription ?? "")
+            }
+        }
+        
+        let subtractedDate3 = Calendar.current.date(byAdding: .day, value: 1, to: date)
+        let calendarDate3 = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate3!)
+        var dateComponents3 = DateComponents()
+        dateComponents3.year = calendarDate3.year
+        dateComponents3.month = calendarDate3.month
+        dateComponents3.day = calendarDate3.day
+        dateComponents3.hour = 21
+        dateComponents3.minute = 59
+        
+        let trigger3 = UNCalendarNotificationTrigger(dateMatching: dateComponents3, repeats: false)
+        let request3 = UNNotificationRequest(identifier: "\(myShow.id)" + "3", content: content, trigger: trigger3)
+        center.add(request3) { (error: Error?) in
+            
+            if error == nil {
+                print("Notification Scheduled", trigger ?? "Date Nil")
+                self.getPending()
+            } else {
+                print("Error scheduling notification", error?.localizedDescription ?? "")
+            }
+        }
     }
+    
+    func getPending() {
+        self.center.getPendingNotificationRequests(completionHandler: { requests in
+            for request in requests {
+                print("notreq: \(request.identifier)")
+            }
+        })
+    }
+    
 }
 
 
