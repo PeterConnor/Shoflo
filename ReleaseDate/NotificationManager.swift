@@ -45,14 +45,14 @@ class NotificationManager {
         //content.sound = UNNotificationSound.default //Do I need this?
 
         
-        let subtractedDate = Calendar.current.date(byAdding: .day, value: 0, to: date)
+        let subtractedDate = Calendar.current.date(byAdding: .day, value: -5, to: date)
         let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate!)
         var dateComponents = DateComponents()
         dateComponents.year = calendarDate.year
         dateComponents.month = calendarDate.month
         dateComponents.day = calendarDate.day
-        dateComponents.hour = 21
-        dateComponents.minute = 55
+        dateComponents.hour = 13
+        dateComponents.minute = 47
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: "\(myShow.id)", content: content, trigger: trigger)
@@ -65,14 +65,14 @@ class NotificationManager {
             }
         }
         
-        let subtractedDate2 = Calendar.current.date(byAdding: .day, value: 0, to: date)
+        let subtractedDate2 = Calendar.current.date(byAdding: .day, value: -5, to: date)
         let calendarDate2 = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate2!)
         var dateComponents2 = DateComponents()
         dateComponents2.year = calendarDate2.year
         dateComponents2.month = calendarDate2.month
         dateComponents2.day = calendarDate2.day
-        dateComponents2.hour = 21
-        dateComponents2.minute = 57
+        dateComponents2.hour = 13
+        dateComponents2.minute = 48
         
         let trigger2 = UNCalendarNotificationTrigger(dateMatching: dateComponents2, repeats: false)
         let request2 = UNNotificationRequest(identifier: "\(myShow.id)" + "2", content: content, trigger: trigger2)
@@ -85,14 +85,14 @@ class NotificationManager {
             }
         }
         
-        let subtractedDate3 = Calendar.current.date(byAdding: .day, value: 1, to: date)
+        let subtractedDate3 = Calendar.current.date(byAdding: .day, value: -5, to: date)
         let calendarDate3 = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate3!)
         var dateComponents3 = DateComponents()
         dateComponents3.year = calendarDate3.year
         dateComponents3.month = calendarDate3.month
         dateComponents3.day = calendarDate3.day
-        dateComponents3.hour = 21
-        dateComponents3.minute = 59
+        dateComponents3.hour = 13
+        dateComponents3.minute = 49
         
         let trigger3 = UNCalendarNotificationTrigger(dateMatching: dateComponents3, repeats: false)
         let request3 = UNNotificationRequest(identifier: "\(myShow.id)" + "3", content: content, trigger: trigger3)

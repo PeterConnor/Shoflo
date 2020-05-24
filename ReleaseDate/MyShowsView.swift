@@ -41,7 +41,8 @@ struct MyShowsView: View {
             notificationManager.getPending()
             self.notificationManager.center.removePendingNotificationRequests(withIdentifiers: ["\(myShow.id)", "\(myShow.id)" + "2", "\(myShow.id)" + "3"])
             print("after notification deletion")
-            notificationManager.getPending()
+            notificationManager.getPending() //this is a print statement. need to remove these sneaky ones before ship
+            
             managedObjectContext.delete(myShow)
             do {
                 try self.managedObjectContext.save()
