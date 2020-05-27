@@ -13,9 +13,10 @@
  
  ***To Do***
  -notifications for next air date work. Just need to make them 30 days out, 7 days out, 1 day out & clean up look
- -need to show alert if self.notificationManager.isAuthorized == false in detail view. need to disable it myself. 
+ -need to show alert if self.notificationManager.isAuthorized == false in detail view. need to disable it myself.
  -put each detail vertical stack in its own hstack with spacers on either side.
  -add sort to the lists, so no image availables go to bottom (should i filter those out altogether?).
+ -do i need to add comments to info.plist?
  -need to run code in background for shows that have null next episode date.
  https://www.hackingwithswift.com/example-code/system/how-to-run-code-when-your-app-is-terminated
  
@@ -55,4 +56,13 @@
  -what's the difference between list and forEach? (can't manipulate each item in list?). DOES IMAGE WORK WITH FOREACH?
  -Why does navigationlink load detailview for each item in list?
  -difference between global async vs main async
+ */
+
+/*
+load myshows into app delegate OR can i create a singleton that checks for nil next air date AND checks if there's a new one.
+cycle through. if show next air date == nil, then check to see if there's a new air date. if so, replace nil with value.
+ 
+ singleton class check next air date.
+ 
+ I can test by removing the next air date save from the core data save in detail view. then check shows that do have a next air date. that field will be blank. 
  */

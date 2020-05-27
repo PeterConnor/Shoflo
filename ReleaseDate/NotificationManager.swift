@@ -9,9 +9,7 @@
 import UserNotifications
 
 class NotificationManager {
-    
-    //Does this let the user tap the notification to be taken into the app?
-    
+        
     var isAuthorized: Bool? = nil
     
     let center = UNUserNotificationCenter.current()
@@ -115,6 +113,42 @@ class NotificationManager {
         })
     }
     
+    func scheduleTestNotification() {
+        
+        //once this works, i need to put date: Date parameter into this fuction (like in outfit tracker), so it fires off of the show next air date.
+        
+        requestNotificationAuthorization()
+        
+        let content = UNMutableNotificationContent()
+        //pass these into the function as parameters
+        content.title = "THIS IS A TEST TITLE"
+        content.body = "THIS IS A TEST BODY"
+        //content.categoryIdentifier = "alarm" //Do I need this?
+        //content.userInfo = ["customData": "fizzbuzz"] //Do I need this?
+        //content.sound = UNNotificationSound.default //Do I need this?
+
+        let date = Date()
+        let subtractedDate = Calendar.current.date(byAdding: .day, value: 7, to: date)
+        let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate!)
+        var dateComponents = DateComponents()
+        dateComponents.year = calendarDate.year
+        dateComponents.month = calendarDate.month
+        dateComponents.day = calendarDate.day
+        dateComponents.hour = 13
+        dateComponents.minute = 47
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: "THIS IS THE TEST NOTIFICATION!!!", content: content, trigger: trigger)
+        center.add(request) { (error: Error?) in
+            
+            if error == nil {
+                print("Notification Scheduled", trigger ?? "Date Nil")
+            } else {
+                print("Error scheduling notification", error?.localizedDescription ?? "")
+            }
+        }
+        
+    }
 }
 
 

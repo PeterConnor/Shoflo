@@ -37,7 +37,6 @@ public class DiscoverServices: ObservableObject {
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-       
     }
         
     @Published var shows = [Result]() {

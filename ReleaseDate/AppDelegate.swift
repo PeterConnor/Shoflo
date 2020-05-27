@@ -8,9 +8,12 @@
 
 import UIKit
 import CoreData
+import BackgroundTasks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let notificationManager = NotificationManager()
 
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "DataModel")
@@ -35,7 +38,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.c0nman.ReleaseDate.fetch",
+                                        using: nil) { (task) in
+          self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
+        print("task scheduled")
+        }
+        
         return true
+    }
+    
+    func handleAppRefreshTask(task: BGAppRefreshTask) {
+        task.expirationHandler = {
+            task.setTaskCompleted(success: false)
+          //PokeManager.urlSession.invalidateAndCancel()
+        }
+        print("handle app refresh")
+        notificationManager.scheduleTestNotification()
+        task.setTaskCompleted(success: true)
+//
+        
+        scheduleBackgroundFetch()
+    }
+    
+    func scheduleBackgroundFetch() {
+        let fetchTask = BGAppRefreshTaskRequest(identifier: "com.c0nman.ReleaseDate.fetch")
+        fetchTask.earliestBeginDate = Date(timeIntervalSinceNow: 60)
+        do {
+          try BGTaskScheduler.shared.submit(fetchTask)
+            print("background fetch scheduled")
+        } catch {
+          print("Unable to submit task: \(error.localizedDescription)")
+        }
     }
 
     // MARK: UISceneSession Lifecycle
