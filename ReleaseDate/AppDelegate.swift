@@ -14,6 +14,7 @@ import BackgroundTasks
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let notificationManager = NotificationManager()
+    let nextAirDate = NextAirDate()
 
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "DataModel")
@@ -54,7 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           //PokeManager.urlSession.invalidateAndCancel()
         }
         print("handle app refresh")
-        notificationManager.scheduleTestNotification()
+        
+        //notificationManager.scheduleTestNotification()
+        nextAirDate.getCoreDataAndCheckNextAirDate()
         task.setTaskCompleted(success: true)
 //
         

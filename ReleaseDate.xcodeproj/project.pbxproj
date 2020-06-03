@@ -26,6 +26,7 @@
 		FA6AC998243588F600FA9170 /* DataDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC997243588F600FA9170 /* DataDetail.swift */; };
 		FA6AC99B243BDEEF00FA9170 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */; };
 		FAE8BF7B246E3ACE000C98CB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8BF7A246E3ACD000C98CB /* NotificationManager.swift */; };
+		FAE8BF7D247F5DB6000C98CB /* NextAirDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8BF7C247F5DB5000C98CB /* NextAirDate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		FA6AC997243588F600FA9170 /* DataDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetail.swift; sourceTree = "<group>"; };
 		FA6AC99A243BDEEF00FA9170 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		FAE8BF7A246E3ACD000C98CB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		FAE8BF7C247F5DB5000C98CB /* NextAirDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextAirDate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */,
 				FA0279662428555200599C81 /* AppDelegate.swift */,
 				FA0279682428555200599C81 /* SceneDelegate.swift */,
+				FAE8BF7C247F5DB5000C98CB /* NextAirDate.swift */,
 				FAE8BF7A246E3ACD000C98CB /* NotificationManager.swift */,
 				FA452CA5242D6FBA0069120C /* DataSearch.swift */,
 				FA1D4C062442417F00DFA28B /* DataDiscover.swift */,
@@ -313,6 +316,7 @@
 				FA452CAA242FB2D90069120C /* DiscoverView.swift in Sources */,
 				FA6AC99B243BDEEF00FA9170 /* DataModel.xcdatamodeld in Sources */,
 				FA452CA6242D6FBA0069120C /* DataSearch.swift in Sources */,
+				FAE8BF7D247F5DB6000C98CB /* NextAirDate.swift in Sources */,
 				FA02796B2428555200599C81 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

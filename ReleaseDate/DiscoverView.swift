@@ -72,6 +72,15 @@ struct DiscoverView: View {
             }
         }.navigationBarTitle("Discover")
         }.onAppear {
+            print("this did appear")
+            for i in self.myShows {
+                print(i.air_date)
+            }
+            //need to remove this
+            //let x = NextAirDate()
+            //x.getCoreDataAndCheckNextAirDate()
+            //to here
+            
             if self.myShows.count > 2 {
                 self.discoverServices.myShowIndex = 1
             }

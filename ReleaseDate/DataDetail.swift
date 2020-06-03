@@ -85,7 +85,6 @@ class DetailServices: ObservableObject {
                 } catch {
                     print(error)
                 }
-
             }
             .resume()
         }
