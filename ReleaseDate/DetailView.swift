@@ -271,7 +271,11 @@ struct DetailView: View {
                         show.name = self.name
                         show.id = Int32(self.detailServices.showID)
                         show.vote_average = self.detailServices.vote_average
-                        //show.air_date = self.detailServices.showDetail?.next_episode_to_air?.air_date ?? "N/A"
+                        if self.detailServices.showDetail?.next_episode_to_air?.episode_number != nil {
+                            if self.detailServices.showDetail?.next_episode_to_air!.episode_number == 1 {
+                                //show.air_date = self.detailServices.showDetail?.next_episode_to_air?.air_date ?? "N/A"
+                                }
+                            }
                         show.episode_number = Int32(self.detailServices.showDetail?.next_episode_to_air?.episode_number ?? 0)
                         show.season_number = Int32(self.detailServices.showDetail?.next_episode_to_air?.season_number ?? 0)
                         show.first_air_date = self.detailServices.showDetail?.first_air_date
@@ -309,8 +313,7 @@ struct DetailView: View {
                         if self.detailServices.showDetail?.next_episode_to_air?.air_date != nil {
                             if self.detailServices.showDetail?.next_episode_to_air?.episode_number != nil {
                                 if self.detailServices.showDetail?.next_episode_to_air!.episode_number == 1 {
-                                    //tezt this ***
-                                    self.notificationManager.scheduleNotification(myShow: show, date: self.getDate(dateString: self.detailServices.showDetail!.next_episode_to_air!.air_date)!)
+                                    //self.notificationManager.scheduleNotification(myShow: show, date: self.getDate(dateString: self.detailServices.showDetail!.next_episode_to_air!.air_date)!)
                                     self.notificationManager.getPending()
                                 }
                             }
@@ -327,3 +330,5 @@ struct DetailView_Previews: PreviewProvider {
         DetailView(detailServices: DetailServices(showID: 55555, poster_path: "jjj", vote_average: 0.0), name: "Name")
     }
 }
+
+

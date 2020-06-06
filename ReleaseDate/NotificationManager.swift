@@ -53,7 +53,7 @@ class NotificationManager {
         //content.sound = UNNotificationSound.default //Do I need this?
 
         
-        let subtractedDate = Calendar.current.date(byAdding: .day, value: -5, to: date)
+        let subtractedDate = Calendar.current.date(byAdding: .day, value: 1, to: date)
         let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate!)
         var dateComponents = DateComponents()
         dateComponents.year = calendarDate.year
@@ -73,7 +73,7 @@ class NotificationManager {
             }
         }
         
-        let subtractedDate2 = Calendar.current.date(byAdding: .day, value: -5, to: date)
+        let subtractedDate2 = Calendar.current.date(byAdding: .day, value: 2, to: date)
         let calendarDate2 = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate2!)
         var dateComponents2 = DateComponents()
         dateComponents2.year = calendarDate2.year
@@ -93,7 +93,7 @@ class NotificationManager {
             }
         }
         
-        let subtractedDate3 = Calendar.current.date(byAdding: .day, value: -5, to: date)
+        let subtractedDate3 = Calendar.current.date(byAdding: .day, value: 3, to: date)
         let calendarDate3 = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate3!)
         var dateComponents3 = DateComponents()
         dateComponents3.year = calendarDate3.year
@@ -117,13 +117,14 @@ class NotificationManager {
     
     func getPending() {
         self.center.getPendingNotificationRequests(completionHandler: { requests in
+            print("pending notifications...")
             for request in requests {
                 print("notreq: \(request.identifier)")
             }
         })
     }
     
-    func scheduleImmediateNotification() {
+    func scheduleImmediateNotification(myShow: MyShow) {
         
         //once this works, i need to put date: Date parameter into this fuction (like in outfit tracker), so it fires off of the show next air date.
         
@@ -131,7 +132,7 @@ class NotificationManager {
         
         let content = UNMutableNotificationContent()
         //pass these into the function as parameters
-        content.title = "Immediate title"
+        content.title = "Immediate title - Show: \(myShow.name)"
         content.body = "Immediate BODY"
         //content.categoryIdentifier = "alarm" //Do I need this?
         //content.userInfo = ["customData": "fizzbuzz"] //Do I need this?

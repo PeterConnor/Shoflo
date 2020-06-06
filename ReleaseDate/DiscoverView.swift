@@ -20,6 +20,9 @@ struct DiscoverView: View {
     
     var myShows: FetchedResults<MyShow>
     
+    //need to remove this. for testing notifications...
+    var notificationManager = NotificationManager()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -74,12 +77,14 @@ struct DiscoverView: View {
         }.onAppear {
             print("this did appear")
             for i in self.myShows {
+                print("air date \(i.air_date)")
+            }
+            
+            self.notificationManager.getPending()
+            for i in self.myShows {
+                print("saved air date")
                 print(i.air_date)
             }
-            //need to remove this
-            //let x = NextAirDate()
-            //x.getCoreDataAndCheckNextAirDate()
-            //to here
             
             if self.myShows.count > 2 {
                 self.discoverServices.myShowIndex = 1

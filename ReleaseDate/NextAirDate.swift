@@ -18,6 +18,16 @@ class NextAirDate {
     var myShowsNilAirDate = [MyShow]()
     var showDetail: DetailResponse?
     
+    func getDate(dateString: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        if let formattedDate = formatter.date(from: dateString) {
+            return formattedDate
+        } else {
+            return nil
+        }
+    }
+    
     func getCoreDataAndCheckNextAirDate() {
     //1
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -36,9 +46,14 @@ class NextAirDate {
         do {
             myShows = try managedContext.fetch(fetchRequest)
             for i in myShows {
-                if i.air_date == nil {
+                if i.air_date == nil || i.air_date == "N/A" {
                     getNextAirDate(show: i)
-                    
+                } else if i.air_date != nil && i.air_date != "N/A" {
+                    if getDate(dateString: i.air_date!) != nil {
+                        if getDate(dateString: i.air_date!)! < Date() {
+                            i.air_date = "N/A"
+                        }
+                    }
                 }
             }
         } catch let error as NSError {
@@ -56,11 +71,14 @@ class NextAirDate {
                             DispatchQueue.main.async {
                                 self.showDetail = response
                                 if response.next_episode_to_air?.air_date != nil {
-                                    print(response.next_episode_to_air!.air_date)
-                                    show.air_date = response.next_episode_to_air!.air_date
-                                    self.notificationManager.scheduleNotification(myShow: show, date: self.notificationManager.getDate(dateString: response.next_episode_to_air!.air_date)!)
-                                    self.notificationManager.scheduleImmediateNotification()
-                                
+                                    if response.next_episode_to_air?.episode_number != nil {
+                                        if response.next_episode_to_air!.episode_number == 1 {
+                                            print(response.next_episode_to_air!.air_date)
+                                            show.air_date = response.next_episode_to_air!.air_date
+                                            self.notificationManager.scheduleNotification(myShow: show, date: self.notificationManager.getDate(dateString: response.next_episode_to_air!.air_date)!)
+                                            self.notificationManager.scheduleImmediateNotification(myShow: show)
+                                        }
+                                    }
                                 } else {
                                     print("No new air date")
                                 }
