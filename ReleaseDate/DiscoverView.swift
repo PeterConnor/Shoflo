@@ -19,6 +19,8 @@ struct DiscoverView: View {
     )
     
     var myShows: FetchedResults<MyShow>
+    @EnvironmentObject var nextAirDate: NextAirDate
+
     
     //need to remove this. for testing notifications...
     var notificationManager = NotificationManager()
@@ -63,6 +65,8 @@ struct DiscoverView: View {
                                 Text("⭐️ \(show.vote_average, specifier: "%.1f")")
                             }
                             Text(show.overview ?? "")
+                        }.alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
+                        Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
                         }
                     
                         }

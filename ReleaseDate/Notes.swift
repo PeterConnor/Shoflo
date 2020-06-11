@@ -24,9 +24,9 @@
  then i need to test if old air dates get wiped away and make sure the nil or N/A saves to core data. 
  
  ***To Do***
- 
+ do i need @EnvironmentObject var nextAirDate: NextAirDate in content view...for launching app?
 ---in scenedidbecome active, i added nextAirDate.getCoreDataAndCheckNextAirDate(backgroundTrueForegroundFalse: false)
- i need to make true set the immediate notification, but I need false which is foreground to to a local notification or an alert. 
+ i need to make true set the immediate notification, but I need false which is foreground to to a local notification or an alert.
  //i dont think its good that im saving next air dates to core data. if the 1st ep of s3 gets saved, then the app will not trigger a notification for ep 1 of season 3. Need to look into this. the next air date saves in detail view and NextAirDate for BGRefresh. For this, i need to do something like if next air date < Date show.next air date = "N/A". I prob need to do that in the BG refresh and every time the app launches. Maybe add this to next air date class.
  -notifications for next air date work. Just need to make them 30 days out, 7 days out, 1 day out & clean up look
  -need to show alert if self.notificationManager.isAuthorized == false in detail view. need to disable it myself.

@@ -18,6 +18,8 @@ struct MyShowsView: View {
     )
     
     var myShows: FetchedResults<MyShow>
+    @EnvironmentObject var nextAirDate: NextAirDate
+
     
     var notificationManager = NotificationManager()
     
@@ -74,6 +76,9 @@ struct MyShowsView: View {
                                     Text("⭐️ \(show.vote_average, specifier: "%.1f")")
                                 }
                                 Text(show.overview ?? "")
+                                    .alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
+                                Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
+                                }
                             }
                         }
                     }

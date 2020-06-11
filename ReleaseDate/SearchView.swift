@@ -10,6 +10,8 @@ import SwiftUI
 
 struct SearchView: View {
     @ObservedObject var services = Services()
+    @EnvironmentObject var nextAirDate: NextAirDate
+
     
     var body: some View {
         NavigationView {
@@ -48,6 +50,8 @@ struct SearchView: View {
                 }
             }
             .navigationBarTitle("Search")
+        }.alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
+        Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
         }
     }
 }
