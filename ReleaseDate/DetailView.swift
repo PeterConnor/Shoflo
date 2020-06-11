@@ -21,9 +21,9 @@ struct DetailView: View {
     var myShows: FetchedResults<MyShow>
     @State private var duplicateShow: Bool = false
     @State private var showSaved: Bool = false
-
     var notificationManager = NotificationManager()
-    
+    @EnvironmentObject var nextAirDate: NextAirDate
+
     var name: String
     
     func getRunTime(list: [Int]) -> Int {
@@ -75,6 +75,9 @@ struct DetailView: View {
                         .cornerRadius(10)
                         .shadow(color: .black, radius: 5)
                         .padding(20)
+                        .alert(isPresented: $duplicateShow) {
+                            Alert(title: Text("Duplicate Show!"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
+                        }
                         Text("⭐️ \(detailServices.vote_average, specifier: "%.1f")") + Text(" (\(detailServices.showDetail?.vote_count ?? 0) votes)").foregroundColor(Color.gray)
                     
                     HStack(alignment: .center) {
@@ -236,9 +239,6 @@ struct DetailView: View {
                         Spacer()
                     }
                 }
-                .alert(isPresented: $duplicateShow) {
-                    Alert(title: Text("Duplicate Show!"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
-                }
                 
                 
                 Text("Overview: \(detailServices.showDetail?.overview ?? "N/A")")
@@ -246,7 +246,10 @@ struct DetailView: View {
                     Alert(title: Text("Show Saved!"), message: nil, dismissButton: .default(Text("Okay")))
                 }
 
-            }
+                }.onAppear {
+                    print("this did appear")
+                    print(self.nextAirDate.newAirDateAndEnteredForeground)
+                }
         }
             .navigationBarItems(trailing:
                 Button("Save") {
@@ -319,6 +322,8 @@ struct DetailView: View {
                             }
                         }
                     }
+                }.alert(isPresented: $nextAirDate.newAirDateAndEnteredForeground) {
+                Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
                 }
             )
     }

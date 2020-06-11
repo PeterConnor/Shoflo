@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("handle app refresh")
         
         //notificationManager.scheduleTestNotification()
-        nextAirDate.getCoreDataAndCheckNextAirDate()
+        nextAirDate.getCoreDataAndCheckNextAirDate(backgroundTrueForegroundFalse: true)
         task.setTaskCompleted(success: true)
 //
         

@@ -38,7 +38,7 @@ public class Services: ObservableObject {
     }
     
     
-    @Published var query: String = "blind spot"
+    @Published var query: String = "dark"
     @Published var imageList: [UIImage?] = [UIImage]()
     
     init() {

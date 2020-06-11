@@ -10,13 +10,14 @@ import Foundation
 import CoreData
 import SwiftUI
 
-class NextAirDate {
+class NextAirDate: ObservableObject {
     
     var managedContext = NSManagedObjectContext()
     let notificationManager = NotificationManager()
     var myShows = [MyShow]()
     var myShowsNilAirDate = [MyShow]()
     var showDetail: DetailResponse?
+    @Published var newAirDateAndEnteredForeground = false
     
     func getDate(dateString: String) -> Date? {
         let formatter = DateFormatter()
@@ -28,7 +29,9 @@ class NextAirDate {
         }
     }
     
-    func getCoreDataAndCheckNextAirDate() {
+    func getCoreDataAndCheckNextAirDate(backgroundTrueForegroundFalse: Bool) {
+    
+        let backgroundOrForegroundCheck = backgroundTrueForegroundFalse
     //1
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -47,11 +50,16 @@ class NextAirDate {
             myShows = try managedContext.fetch(fetchRequest)
             for i in myShows {
                 if i.air_date == nil || i.air_date == "N/A" {
-                    getNextAirDate(show: i)
+                    getNextAirDate(show: i, backgroundTrueForegroundFalse: backgroundOrForegroundCheck)
                 } else if i.air_date != nil && i.air_date != "N/A" {
                     if getDate(dateString: i.air_date!) != nil {
                         if getDate(dateString: i.air_date!)! < Date() {
                             i.air_date = "N/A"
+                            do {
+                                try self.managedContext.save()
+                            } catch {
+                                "error saving managedObjectContext in detail view"
+                            }
                         }
                     }
                 }
@@ -61,7 +69,7 @@ class NextAirDate {
         }
     }
     
-    func getNextAirDate(show: MyShow) {
+    func getNextAirDate(show: MyShow, backgroundTrueForegroundFalse: Bool) {
         let apiKey = "dd1fed7eede948d0697c67af77a4e3af"
         guard let url = URL(string: "https://api.themoviedb.org/3/tv/\(show.id)?api_key=dd1fed7eede948d0697c67af77a4e3af&language=en-US") else { return }
                 URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -76,7 +84,15 @@ class NextAirDate {
                                             print(response.next_episode_to_air!.air_date)
                                             show.air_date = response.next_episode_to_air!.air_date
                                             self.notificationManager.scheduleNotification(myShow: show, date: self.notificationManager.getDate(dateString: response.next_episode_to_air!.air_date)!)
-                                            self.notificationManager.scheduleImmediateNotification(myShow: show)
+                                            
+                                            if backgroundTrueForegroundFalse == true {
+                                                print("background true")
+                                                self.notificationManager.scheduleImmediateNotification(myShow: show)
+                                            } else {
+                                                print("foreground true")
+                                                self.newAirDateAndEnteredForeground = true
+                                            }
+                                            
                                         }
                                     }
                                 } else {
