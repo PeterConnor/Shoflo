@@ -79,7 +79,8 @@ struct DiscoverView: View {
             }
         }.navigationBarTitle("Discover")
         }.onAppear {
-            print("this did appear")
+            print("onappear")
+            print(self.myShows)
             for i in self.myShows {
                 print("air date \(i.air_date)")
             }

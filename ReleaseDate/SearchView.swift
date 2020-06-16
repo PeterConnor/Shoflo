@@ -34,7 +34,7 @@ struct SearchView: View {
                             VStack(alignment: .leading) {
                                 HStack {
                                     Text(show.name ?? "")
-                                        .fontWeight(.black)
+                                        .fontWeight(.bold)
                                     Text("⭐️ \(show.vote_average, specifier: "%.1f")")
                                 }
                                 Text(show.overview ?? "")

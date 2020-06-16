@@ -75,9 +75,7 @@ struct DetailView: View {
                         .cornerRadius(10)
                         .shadow(color: .black, radius: 5)
                         .padding(20)
-                        .alert(isPresented: $duplicateShow) {
-                            Alert(title: Text("Duplicate Show!"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
-                        }
+                        
                         Text("⭐️ \(detailServices.vote_average, specifier: "%.1f")") + Text(" (\(detailServices.showDetail?.vote_count ?? 0) votes)").foregroundColor(Color.gray)
                     
                     HStack(alignment: .center) {
@@ -238,6 +236,8 @@ struct DetailView: View {
                         }
                         Spacer()
                     }
+                }.alert(isPresented: $duplicateShow) {
+                    Alert(title: Text("Duplicate Show!"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
                 }
                 
                 
@@ -276,7 +276,7 @@ struct DetailView: View {
                         show.vote_average = self.detailServices.vote_average
                         if self.detailServices.showDetail?.next_episode_to_air?.episode_number != nil {
                             if self.detailServices.showDetail?.next_episode_to_air!.episode_number == 1 {
-                                //show.air_date = self.detailServices.showDetail?.next_episode_to_air?.air_date ?? "N/A"
+                                show.air_date = self.detailServices.showDetail?.next_episode_to_air?.air_date ?? "N/A"
                                 }
                             }
                         show.episode_number = Int32(self.detailServices.showDetail?.next_episode_to_air?.episode_number ?? 0)
@@ -316,7 +316,7 @@ struct DetailView: View {
                         if self.detailServices.showDetail?.next_episode_to_air?.air_date != nil {
                             if self.detailServices.showDetail?.next_episode_to_air?.episode_number != nil {
                                 if self.detailServices.showDetail?.next_episode_to_air!.episode_number == 1 {
-                                    //self.notificationManager.scheduleNotification(myShow: show, date: self.getDate(dateString: self.detailServices.showDetail!.next_episode_to_air!.air_date)!)
+                                    self.notificationManager.scheduleNotification(myShow: show, date: self.getDate(dateString: self.detailServices.showDetail!.next_episode_to_air!.air_date)!)
                                     self.notificationManager.getPending()
                                 }
                             }

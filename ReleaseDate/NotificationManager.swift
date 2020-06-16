@@ -117,9 +117,9 @@ class NotificationManager {
     
     func getPending() {
         self.center.getPendingNotificationRequests(completionHandler: { requests in
-            //print("pending notifications...")
+            print("pending notifications...")
             for request in requests {
-                //print("notreq: \(request.identifier)")
+                print("notreq: \(request.identifier)")
             }
         })
     }

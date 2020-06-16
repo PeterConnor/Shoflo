@@ -51,10 +51,11 @@ class NextAirDate: ObservableObject {
             for i in myShows {
                 if i.air_date == nil || i.air_date == "N/A" {
                     getNextAirDate(show: i, backgroundTrueForegroundFalse: backgroundOrForegroundCheck)
-                } else if i.air_date != nil && i.air_date != "N/A" {
+                } else if i.air_date != nil && i.air_date != "N/A" && i.episode_number != nil {
                     if getDate(dateString: i.air_date!) != nil {
-                        if getDate(dateString: i.air_date!)! < Date() {
-                            i.air_date = "N/A"
+                        if getDate(dateString: i.air_date!)! < Date() || i.episode_number == 0 || i.episode_number > 1 {
+                            i.air_date = nil
+                            self.notificationManager.center.removePendingNotificationRequests(withIdentifiers: ["\(i.id)", "\(i.id)" + "2", "\(i.id)" + "3"])
                             do {
                                 try self.managedContext.save()
                             } catch {

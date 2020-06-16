@@ -3,4 +3,54 @@
    uuid = "8D29C6D9-EDDB-4672-A96A-027C8A52E29D"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C97F765-4F5D-4EAA-A7EE-829DDAC89D64"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReleaseDate/DetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "0C97F765-4F5D-4EAA-A7EE-829DDAC89D64 - a2f7a8a92ee92b67"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReleaseDate.DetailView.body.getter : some"
+                  moduleName = "ReleaseDate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/peteconnor/Desktop/Developer/ReleaseDate/ReleaseDate/DetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "255"
+                  endingLineNumber = "255"
+                  offsetFromSymbolStart = "508">
+               </Location>
+               <Location
+                  uuid = "0C97F765-4F5D-4EAA-A7EE-829DDAC89D64 - 4c0e3b26e5fe788"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in ReleaseDate.DetailView.body.getter : some"
+                  moduleName = "ReleaseDate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/peteconnor/Desktop/Developer/ReleaseDate/ReleaseDate/DetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "1364">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
