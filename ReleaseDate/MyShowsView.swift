@@ -60,34 +60,42 @@ struct MyShowsView: View {
         NavigationView {
             List {
                 ForEach(myShows, id: \.self) { (show: MyShow) in
-                    VStack {
+                    ZStack {
+                        HStack {
+                                Image(uiImage: self.getImageFromData(show: show))
+                                    .resizable()
+                                    .cornerRadius(10)
+                                    .shadow(color: Color(.secondaryLabel), radius: 2)
+                                    .aspectRatio(contentMode: .fit)
+                                    .padding(5)
+                                    .frame(width: 80, height: 120)
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Text(show.name ?? "")
+                                            .fontWeight(.black)
+                                        Text("⭐️ \(show.vote_average, specifier: "%.1f")")
+                                    }
+                                    Text(show.overview ?? "")
+                                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+                                        .alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
+                                    Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
+                                    }
+                                }
+                            
+                        }
+                        .frame(height: 120)
+                        .background(Color(.systemBackground))
+                        .cornerRadius(10)
+                        .shadow(color: Color(.secondaryLabel), radius: 4, x: 0, y: 1)
                         NavigationLink(destination: DetailView(detailServices: DetailServices(showID: Int(show.id), poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
-                            Image(uiImage: self.getImageFromData(show: show))
-                                .resizable()
-                                .cornerRadius(10)
-                                .shadow(color: .black, radius: 2)
-                                .aspectRatio(contentMode: .fit)
-                                .padding(5)
-                                .frame(width: 80, height: 120)
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text(show.name ?? "")
-                                        .fontWeight(.black)
-                                    Text("⭐️ \(show.vote_average, specifier: "%.1f")")
-                                }
-                                Text(show.overview ?? "")
-                                    .alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
-                                Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
-                                }
-                            }
+                            EmptyView()
                         }
                     }
-                    .frame(height: 120)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(color: .black, radius: 2)
+                    
                 }.onDelete(perform: removeMyShow)
             }.navigationBarTitle("Favorites")
+        }.onAppear {
+        UITableView.appearance().separatorStyle = .none
         }
         //You can delete with swipe, but maybe add
         //.navigationBarItems(trailing: EditButton())

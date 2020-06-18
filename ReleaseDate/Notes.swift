@@ -9,7 +9,8 @@
 /*
 
 ***To Do***
--dark mode
+ -fix dark mode in detail view. check other views
+ -add padding to text in cell, once nav link disclosure tab is removed.
  -notifications for next air date work. Just need to make them 30 days out, 7 days out, 1 day out & clean up look
  -need to show alert if self.notificationManager.isAuthorized == false in detail view. need to disable it myself to test.
  -put each detail vertical stack in its own hstack with spacers on either side.
@@ -23,6 +24,7 @@
  -watched, to watch.
  -your rating, with ability to submit rating.
  -simple animations
+ improve the picker on discover. Maybe put 'Favorite Shows' on left
  -Look at similar apps for ideas! (There are a lot out there)
  -Polish
  -add sort to the lists, so no image availables go to bottom (should i filter those out altogether?).
@@ -31,6 +33,7 @@
  -custom alerts / on-off
  -to watch list
  -BGRefresh doesnt get triggered in low battery mode.
+ -sort favorites by active
  
  ***QUESTIONS***
  -what's the difference between list and forEach? (can't manipulate each item in list?). DOES IMAGE WORK WITH FOREACH?

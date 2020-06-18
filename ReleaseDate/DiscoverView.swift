@@ -47,38 +47,42 @@ struct DiscoverView: View {
             }
             List {
                 ForEach(Array(self.discoverServices.shows.enumerated()), id: \.1.id) { (index, show) in
-                VStack (alignment: .leading) {
-                    NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
-                        if self.discoverServices.shows.count == self.discoverServices.imageList.count && self.discoverServices.imageList.count > 0 {
-                            Image(uiImage: self.discoverServices.imageList[index] ?? UIImage(named: "imagenotavailable")!)
-                            .resizable()
-                            .cornerRadius(10)
-                            .shadow(color: .black, radius: 2)
-                            .aspectRatio(contentMode: .fit)
-                            .padding(5)
-                            .frame(width: 80, height: 120)
-                        }
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text(show.name ?? "")
-                                    .fontWeight(.black)
-                                Text("⭐️ \(show.vote_average, specifier: "%.1f")")
+                    ZStack {
+                        HStack {
+                            if self.discoverServices.shows.count == self.discoverServices.imageList.count && self.discoverServices.imageList.count > 0 {
+                                Image(uiImage: self.discoverServices.imageList[index] ?? UIImage(named: "imagenotavailable")!)
+                                .resizable()
+                                .cornerRadius(10)
+                                .shadow(color: Color(.secondaryLabel), radius: 2)
+                                .aspectRatio(contentMode: .fit)
+                                .padding(5)
+                                .frame(width: 80, height: 120)
                             }
-                            Text(show.overview ?? "")
-                        }.alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
-                        Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text(show.name ?? "")
+                                        .fontWeight(.black)
+                                    Text("⭐️ \(show.vote_average, specifier: "%.1f")")
+                                }
+                                Text(show.overview ?? "")
+                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+                            }.alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
+                            Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
+                            }
                         }
-                    
+                        NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
+                            EmptyView()
                         }
                     }
                 }
                 .frame(height: 120)
-                .background(Color.white)
+                .background(Color(.systemBackground))
                 .cornerRadius(10)
-                .shadow(color: .black, radius: 2)
+                .shadow(color: Color(.secondaryLabel), radius: 4, x: 0, y: 1)
             }
         }.navigationBarTitle("Discover")
         }.onAppear {
+            UITableView.appearance().separatorStyle = .none
             print("onappear")
             print(self.myShows)
             for i in self.myShows {
