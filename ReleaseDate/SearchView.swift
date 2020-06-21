@@ -41,6 +41,9 @@ struct SearchView: View {
                                     Text(show.overview ?? "")
                                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
                                 }
+                                .alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
+                                Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
+                                }
                             }
                             NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
                                 EmptyView()
@@ -52,13 +55,13 @@ struct SearchView: View {
                     .cornerRadius(10)
                     .shadow(color: Color(.secondaryLabel), radius: 4, x: 0, y: 1)
                 }
+                .onAppear {
+                    UITableView.appearance().separatorStyle = .none
+                }
             }
             .navigationBarTitle("Search")
-        }.alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
-        Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
-        }.onAppear {
-            UITableView.appearance().separatorStyle = .none
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

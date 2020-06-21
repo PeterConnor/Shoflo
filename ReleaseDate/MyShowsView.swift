@@ -90,13 +90,12 @@ struct MyShowsView: View {
                         NavigationLink(destination: DetailView(detailServices: DetailServices(showID: Int(show.id), poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
                             EmptyView()
                         }
+                    }.onAppear {
+                    UITableView.appearance().separatorStyle = .none
                     }
-                    
                 }.onDelete(perform: removeMyShow)
             }.navigationBarTitle("Favorites")
-        }.onAppear {
-        UITableView.appearance().separatorStyle = .none
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
         //You can delete with swipe, but maybe add
         //.navigationBarItems(trailing: EditButton())
     }

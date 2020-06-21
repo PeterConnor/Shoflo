@@ -79,26 +79,26 @@ struct DiscoverView: View {
                 .background(Color(.systemBackground))
                 .cornerRadius(10)
                 .shadow(color: Color(.secondaryLabel), radius: 4, x: 0, y: 1)
+            }.onAppear {
+                UITableView.appearance().separatorStyle = .none
+                print("onappear")
+                print(self.myShows)
+                for i in self.myShows {
+                    print("air date \(i.air_date)")
+                }
+                
+                self.notificationManager.getPending()
+                for i in self.myShows {
+                    print("saved air date")
+                    print(i.air_date)
+                }
+                
+                if self.myShows.count > 2 {
+                    self.discoverServices.myShowIndex = 1
+                }
             }
         }.navigationBarTitle("Discover")
-        }.onAppear {
-            UITableView.appearance().separatorStyle = .none
-            print("onappear")
-            print(self.myShows)
-            for i in self.myShows {
-                print("air date \(i.air_date)")
-            }
-            
-            self.notificationManager.getPending()
-            for i in self.myShows {
-                print("saved air date")
-                print(i.air_date)
-            }
-            
-            if self.myShows.count > 2 {
-                self.discoverServices.myShowIndex = 1
-            }
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

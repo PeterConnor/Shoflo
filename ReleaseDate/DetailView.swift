@@ -57,200 +57,194 @@ struct DetailView: View {
     
     var body: some View {
             ScrollView {
-            VStack {
-                Group {
+                HStack {
                     VStack {
-                        Text(name)
-                        .fontWeight(.black)
-                        .font(.largeTitle)
-                    }
-                .padding(10)
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(color: .black, radius: 5)
-                    
-                    Image(uiImage: detailServices.showImage)
+                        Image(uiImage: detailServices.showImage)
                         .resizable()
-                        .frame(width: 200, height: 300)
+                        .frame(width: 150, height: 225)
                         .cornerRadius(10)
-                        .shadow(color: .black, radius: 5)
-                        .padding(20)
+                        .shadow(color: Color(.secondaryLabel), radius: 5, x: 0, y: 1)
+                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 5))
+
+        
+                    }
+                    Divider()
+                        GeometryReader { geo in
+                            VStack {
+                                Text("⭐️ \(self.detailServices.vote_average, specifier: "%.1f")") + Text(" (\(self.detailServices.showDetail?.vote_count ?? 0) votes)").foregroundColor(Color.gray)
+                            Divider()
+                                ScrollView {
+                                    Text("\(self.detailServices.showDetail?.overview ?? "N/A")")
+                                    }
+                            }.frame(width: geo.size.width, height: geo.size.height * 1.0)
                         
-                        Text("⭐️ \(detailServices.vote_average, specifier: "%.1f")") + Text(" (\(detailServices.showDetail?.vote_count ?? 0) votes)").foregroundColor(Color.gray)
-                    
-                    HStack(alignment: .center) {
-                        Spacer()
-                        VStack(alignment: .center) /*1*/ {
-                            if detailServices.showDetail?.networks != nil {
-                                if (detailServices.showDetail?.networks.count)! > 0 {
-                                    Text("Network ").fontWeight(.black)
-                                    Text("\(detailServices.showDetail!.networks[0].name)")
+                            .alert(isPresented: self.$showSaved) {
+                            Alert(title: Text("Show Saved!"), message: nil, dismissButton: .default(Text("Okay")))
+                        }
+                    }
+                }
+                Divider()
+                HStack(alignment: .top) {
+                    VStack(alignment: .center) /*1*/ {
+                                if detailServices.showDetail?.networks != nil {
+                                    if (detailServices.showDetail?.networks.count)! > 0 {
+                                        Text("Network ").fontWeight(.black)
+                                        Text("\(detailServices.showDetail!.networks[0].name)")
+                                    } else {
+                                        Text("Network ").fontWeight(.black)
+                                        Text("N/A").foregroundColor(Color.gray)
+                                    }
                                 } else {
                                     Text("Network ").fontWeight(.black)
                                     Text("N/A").foregroundColor(Color.gray)
                                 }
-                            } else {
-                                Text("Network ").fontWeight(.black)
-                                Text("N/A").foregroundColor(Color.gray)
-                            }
-                            
-                            if detailServices.showDetail?.number_of_seasons != nil {
-                                Text("Seasons ").fontWeight(.black)
-                                Text("\(detailServices.showDetail!.number_of_seasons)")
-                            } else {
-                               Text("Seasons ").fontWeight(.black)
-                                Text("N/A").foregroundColor(Color.gray)
-                            }
-                            
-                            if detailServices.showDetail?.origin_country != nil {
-                                if detailServices.showDetail!.origin_country.count > 0 {
-                                 Text("Country ").fontWeight(.black)
-                                    Text("\(detailServices.showDetail!.origin_country[0])")
+                                
+                                if detailServices.showDetail?.number_of_seasons != nil {
+                                    Text("Seasons ").fontWeight(.black)
+                                    Text("\(detailServices.showDetail!.number_of_seasons)")
+                                } else {
+                                    Text("Seasons ").fontWeight(.black)
+                                    Text("N/A").foregroundColor(Color.gray)
+                                }
+                                
+                                if detailServices.showDetail?.origin_country != nil {
+                                    if detailServices.showDetail!.origin_country.count > 0 {
+                                        Text("Country ").fontWeight(.black)
+                                        Text("\(detailServices.showDetail!.origin_country[0])")
+                                    } else {
+                                        Text("Country ").fontWeight(.black)
+                                        Text("N/A").foregroundColor(Color.gray)
+                                    }
                                 } else {
                                     Text("Country ").fontWeight(.black)
                                     Text("N/A").foregroundColor(Color.gray)
                                 }
-                            } else {
-                                Text("Country ").fontWeight(.black)
-                                Text("N/A").foregroundColor(Color.gray)
-                            }
-                            
-                            if detailServices.showDetail?.genres != nil {
-                                if detailServices.showDetail!.genres.count > 0 {
-                                    Text("Genre ").fontWeight(.black)
-                                    Text("\(detailServices.showDetail!.genres[0].name)")
-                                        } else {
-                                            Text("Genre ").fontWeight(.black)
-                                            Text("N/A").foregroundColor(Color.gray)
-                                        }
+                                
+                                if detailServices.showDetail?.genres != nil {
+                                    if detailServices.showDetail!.genres.count > 0 {
+                                        Text("Genre ").fontWeight(.black)
+                                        Text("\(detailServices.showDetail!.genres[0].name)")
                                     } else {
                                         Text("Genre ").fontWeight(.black)
                                         Text("N/A").foregroundColor(Color.gray)
                                     }
-                            if detailServices.showDetail?.first_air_date != nil {
-                                Text("First Aired ").fontWeight(.black)
-                                Text("\(getDateString(dateString: detailServices.showDetail!.first_air_date))")
-                            } else {
-                                Text("First Aired ").fontWeight(.black)
-                                Text("N/A").foregroundColor(Color.gray)
-                            }
+                                } else {
+                                    Text("Genre ").fontWeight(.black)
+                                    Text("N/A").foregroundColor(Color.gray)
+                                }
+                                if detailServices.showDetail?.first_air_date != nil {
+                                    Text("First Aired ").fontWeight(.black)
+                                    Text("\(getDateString(dateString: detailServices.showDetail!.first_air_date))")
+                                } else {
+                                    Text("First Aired ").fontWeight(.black)
+                                    Text("N/A").foregroundColor(Color.gray)
+                                }
+                                    if detailServices.showDetail?.next_episode_to_air?.air_date != nil {
+                                        VStack {
+                                            Text("Next Air Date ").fontWeight(.black)
+                                            Text("\(getDateString(dateString: detailServices.showDetail!.next_episode_to_air!.air_date))")
+                                        }
+                                        
+                                    } else {
+                                        VStack {
+                                            Text("Next Air Date ").fontWeight(.black)
+                                            Text("N/A").foregroundColor(Color.gray)
+                                        }
+                                        
+                                    }
+                                    
+                                HStack {
+                                    if detailServices.showDetail?.next_episode_to_air?.season_number != nil {
+                                        Text("(s\(detailServices.showDetail!.next_episode_to_air!.season_number),").foregroundColor(Color.gray)
+                                    } else {
+                                        //Text("s ").fontWeight(.black) + Text("N/A").foregroundColor(Color.gray)
+                                    }
+                                    
+                                    if detailServices.showDetail?.next_episode_to_air?.episode_number != nil {
+                                        Text("e\(detailServices.showDetail!.next_episode_to_air!.episode_number))").foregroundColor(Color.gray)
+                                    } else {
+                                        //Text("e: ").fontWeight(.black) + Text("N/A").foregroundColor(Color.gray)
+                                    }
+                                }
+                                    
+                    }.frame(maxWidth: .infinity)
                             
-                            HStack{
-                                if detailServices.showDetail?.next_episode_to_air?.air_date != nil {
-                                    VStack {
-                                        Text("Next Air Date ").fontWeight(.black)
-                                        Text("\(getDateString(dateString: detailServices.showDetail!.next_episode_to_air!.air_date))")
+                            Divider()
+                            
+                    VStack(alignment: .center) {
+                                if detailServices.showDetail?.popularity != nil && detailServices.showDetail?.vote_count != nil {
+                                    if detailServices.showDetail!.popularity > 49.0 && detailServices.showDetail!.vote_count > 250 {
+                                        Text("Popularity ").fontWeight(.black)
+                                        Text("High")
+                                    } else if detailServices.showDetail!.popularity > 10.0 {
+                                        Text("Popularity ").fontWeight(.black)
+                                        Text("Medium")
+                                    } else {
+                                        Text("Popularity ").fontWeight(.black)
+                                        Text("Low")
                                     }
-                                    
-                                } else {
-                                    VStack {
-                                        Text("Next Air Date ").fontWeight(.black)
-                                        Text("N/A").foregroundColor(Color.gray)
-                                    }
-                                    
-                                }
-                                
-                                
-                                if detailServices.showDetail?.next_episode_to_air?.season_number != nil {
-                                    Text("(s\(detailServices.showDetail!.next_episode_to_air!.season_number),").foregroundColor(Color.gray)
-                                } else {
-                                    //Text("s ").fontWeight(.black) + Text("N/A").foregroundColor(Color.gray)
-                                }
-                                
-                                if detailServices.showDetail?.next_episode_to_air?.episode_number != nil {
-                                    Text("e\(detailServices.showDetail!.next_episode_to_air!.episode_number))").foregroundColor(Color.gray)
-                                } else {
-                                    //Text("e: ").fontWeight(.black) + Text("N/A").foregroundColor(Color.gray)
-                                }
-                            }
-                        }
-                        
-                        Divider()
-                        
-                        VStack(alignment: .center) {
-                            if detailServices.showDetail?.popularity != nil && detailServices.showDetail?.vote_count != nil {
-                                if detailServices.showDetail!.popularity > 49.0 && detailServices.showDetail!.vote_count > 250 {
-                                    Text("Popularity ").fontWeight(.black)
-                                    Text("High")
-                                } else if detailServices.showDetail!.popularity > 10.0 {
-                                    Text("Popularity ").fontWeight(.black)
-                                    Text("Medium")
                                 } else {
                                     Text("Popularity ").fontWeight(.black)
                                     Text("Low")
                                 }
-                            } else {
-                                Text("Popularity ").fontWeight(.black)
-                                Text("Low")
-                            }
-                            if detailServices.showDetail?.episode_run_time != nil {
-                                if detailServices.showDetail!.episode_run_time.count > 0 {
-                                    Text("Run Time ").fontWeight(.black)
-                                    Text("\(getRunTime(list: detailServices.showDetail!.episode_run_time))")
+                                if detailServices.showDetail?.episode_run_time != nil {
+                                    if detailServices.showDetail!.episode_run_time.count > 0 {
+                                        Text("Run Time ").fontWeight(.black)
+                                        Text("\(getRunTime(list: detailServices.showDetail!.episode_run_time))")
+                                    } else {
+                                        Text("Run Time ").fontWeight(.black)
+                                        Text("N/A").foregroundColor(Color.gray)
+                                        
+                                    }
                                 } else {
                                     Text("Run Time ").fontWeight(.black)
                                     Text("N/A").foregroundColor(Color.gray)
-
                                 }
-                            } else {
-                                Text("Run Time ").fontWeight(.black)
-                                Text("N/A").foregroundColor(Color.gray)
-                            }
-                            if detailServices.showDetail?.number_of_episodes != nil {
-                                Text("Episodes ").fontWeight(.black)
-                                Text("\(detailServices.showDetail!.number_of_episodes)")
-                            } else {
-                                Text("Episodes ").fontWeight(.black)
-                                Text("N/A").foregroundColor(Color.gray)
-                            }
-                            
-                            if detailServices.showDetail?.original_language != nil {
-                                Text("Language ").fontWeight(.black)
-                                Text("\(detailServices.showDetail!.original_language.uppercased())")
-                            } else {
-                                Text("Language ").fontWeight(.black)
-                                Text("N/A").foregroundColor(Color.gray)
-                            }
-                            
-//                            if detailServices.showDetail?.type != nil {
-//                                Text("Type: ").fontWeight(.black) + Text("\(detailServices.showDetail!.type)")
-//                            } else {
-//                                Text("Type: ").fontWeight(.black) + Text("N/A").foregroundColor(Color.gray)
-//                            }
-                            
-                            if detailServices.showDetail?.last_episode_to_air.air_date != nil {
-                                Text("Last Aired ").fontWeight(.black)
-                                Text("\(getDateString(dateString: detailServices.showDetail!.last_episode_to_air.air_date))")
-                            } else {
-                                Text("Last Aired ").fontWeight(.black)
-                                Text("N/A").foregroundColor(Color.gray)
-                            }
-                            
-                            if detailServices.showDetail?.status != nil {
-                                Text("Status ").fontWeight(.black)
-                                Text("\(detailServices.showDetail!.status)")
-                            } else {
-                                Text("Status ").fontWeight(.black)
-                                Text("N/A").foregroundColor(Color.gray)
-                            }
-                        }
-                        Spacer()
-                    }
-                }.alert(isPresented: $duplicateShow) {
-                    Alert(title: Text("Duplicate Show!"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
-                }
-                
-                
-                Text("Overview: \(detailServices.showDetail?.overview ?? "N/A")")
-                .alert(isPresented: $showSaved) {
-                    Alert(title: Text("Show Saved!"), message: nil, dismissButton: .default(Text("Okay")))
-                }
-
-                }.onAppear {
+                                if detailServices.showDetail?.number_of_episodes != nil {
+                                    Text("Episodes ").fontWeight(.black)
+                                    Text("\(detailServices.showDetail!.number_of_episodes)")
+                                } else {
+                                    Text("Episodes ").fontWeight(.black)
+                                    Text("N/A").foregroundColor(Color.gray)
+                                }
+                                
+                                if detailServices.showDetail?.original_language != nil {
+                                    Text("Language ").fontWeight(.black)
+                                    Text("\(detailServices.showDetail!.original_language.uppercased())")
+                                } else {
+                                    Text("Language ").fontWeight(.black)
+                                    Text("N/A").foregroundColor(Color.gray)
+                                }
+                                
+                                //                            if detailServices.showDetail?.type != nil {
+                                //                                Text("Type: ").fontWeight(.black) + Text("\(detailServices.showDetail!.type)")
+                                //                            } else {
+                                //                                Text("Type: ").fontWeight(.black) + Text("N/A").foregroundColor(Color.gray)
+                                //                            }
+                                
+                                if detailServices.showDetail?.last_episode_to_air.air_date != nil {
+                                    Text("Last Aired ").fontWeight(.black)
+                                    Text("\(getDateString(dateString: detailServices.showDetail!.last_episode_to_air.air_date))")
+                                } else {
+                                    Text("Last Aired ").fontWeight(.black)
+                                    Text("N/A").foregroundColor(Color.gray)
+                                }
+                                
+                                if detailServices.showDetail?.status != nil {
+                                    Text("Status ").fontWeight(.black)
+                                    Text("\(detailServices.showDetail!.status)")
+                                } else {
+                                    Text("Status ").fontWeight(.black)
+                                    Text("N/A").foregroundColor(Color.gray)
+                                }
+                            }.frame(maxWidth: .infinity)
+                        }.alert(isPresented: $duplicateShow) {
+                        Alert(title: Text("Duplicate Show!"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
+                    }.onAppear {
                     print("this did appear")
                     print(self.nextAirDate.newAirDateAndEnteredForeground)
                 }
-        }
+                }.navigationBarTitle(name)
             .navigationBarItems(trailing:
                 Button("Save") {
                         if self.myShows.count > 0 && self.myShows != nil {

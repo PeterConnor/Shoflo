@@ -9,8 +9,8 @@
 /*
 
 ***To Do***
+ -moved alert on searchview, need to check entered foreground alert 
  -fix dark mode in detail view. check other views
- -add padding to text in cell, once nav link disclosure tab is removed.
  -notifications for next air date work. Just need to make them 30 days out, 7 days out, 1 day out & clean up look
  -need to show alert if self.notificationManager.isAuthorized == false in detail view. need to disable it myself to test.
  -put each detail vertical stack in its own hstack with spacers on either side.
