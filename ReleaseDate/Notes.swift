@@ -30,6 +30,8 @@
  -add sort to the lists, so no image availables go to bottom (should i filter those out altogether?).
  -more pages in results
  -add other ways to sort
+ -news updates
+ have related shows in detail page, rather than needing user to save show.
  -custom alerts / on-off
  -to watch list
  -BGRefresh doesnt get triggered in low battery mode.

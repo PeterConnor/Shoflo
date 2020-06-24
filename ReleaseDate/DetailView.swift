@@ -61,7 +61,8 @@ struct DetailView: View {
                     VStack {
                         Image(uiImage: detailServices.showImage)
                         .resizable()
-                        .frame(width: 150, height: 225)
+                        //.frame(width: 150, height: 225)
+                            .aspectRatio(contentMode: .fit)
                         .cornerRadius(10)
                         .shadow(color: Color(.secondaryLabel), radius: 5, x: 0, y: 1)
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 5))
@@ -70,11 +71,13 @@ struct DetailView: View {
                     }
                     Divider()
                         GeometryReader { geo in
-                            VStack {
+                            VStack(alignment: .leading) {
                                 Text("⭐️ \(self.detailServices.vote_average, specifier: "%.1f")") + Text(" (\(self.detailServices.showDetail?.vote_count ?? 0) votes)").foregroundColor(Color.gray)
                             Divider()
                                 ScrollView {
                                     Text("\(self.detailServices.showDetail?.overview ?? "N/A")")
+                                        .font(.body)
+                                        
                                     }
                             }.frame(width: geo.size.width, height: geo.size.height * 1.0)
                         
@@ -84,12 +87,14 @@ struct DetailView: View {
                     }
                 }
                 Divider()
-                HStack(alignment: .top) {
+                HStack(alignment: .center) {
                     VStack(alignment: .center) /*1*/ {
+                        Spacer()
                                 if detailServices.showDetail?.networks != nil {
                                     if (detailServices.showDetail?.networks.count)! > 0 {
                                         Text("Network ").fontWeight(.black)
                                         Text("\(detailServices.showDetail!.networks[0].name)")
+                                        
                                     } else {
                                         Text("Network ").fontWeight(.black)
                                         Text("N/A").foregroundColor(Color.gray)
@@ -166,12 +171,13 @@ struct DetailView: View {
                                         //Text("e: ").fontWeight(.black) + Text("N/A").foregroundColor(Color.gray)
                                     }
                                 }
-                                    
+                        Spacer()
                     }.frame(maxWidth: .infinity)
                             
                             Divider()
                             
                     VStack(alignment: .center) {
+                        Spacer()
                                 if detailServices.showDetail?.popularity != nil && detailServices.showDetail?.vote_count != nil {
                                     if detailServices.showDetail!.popularity > 49.0 && detailServices.showDetail!.vote_count > 250 {
                                         Text("Popularity ").fontWeight(.black)
@@ -237,6 +243,7 @@ struct DetailView: View {
                                     Text("Status ").fontWeight(.black)
                                     Text("N/A").foregroundColor(Color.gray)
                                 }
+                                Spacer()
                             }.frame(maxWidth: .infinity)
                         }.alert(isPresented: $duplicateShow) {
                         Alert(title: Text("Duplicate Show!"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
