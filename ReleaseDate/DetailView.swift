@@ -87,9 +87,8 @@ struct DetailView: View {
                     }
                 }
                 Divider()
-                HStack(alignment: .center) {
+                HStack(alignment: .top) {
                     VStack(alignment: .center) /*1*/ {
-                        Spacer()
                                 if detailServices.showDetail?.networks != nil {
                                     if (detailServices.showDetail?.networks.count)! > 0 {
                                         Text("Network ").fontWeight(.black)
@@ -177,7 +176,6 @@ struct DetailView: View {
                             Divider()
                             
                     VStack(alignment: .center) {
-                        Spacer()
                                 if detailServices.showDetail?.popularity != nil && detailServices.showDetail?.vote_count != nil {
                                     if detailServices.showDetail!.popularity > 49.0 && detailServices.showDetail!.vote_count > 250 {
                                         Text("Popularity ").fontWeight(.black)
@@ -245,7 +243,8 @@ struct DetailView: View {
                                 }
                                 Spacer()
                             }.frame(maxWidth: .infinity)
-                        }.alert(isPresented: $duplicateShow) {
+                }.padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
+                .alert(isPresented: $duplicateShow) {
                         Alert(title: Text("Duplicate Show!"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
                     }.onAppear {
                     print("this did appear")

@@ -59,6 +59,7 @@ public class DiscoverServices: ObservableObject {
 
     @Published var discoverNumber = 0 {
             didSet {
+                print("this did change")
                 load(num: self.discoverNumber, id: showID)
                 //print(self.discoverNumber)
             }
