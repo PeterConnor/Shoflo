@@ -64,7 +64,6 @@ public class DiscoverServices: ObservableObject {
                 //print(self.discoverNumber)
             }
         }
-
     
     var showID = 0
     

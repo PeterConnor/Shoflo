@@ -20,6 +20,9 @@ struct DiscoverView: View {
     
     var myShows: FetchedResults<MyShow>
     @EnvironmentObject var nextAirDate: NextAirDate
+    
+    //this is a hack to refresh the list. if user saves show and goes to discover view, the list is not updated, even though the new show is in the picker view.
+    @State var needsRefresh = false
 
     
     //need to remove this. for testing notifications...
@@ -80,6 +83,7 @@ struct DiscoverView: View {
                 .cornerRadius(10)
                 .shadow(color: Color(.secondaryLabel), radius: 4, x: 0, y: 1)
             }.onAppear {
+                self.needsRefresh.toggle()
                 UITableView.appearance().separatorStyle = .none
                 print("onappear")
                 print(self.myShows)

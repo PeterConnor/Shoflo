@@ -13,7 +13,6 @@
  -need to fix alert wording too.
  -need to show alert if self.notificationManager.isAuthorized == false in detail view. need to disable it myself to test.
  -do i need to add comments to info.plist?
- -when you save a show and go to discover, its blank.
  
  ***Post MVP***
  -maybe just do recommended based off all shows, and filter out dupes.
