@@ -8,7 +8,7 @@
 
 import UserNotifications
 
-class NotificationManager {
+class NotificationManager: ObservableObject {
         
     var isAuthorized: Bool? = nil
     
@@ -61,19 +61,21 @@ class NotificationManager {
         //pass these into the function as parameters
         content.title = "\(myShow.name!)"
         content.body = "The first episode of a new season of \(myShow.name!) is scheduled to air on \(getDateString(dateString: myShow.air_date!))"
+        content.sound = .default
+        
             
         //content.categoryIdentifier = "alarm" //Do I need this?
         //content.userInfo = ["customData": "fizzbuzz"] //Do I need this?
         //content.sound = UNNotificationSound.default //Do I need this?
         
-        let subtractedDate = Calendar.current.date(byAdding: .day, value: -2, to: date)
+        let subtractedDate = Calendar.current.date(byAdding: .day, value: -67, to: date)
         let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate!)
         var dateComponents = DateComponents()
         dateComponents.year = calendarDate.year
         dateComponents.month = calendarDate.month
         dateComponents.day = calendarDate.day
-        dateComponents.hour = 18
-        dateComponents.minute = 30
+        dateComponents.hour = 17
+        dateComponents.minute = 12
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: "\(myShow.id)", content: content, trigger: trigger)
@@ -128,6 +130,19 @@ class NotificationManager {
         }
     }
     
+    @Published var check = true
+    
+    func checkNotificationsSettingsAuthorizationStatus() {
+        center.getNotificationSettings { settings in
+            if settings.authorizationStatus == .authorized {
+                self.check = true
+            } else {
+                self.check = false
+            }
+            
+        }
+    }
+    
     func getPending() {
         self.center.getPendingNotificationRequests(completionHandler: { requests in
             print("pending notifications...")
@@ -138,6 +153,7 @@ class NotificationManager {
     }
     
     func scheduleImmediateNotification(myShow: MyShow) {
+        print("ScheduleImmediateNotification Run")
         
         //once this works, i need to put date: Date parameter into this fuction (like in outfit tracker), so it fires off of the show next air date.
         
@@ -145,8 +161,9 @@ class NotificationManager {
         
         let content = UNMutableNotificationContent()
         //pass these into the function as parameters
-        content.title = "Immediate title - Show: \(myShow.name)"
-        content.body = "Immediate BODY"
+        content.title = "\(myShow.name!)"
+        content.body = "The first episode of a new season of \(myShow.name!) is scheduled to air on \(getDateString(dateString: myShow.air_date!))"
+        content.sound = .default
         //content.categoryIdentifier = "alarm" //Do I need this?
         //content.userInfo = ["customData": "fizzbuzz"] //Do I need this?
         //content.sound = UNNotificationSound.default //Do I need this?
@@ -161,7 +178,7 @@ class NotificationManager {
         dateComponents.minute = calendarDate.minute
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        let request = UNNotificationRequest(identifier: "Immediate identifier!!!", content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: "immediate", content: content, trigger: trigger)
         center.add(request) { (error: Error?) in
             
             if error == nil {

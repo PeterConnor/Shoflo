@@ -17,6 +17,7 @@ class NextAirDate: ObservableObject {
     var myShows = [MyShow]()
     var myShowsNilAirDate = [MyShow]()
     var showDetail: DetailResponse?
+    var showForAlert = "One of your favorite shows!"
     @Published var newAirDateAndEnteredForeground = false
     
     func getDate(dateString: String) -> Date? {
@@ -91,6 +92,7 @@ class NextAirDate: ObservableObject {
                                                 self.notificationManager.scheduleImmediateNotification(myShow: show)
                                             } else {
                                                 print("foreground true")
+                                                self.showForAlert = "\(show.name!)"
                                                 self.newAirDateAndEnteredForeground = true
                                             }
                                             

@@ -42,7 +42,7 @@ struct SearchView: View {
                                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
                                 }
                                 .alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
-                                Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
+                                    Alert(title: Text("New Air Date Available"), message: Text("The first episode of a new season of \(self.nextAirDate.showForAlert) has been released! See Favorites for details."), dismissButton: .default(Text("Okay")))
                                 }
                             }
                             NavigationLink(destination: DetailView(detailServices: DetailServices(showID: show.id, poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {

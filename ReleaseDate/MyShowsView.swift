@@ -78,8 +78,8 @@ struct MyShowsView: View {
                                     Text(show.overview ?? "")
                                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
                                         .alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
-                                    Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
-                                    }
+                                            Alert(title: Text("New Air Date Available"), message: Text("The first episode of a new season of \(self.nextAirDate.showForAlert) has been released! See Favorites for details."), dismissButton: .default(Text("Okay")))
+                                        }
                                 }
                             
                         }
@@ -92,9 +92,15 @@ struct MyShowsView: View {
                         }
                     }.onAppear {
                     UITableView.appearance().separatorStyle = .none
+                        self.self.notificationManager.checkNotificationsSettingsAuthorizationStatus()
                     }
                 }.onDelete(perform: removeMyShow)
             }.navigationBarTitle("Favorites")
+                .navigationBarItems(trailing: notificationManager.check ? Button("!") {
+                            print("Help tapped!")
+                    } : nil
+                )
+            
         }.navigationViewStyle(StackNavigationViewStyle())
         //You can delete with swipe, but maybe add
         //.navigationBarItems(trailing: EditButton())

@@ -323,7 +323,7 @@ struct DetailView: View {
                         }
                     }
                 }.alert(isPresented: $nextAirDate.newAirDateAndEnteredForeground) {
-                Alert(title: Text("Check"), message: Text("Next Air Date"), dismissButton: .default(Text("Okay")))
+                    Alert(title: Text("New Air Date Available"), message: Text("The first episode of a new season of \(nextAirDate.showForAlert) has been released! See Favorites for details."), dismissButton: .default(Text("Okay")))
                 }
             )
     }
