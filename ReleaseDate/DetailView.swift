@@ -253,7 +253,7 @@ struct DetailView: View {
                 }.navigationBarTitle(name)
             .navigationBarItems(trailing:
                 Button("Save") {
-                        if self.myShows.count > 0 && self.myShows != nil {
+                        if self.myShows.count > 0 /*&& self.myShows != nil*/ {
                             for i in self.myShows {
                                 if i.id == self.detailServices.showID {
                                     self.duplicateShow = true

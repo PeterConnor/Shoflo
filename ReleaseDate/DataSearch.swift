@@ -38,7 +38,7 @@ public class Services: ObservableObject {
     }
     
     
-    @Published var query: String = "boys"
+    @Published var query: String = ""
     @Published var imageList: [UIImage?] = [UIImage]()
     
     init() {
@@ -69,9 +69,9 @@ public class Services: ObservableObject {
     }
     
     func getImage(path: String?, index: Int) {
-        var finalImage = UIImage(named: "imagenotavailable")
+        let finalImage = UIImage(named: "imagenotavailable")
             imageList.append(finalImage)
-        if let imagePath = path as? String {
+        if let imagePath = path {
             if let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath) {
             DispatchQueue.global().async { [weak self] in
                 if let data = try? Data(contentsOf: imageURL) {

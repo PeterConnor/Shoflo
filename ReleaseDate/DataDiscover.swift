@@ -72,7 +72,7 @@ public class DiscoverServices: ObservableObject {
             getCoreData()
             print("myshowindex: \(self.myShowIndex)")
             //print(myShows.count)
-            if myShows.count > 0 && myShows != nil {
+            if myShows.count > 0 /*&& myShows != nil*/ {
                self.showID = Int(self.myShows[myShowIndex].id)
             }
             
@@ -126,16 +126,16 @@ init() {
 }
     
   func getImage(path: String?, index: Int) {
-        var finalImage = UIImage(named: "imagenotavailable")
+        let finalImage = UIImage(named: "imagenotavailable")
             imageList.append(finalImage)
-        if let imagePath = path as? String {
-            if let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath) {
-            DispatchQueue.global().async { [weak self] in
-                if let data = try? Data(contentsOf: imageURL) {
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self?.imageList[index] = image
-                            //print("finalImage changed")
+            if let imagePath = path {
+                if let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath) {
+                    DispatchQueue.global().async { [weak self] in
+                        if let data = try? Data(contentsOf: imageURL) {
+                            if let image = UIImage(data: data) {
+                                DispatchQueue.main.async {
+                                    self?.imageList[index] = image
+                                    //print("finalImage changed")
                         }
                     } else {
                         print("xxxno image")

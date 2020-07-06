@@ -139,7 +139,6 @@ class NotificationManager: ObservableObject {
             } else {
                 self.check = false
             }
-            
         }
     }
     

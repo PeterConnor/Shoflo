@@ -21,7 +21,8 @@ struct MyShowsView: View {
     @EnvironmentObject var nextAirDate: NextAirDate
 
     
-    var notificationManager = NotificationManager()
+    @ObservedObject var notificationManager = NotificationManager()
+    @State var notificationsAlert = false
     
     func getImageFromData(show: MyShow) -> UIImage  {
         //this is just a placeholder
@@ -51,7 +52,7 @@ struct MyShowsView: View {
                 //print("save successful")
                 //print("myShows: \(myShows)")
             } catch {
-                "error saving managedObjectContext in detail view"
+                //"error saving managedObjectContext in detail view"
             }
         }
     }
@@ -59,6 +60,9 @@ struct MyShowsView: View {
     var body: some View {
         NavigationView {
             List {
+                if myShows.count == 0 {
+                    Text("Add favorite shows in Search tab.")
+                }
                 ForEach(myShows, id: \.self) { (show: MyShow) in
                     ZStack {
                         HStack {
@@ -92,15 +96,17 @@ struct MyShowsView: View {
                         }
                     }.onAppear {
                     UITableView.appearance().separatorStyle = .none
-                        self.self.notificationManager.checkNotificationsSettingsAuthorizationStatus()
+                        self.notificationManager.checkNotificationsSettingsAuthorizationStatus()
                     }
                 }.onDelete(perform: removeMyShow)
+            }
+                .navigationBarItems(trailing: !notificationManager.check ? Button("!") {
+                    self.notificationsAlert.toggle()
+                    
+                }.foregroundColor(Color.red) : nil
+            ).alert(isPresented: $notificationsAlert) {
+                Alert(title: Text("Notifications Disabled"), message: Text("To receive notifications, please go to Settings -> Release Date -> Notifications"), dismissButton: .default(Text("Okay")))
             }.navigationBarTitle("Favorites")
-                .navigationBarItems(trailing: notificationManager.check ? Button("!") {
-                            print("Help tapped!")
-                    } : nil
-                )
-            
         }.navigationViewStyle(StackNavigationViewStyle())
         //You can delete with swipe, but maybe add
         //.navigationBarItems(trailing: EditButton())

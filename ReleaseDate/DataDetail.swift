@@ -89,8 +89,8 @@ class DetailServices: ObservableObject {
             .resume()
         }
     
-    func getImage(path: String) {
-        if let imagePath = path as? String {
+    func getImage(path: String?) {
+        if let imagePath = path {
             //print(1)
             let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath)
             DispatchQueue.global().async { [weak self] in

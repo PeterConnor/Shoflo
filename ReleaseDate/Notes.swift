@@ -10,15 +10,7 @@
 
  ***To Do***
  -Initial instructions / wording when the screens are blank
- **
- -need to show alert if self.notificationManager.isAuthorized == false in detail view. need to disable it myself to test.
- .navigationBarItems(trailing: notificationManager.checkNotificationsSettingsAuthorizationStatus() ? Button("!") {
-             print("Help tapped!")
-     } : nil
- )
-    use the above in conjunction with checkNotificationsSettingsAuthorizationStatus()
- i think i need to make this an observed object. maybe a computer property. maybe best solution is add to onapear.
-**
+
  -do i need to add comments to info.plist?
  -warnings messages
  -print statements (is it ok to comment out?)
@@ -45,6 +37,7 @@
  -sort favorites by active
  -if there are 2 new air dates when the app comes into foreground, only 1 alert is shown. not a big deal, but not ideal.
  -i probably need to add a property to each show, like notificationSet = true for the edge case when the user saves a show, but notifications are disabled. Or maybe the workaround is to not save the ep 1 show, so if the user does enable notifications the BG/Foreground check will catch it.
+ -add !notificationManager.check to views other than myfavs (this is the notification authorization check)
 
  
  ***QUESTIONS***
