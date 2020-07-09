@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let container = NSPersistentContainer(name: "DataModel")
         container.loadPersistentStores { (description, error) in
             if let error = error {
-                print("error loading persistentContainer")
+                ////print("error loading persistentContainer")
             }
         }
         return container
@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 try context.save()
             } catch {
-                print("error saving context")
+                ////print("error saving context")
             }
         }
     }
@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.c0nman.ReleaseDate.fetch",
                                         using: nil) { (task) in
           self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
-        print("task scheduled")
+        //print("task scheduled")
         }
         
         return true
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             task.setTaskCompleted(success: false)
           //PokeManager.urlSession.invalidateAndCancel()
         }
-        print("handle app refresh")
+        //print("handle app refresh")
         
         //notificationManager.scheduleTestNotification()
         nextAirDate.getCoreDataAndCheckNextAirDate(backgroundTrueForegroundFalse: true)
@@ -69,9 +69,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fetchTask.earliestBeginDate = Date(timeIntervalSinceNow: 60)
         do {
           try BGTaskScheduler.shared.submit(fetchTask)
-            print("background fetch scheduled")
+            ////print("background fetch scheduled")
         } catch {
-          print("Unable to submit task: \(error.localizedDescription)")
+          //print("Unable to submit task: \(error.localizedDescription)")
         }
     }
 

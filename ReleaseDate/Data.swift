@@ -30,15 +30,15 @@ public class Fetcher: ObservableObject {
                     let decodedLists = try JSONDecoder().decode(Show.self, from: d)
                     DispatchQueue.main.async {
                         self.shows = [decodedLists]
-                        //print(self.shows[0].name)
-                        //print((type(of: self.shows)))
-                        //print(type(of: decodedLists))
+                        ////print(self.shows[0].name)
+                        ////print((type(of: self.shows)))
+                        ////print(type(of: decodedLists))
                     }
                 } else {
-                print("No Data")
+                //print("No Data")
                 }
             } catch {
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
             }
 
         }

@@ -247,8 +247,8 @@ struct DetailView: View {
                 .alert(isPresented: $duplicateShow) {
                         Alert(title: Text("Duplicate Show!"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
                     }.onAppear {
-                    print("this did appear")
-                    print(self.nextAirDate.newAirDateAndEnteredForeground)
+                    //print("this did appear")
+                    //print(self.nextAirDate.newAirDateAndEnteredForeground)
                 }
                 }.navigationBarTitle(name)
             .navigationBarItems(trailing:
@@ -257,7 +257,7 @@ struct DetailView: View {
                             for i in self.myShows {
                                 if i.id == self.detailServices.showID {
                                     self.duplicateShow = true
-                                    //print("already exists")
+                                    ////print("already exists")
                                     return
                                 }
                                 else {
@@ -292,7 +292,7 @@ struct DetailView: View {
                         show.vote_count = Int32(self.detailServices.showDetail?.vote_count ?? 0)
                         
                         if self.detailServices.showDetail?.episode_run_time != nil {
-                            print("hello")
+                            //print("hello")
                             if self.detailServices.showDetail!.episode_run_time.count > 0 {
                                 show.episode_run_time = Int32(self.getRunTime(list: self.detailServices.showDetail!.episode_run_time))
                             } else {
@@ -307,17 +307,17 @@ struct DetailView: View {
                         do {
                             try self.managedObjectContext.save()
                         } catch {
-                            "error saving managedObjectContext in detail view"
+                            //print("error saving managedObjectContext in detail view")
                         }
                     if self.notificationManager.isAuthorized == false {
                         //need to show alert
-                        print("notifications are not authorized. need to show alert")
+                        //print("notifications are not authorized. need to show alert")
                     } else {
                         if self.detailServices.showDetail?.next_episode_to_air?.air_date != nil {
                             if self.detailServices.showDetail?.next_episode_to_air?.episode_number != nil {
                                 if self.detailServices.showDetail?.next_episode_to_air!.episode_number == 1 {
                                     self.notificationManager.scheduleNotification(myShow: show, date: self.getDate(dateString: self.detailServices.showDetail!.next_episode_to_air!.air_date)!)
-                                    self.notificationManager.getPending()
+                                    //self.notificationManager.getPending()
                                 }
                             }
                         }

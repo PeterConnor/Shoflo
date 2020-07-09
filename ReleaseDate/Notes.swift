@@ -9,12 +9,10 @@
 /*
 
  ***To Do***
- -Initial instructions / wording when the screens are blank
-
- -do i need to add comments to info.plist?
- -warnings messages
- -print statements (is it ok to comment out?)
  -console messages
+ -progress bar?
+ -test app during bad connection
+-detail view doesnt work for sportscenter. developer site issue?
  
  ***Post MVP***
  -add comments

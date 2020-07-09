@@ -12,7 +12,7 @@ import SwiftUI
 
 class NextAirDate: ObservableObject {
     
-    var managedContext = NSManagedObjectContext()
+    var managedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     let notificationManager = NotificationManager()
     var myShows = [MyShow]()
     var myShowsNilAirDate = [MyShow]()
@@ -52,7 +52,7 @@ class NextAirDate: ObservableObject {
             for i in myShows {
                 if i.air_date == nil || i.air_date == "N/A" {
                     getNextAirDate(show: i, backgroundTrueForegroundFalse: backgroundOrForegroundCheck)
-                } else if i.air_date != nil && i.air_date != "N/A" && i.episode_number != nil {
+                } else if i.air_date != nil && i.air_date != "N/A" {
                     if getDate(dateString: i.air_date!) != nil {
                         if getDate(dateString: i.air_date!)! < Date() || i.episode_number == 0 || i.episode_number > 1 {
                             i.air_date = nil
@@ -60,14 +60,14 @@ class NextAirDate: ObservableObject {
                             do {
                                 try self.managedContext.save()
                             } catch {
-                                "error saving managedObjectContext in detail view"
+
                             }
                         }
                     }
                 }
             }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+        } catch _ as NSError {
+            //print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
     
@@ -82,15 +82,15 @@ class NextAirDate: ObservableObject {
                                 if response.next_episode_to_air?.air_date != nil {
                                     if response.next_episode_to_air?.episode_number != nil {
                                         if response.next_episode_to_air!.episode_number == 1 {
-                                            print(response.next_episode_to_air!.air_date)
+                                            //print(response.next_episode_to_air!.air_date)
                                             show.air_date = response.next_episode_to_air!.air_date
                                             self.notificationManager.scheduleNotification(myShow: show, date: self.notificationManager.getDate(dateString: response.next_episode_to_air!.air_date)!)
                                             
                                             if backgroundTrueForegroundFalse == true {
-                                                print("background true")
+                                                //print("background true")
                                                 self.notificationManager.scheduleImmediateNotification(myShow: show)
                                             } else {
-                                                print("foreground true")
+                                                //print("foreground true")
                                                 self.showForAlert = "\(show.name!)"
                                                 self.newAirDateAndEnteredForeground = true
                                             }
@@ -98,31 +98,31 @@ class NextAirDate: ObservableObject {
                                         }
                                     }
                                 } else {
-                                    print("No new air date")
+                                    //print("No new air date")
                                 }
                                 if response.next_episode_to_air?.season_number != nil {
                                     show.season_number = Int32(response.next_episode_to_air!.season_number)
                                 } else {
-                                    print("no new season number")
+                                    //print("no new season number")
                                 }
                                 if response.next_episode_to_air?.episode_number != nil {
                                     show.episode_number = Int32(response.next_episode_to_air!.episode_number)
                                 } else {
-                                    print("no new season number")
+                                    //print("no new season number")
                                 }
                                 do {
                                     try self.managedContext.save()
                                 } catch {
-                                    "error saving managedObjectContext in detail view"
+                                    //print("error saving managedObjectContext in detail view")
                                 }
                                 
                                 
                             }
                         } else {
-                        print("No Data")
+                        //print("No Data")
                         }
                     } catch {
-                        print(error)
+                        //print(error)
                     }
                 }
                 .resume()

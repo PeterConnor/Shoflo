@@ -37,9 +37,16 @@ struct SearchView: View {
                                             .fontWeight(.black)
                                             .foregroundColor(.primary)
                                         Text("⭐️ \(show.vote_average, specifier: "%.1f")")
+                                            .padding(.trailing, 5)
+                                    }.padding(.top, 5)
+                                    HStack{
+                                        Text(show.overview ?? "")
+                                        Spacer()
+                                        VStack {
+                                            Spacer()
+                                        }
                                     }
-                                    Text(show.overview ?? "")
-                                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+  
                                 }
                                 .alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
                                     Alert(title: Text("New Air Date Available"), message: Text("The first episode of a new season of \(self.nextAirDate.showForAlert) has been released! See Favorites for details."), dismissButton: .default(Text("Okay")))

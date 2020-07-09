@@ -38,19 +38,19 @@ struct MyShowsView: View {
     func removeMyShow(at offsets: IndexSet) {
         for index in offsets {
             let myShow = myShows[index]
-            print(myShow.id)
+            //print(myShow.id)
             notificationManager.center.removeAllDeliveredNotifications()
-            print("before notification deletion")
-            notificationManager.getPending()
+            //print("before notification deletion")
+            //notificationManager.getPending()
             self.notificationManager.center.removePendingNotificationRequests(withIdentifiers: ["\(myShow.id)", "\(myShow.id)" + "2", "\(myShow.id)" + "3"])
-            print("after notification deletion")
-            notificationManager.getPending() //this is a print statement. need to remove these sneaky ones before ship
+            //print("after notification deletion")
+            //notificationManager.getPending() //this is a //print statement. need to remove these sneaky ones before ship
             
             managedObjectContext.delete(myShow)
             do {
                 try self.managedObjectContext.save()
-                //print("save successful")
-                //print("myShows: \(myShows)")
+                ////print("save successful")
+                ////print("myShows: \(myShows)")
             } catch {
                 //"error saving managedObjectContext in detail view"
             }
@@ -61,7 +61,8 @@ struct MyShowsView: View {
         NavigationView {
             List {
                 if myShows.count == 0 {
-                    Text("Add favorite shows in Search tab.")
+                    Text("Add favorite shows from Search tab.")
+                        .foregroundColor((Color(.systemGray3)))
                 }
                 ForEach(myShows, id: \.self) { (show: MyShow) in
                     ZStack {
@@ -77,14 +78,22 @@ struct MyShowsView: View {
                                     HStack {
                                         Text(show.name ?? "")
                                             .fontWeight(.black)
+                                            .foregroundColor(.primary)
                                         Text("⭐️ \(show.vote_average, specifier: "%.1f")")
-                                    }
-                                    Text(show.overview ?? "")
-                                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
-                                        .alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
-                                            Alert(title: Text("New Air Date Available"), message: Text("The first episode of a new season of \(self.nextAirDate.showForAlert) has been released! See Favorites for details."), dismissButton: .default(Text("Okay")))
+                                            .padding(.trailing, 5)
+                                    }.padding(.top, 5)
+                                    HStack{
+                                        Text(show.overview ?? "")
+                                        Spacer()
+                                        VStack {
+                                            Spacer()
                                         }
+                                    }
                                 }
+                                .alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
+                                    Alert(title: Text("New Air Date Available"), message: Text("The first episode of a new season of \(self.nextAirDate.showForAlert) has been released! See Favorites for details."), dismissButton: .default(Text("Okay")))
+                                }
+                                
                             
                         }
                         .frame(height: 120)
@@ -94,18 +103,20 @@ struct MyShowsView: View {
                         NavigationLink(destination: DetailView(detailServices: DetailServices(showID: Int(show.id), poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
                             EmptyView()
                         }
-                    }.onAppear {
-                    UITableView.appearance().separatorStyle = .none
-                        self.notificationManager.checkNotificationsSettingsAuthorizationStatus()
                     }
                 }.onDelete(perform: removeMyShow)
-            }
+            }.onAppear {
+                //print("onappear")
+                self.notificationManager.checkNotificationsSettingsAuthorizationStatus()
+            UITableView.appearance().separatorStyle = .none
+                }
                 .navigationBarItems(trailing: !notificationManager.check ? Button("!") {
                     self.notificationsAlert.toggle()
                     
                 }.foregroundColor(Color.red) : nil
             ).alert(isPresented: $notificationsAlert) {
                 Alert(title: Text("Notifications Disabled"), message: Text("To receive notifications, please go to Settings -> Release Date -> Notifications"), dismissButton: .default(Text("Okay")))
+                
             }.navigationBarTitle("Favorites")
         }.navigationViewStyle(StackNavigationViewStyle())
         //You can delete with swipe, but maybe add

@@ -64,11 +64,10 @@ class DetailServices: ObservableObject {
         self.vote_average = vote_average
         load()
         getImage(path: poster_path ?? "placeholder")
-        //print("detailServices showID: \(showID)")
+        ////print("detailServices showID: \(showID)")
     }
     
     func load() {
-        let apiKey = "dd1fed7eede948d0697c67af77a4e3af"
         guard let url = URL(string: "https://api.themoviedb.org/3/tv/\(self.showID)?api_key=dd1fed7eede948d0697c67af77a4e3af&language=en-US"
 ) else { return }
             URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -80,10 +79,10 @@ class DetailServices: ObservableObject {
                             //print(response)
                             }
                     } else {
-                    print("No Data")
+                    //print("No Data")
                     }
                 } catch {
-                    print(error)
+                    //print(error)
                 }
             }
             .resume()
@@ -91,21 +90,21 @@ class DetailServices: ObservableObject {
     
     func getImage(path: String?) {
         if let imagePath = path {
-            //print(1)
+            ////print(1)
             let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath)
             DispatchQueue.global().async { [weak self] in
                 if let data = try? Data(contentsOf: imageURL!) {
-                    //print(2)
+                    ////print(2)
                     if let image = UIImage(data: data) {
-                        //print(3)
+                        ////print(3)
                         DispatchQueue.main.async {
-                            //print(4)
+                            ////print(4)
                             self?.showImage = image
                         }
                     }
                 }
             }
-            //print(5)
+            ////print(5)
             //I've tried returning a UIImage, which doesn't work.
         }
     }

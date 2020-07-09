@@ -58,10 +58,10 @@ public class Services: ObservableObject {
                         
                     }
                 } else {
-                print("No Data")
+                //print("No Data")
                 }
             } catch {
-                print(error)
+                //print(error)
             }
 
         }
@@ -81,17 +81,17 @@ public class Services: ObservableObject {
                             //print("finalImage changed")
                         }
                     } else {
-                        print("xxxno image")
+                        //print("xxxno image")
                     }
                 } else {
-                    print("xxxno data")
+                    //print("xxxno data")
                 }
                 }
             } else {
-                print("xxxno imageURL")
+                //print("xxxno imageURL")
             }
         } else {
-            print("xxxno imagePath")
+            //print("xxxno imagePath")
         }
     }
 }

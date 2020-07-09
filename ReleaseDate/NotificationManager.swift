@@ -38,10 +38,10 @@ class NotificationManager: ObservableObject {
     func requestNotificationAuthorization() {
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
-                print("Success")
+                //print("Success")
                 self.isAuthorized = true
             } else {
-                print("Notification Not Authorized")
+                //print("Notification Not Authorized")
                 self.isAuthorized = false
             }
         }
@@ -68,23 +68,23 @@ class NotificationManager: ObservableObject {
         //content.userInfo = ["customData": "fizzbuzz"] //Do I need this?
         //content.sound = UNNotificationSound.default //Do I need this?
         
-        let subtractedDate = Calendar.current.date(byAdding: .day, value: -67, to: date)
+        let subtractedDate = Calendar.current.date(byAdding: .day, value: -1, to: date)
         let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate!)
         var dateComponents = DateComponents()
         dateComponents.year = calendarDate.year
         dateComponents.month = calendarDate.month
         dateComponents.day = calendarDate.day
-        dateComponents.hour = 17
-        dateComponents.minute = 12
+        dateComponents.hour = 18
+        dateComponents.minute = 30
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: "\(myShow.id)", content: content, trigger: trigger)
         center.add(request) { (error: Error?) in
             
             if error == nil {
-                print("Notification Scheduled", trigger ?? "Date Nil")
+                //print("Notification Scheduled", trigger ?? "Date Nil")
             } else {
-                print("Error scheduling notification", error?.localizedDescription ?? "")
+                //print("Error scheduling notification", error?.localizedDescription ?? "")
             }
         }
         
@@ -102,9 +102,9 @@ class NotificationManager: ObservableObject {
         center.add(request2) { (error: Error?) in
             
             if error == nil {
-                print("Notification Scheduled", trigger ?? "Date Nil")
+                //print("Notification Scheduled", trigger ?? "Date Nil")
             } else {
-                print("Error scheduling notification", error?.localizedDescription ?? "")
+                //print("Error scheduling notification", error?.localizedDescription ?? "")
             }
         }
         
@@ -121,12 +121,12 @@ class NotificationManager: ObservableObject {
         let request3 = UNNotificationRequest(identifier: "\(myShow.id)" + "3", content: content, trigger: trigger3)
         center.add(request3) { (error: Error?) in
             
-            if error == nil {
-                print("Notification Scheduled", trigger ?? "Date Nil")
-                self.getPending()
-            } else {
-                print("Error scheduling notification", error?.localizedDescription ?? "")
-            }
+//            if error == nil {
+//                //print("Notification Scheduled", trigger ?? "Date Nil")
+//                self.getPending()
+//            } else {
+//                //print("Error scheduling notification", error?.localizedDescription ?? "")
+//            }
         }
     }
     
@@ -134,25 +134,29 @@ class NotificationManager: ObservableObject {
     
     func checkNotificationsSettingsAuthorizationStatus() {
         center.getNotificationSettings { settings in
-            if settings.authorizationStatus == .authorized {
-                self.check = true
-            } else {
-                self.check = false
+            DispatchQueue.main.async {
+                if settings.authorizationStatus == .authorized {
+                    //print("authorized")
+                    self.check = true
+                } else {
+                    //print("not authorized")
+                    self.check = false
+                }
             }
         }
     }
     
-    func getPending() {
-        self.center.getPendingNotificationRequests(completionHandler: { requests in
-            print("pending notifications...")
-            for request in requests {
-                print("notreq: \(request)")
-            }
-        })
-    }
+//    func getPending() {
+//        self.center.getPendingNotificationRequests(completionHandler: { requests in
+//            //print("pending notifications...")
+//            for request in requests {
+//                print("notreq: \(request)")
+//            }
+//        })
+//    }
     
     func scheduleImmediateNotification(myShow: MyShow) {
-        print("ScheduleImmediateNotification Run")
+        //print("ScheduleImmediateNotification Run")
         
         //once this works, i need to put date: Date parameter into this fuction (like in outfit tracker), so it fires off of the show next air date.
         
@@ -181,9 +185,9 @@ class NotificationManager: ObservableObject {
         center.add(request) { (error: Error?) in
             
             if error == nil {
-                print("Notification Scheduled", trigger ?? "Date Nil")
+                //print("Notification Scheduled", trigger ?? "Date Nil")
             } else {
-                print("Error scheduling notification", error?.localizedDescription ?? "")
+                //print("Error scheduling notification", error?.localizedDescription ?? "")
             }
         }
         
@@ -197,8 +201,8 @@ class NotificationManager: ObservableObject {
 
  let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
  let newDate = Calendar.current.date(byAdding: .day, value: -30, to: Date())
- print(calendarDate)
- print(newDate)
- print("Hello")
+ //print(calendarDate)
+ //print(newDate)
+ //print("Hello")
  
  */
