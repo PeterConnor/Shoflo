@@ -138,7 +138,7 @@ struct DetailView: View {
                                 }
                                 if detailServices.showDetail?.first_air_date != nil {
                                     Text("First Aired ").fontWeight(.black)
-                                    Text("\(getDateString(dateString: detailServices.showDetail!.first_air_date))")
+                                    Text("\(getDateString(dateString: detailServices.showDetail!.first_air_date!))")
                                 } else {
                                     Text("First Aired ").fontWeight(.black)
                                     Text("N/A").foregroundColor(Color.gray)
@@ -226,9 +226,9 @@ struct DetailView: View {
                                 //                                Text("Type: ").fontWeight(.black) + Text("N/A").foregroundColor(Color.gray)
                                 //                            }
                                 
-                                if detailServices.showDetail?.last_episode_to_air.air_date != nil {
+                                if detailServices.showDetail?.last_episode_to_air?.air_date != nil {
                                     Text("Last Aired ").fontWeight(.black)
-                                    Text("\(getDateString(dateString: detailServices.showDetail!.last_episode_to_air.air_date))")
+                                    Text("\(getDateString(dateString: detailServices.showDetail!.last_episode_to_air!.air_date!))")
                                 } else {
                                     Text("Last Aired ").fontWeight(.black)
                                     Text("N/A").foregroundColor(Color.gray)

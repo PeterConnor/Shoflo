@@ -12,7 +12,6 @@
  -console messages
  -progress bar?
  -test app during bad connection
--detail view doesnt work for sportscenter. developer site issue?
  
  ***Post MVP***
  -add comments

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DetailResponse: Decodable {
     //backdrop_path to make it look good?
-    let first_air_date: String
+    let first_air_date: String?
     let id: Int
     let in_production: Bool
     let name: String
@@ -22,13 +22,13 @@ struct DetailResponse: Decodable {
     let overview: String
     let popularity: Float
     let status: String
-    let poster_path: String
+    let poster_path: String?
     let vote_average: Double
     let vote_count: Int
     let episode_run_time: [Int]
     let genres: [Genre]
     let original_language: String
-    let last_episode_to_air: Last_Episode_To_Air
+    let last_episode_to_air: Last_Episode_To_Air?
     let type: String
     
 }
@@ -48,7 +48,7 @@ struct Genre: Decodable {
 }
 
 struct Last_Episode_To_Air: Decodable {
-    let air_date: String
+    let air_date: String?
 }
 
 class DetailServices: ObservableObject {
@@ -58,10 +58,10 @@ class DetailServices: ObservableObject {
     var poster_path: String?
     var vote_average: Double
 
-    init(showID: Int, poster_path: String?, vote_average: Double) {
+    init(showID: Int, poster_path: String?, vote_average: Double?) {
         self.showID = showID
         self.poster_path = poster_path
-        self.vote_average = vote_average
+        self.vote_average = vote_average ?? 0.0
         load()
         getImage(path: poster_path ?? "placeholder")
         ////print("detailServices showID: \(showID)")
