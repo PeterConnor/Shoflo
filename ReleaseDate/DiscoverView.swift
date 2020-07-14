@@ -37,7 +37,7 @@ struct DiscoverView: View {
                    Text("Top Rated").tag(2)
                }.pickerStyle(SegmentedPickerStyle())
                 .onAppear {
-                    
+                
                     if self.myShows.count > 0 {
                         self.discoverServices.myShowIndex = 0
                     }

@@ -11,7 +11,6 @@ import SwiftUI
 struct SearchView: View {
     @ObservedObject var services = Services()
     @EnvironmentObject var nextAirDate: NextAirDate
-
     
     var body: some View {
         NavigationView {

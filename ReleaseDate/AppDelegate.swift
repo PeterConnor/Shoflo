@@ -40,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        notificationManager.requestNotificationAuthorization()
+        
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.c0nman.ReleaseDate.fetch",
                                         using: nil) { (task) in
           self.handleAppRefreshTask(task: task as! BGAppRefreshTask)

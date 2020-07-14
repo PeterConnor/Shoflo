@@ -10,10 +10,10 @@
 
  ***To Do***
  -console messages
- -progress bar?
- -test app during bad connection
  
  ***Post MVP***
+ -menu with instructions, feedback, ratings,
+ -initial instructions
  -add comments
  -maybe just do recommended based off all shows, and filter out dupes.
  -watched, to watch.
@@ -26,6 +26,7 @@
  -add sort to the lists, so no image availables go to bottom (should i filter those out altogether?).
  -more pages in results
  -add other ways to sort
+ -progress bar
  -news updates
  have related shows in detail page, rather than needing user to save show.
  -custom alerts / on-off

@@ -25,6 +25,7 @@
 		FA6AC994243426F200FA9170 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC993243426F200FA9170 /* DetailView.swift */; };
 		FA6AC998243588F600FA9170 /* DataDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC997243588F600FA9170 /* DataDetail.swift */; };
 		FA6AC99B243BDEEF00FA9170 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */; };
+		FAC8217324BA8AB000C4B88A /* ConnectivityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC8217124BA7A3A00C4B88A /* ConnectivityChecker.swift */; };
 		FAE8BF7B246E3ACE000C98CB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8BF7A246E3ACD000C98CB /* NotificationManager.swift */; };
 		FAE8BF7D247F5DB6000C98CB /* NextAirDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8BF7C247F5DB5000C98CB /* NextAirDate.swift */; };
 /* End PBXBuildFile section */
@@ -71,6 +72,7 @@
 		FA6AC993243426F200FA9170 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		FA6AC997243588F600FA9170 /* DataDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetail.swift; sourceTree = "<group>"; };
 		FA6AC99A243BDEEF00FA9170 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		FAC8217124BA7A3A00C4B88A /* ConnectivityChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityChecker.swift; sourceTree = "<group>"; };
 		FAE8BF7A246E3ACD000C98CB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		FAE8BF7C247F5DB5000C98CB /* NextAirDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextAirDate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +128,7 @@
 				FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */,
 				FA0279662428555200599C81 /* AppDelegate.swift */,
 				FA0279682428555200599C81 /* SceneDelegate.swift */,
+				FAC8217124BA7A3A00C4B88A /* ConnectivityChecker.swift */,
 				FAE8BF7C247F5DB5000C98CB /* NextAirDate.swift */,
 				FAE8BF7A246E3ACD000C98CB /* NotificationManager.swift */,
 				FA452CA5242D6FBA0069120C /* DataSearch.swift */,
@@ -311,6 +314,7 @@
 				FA02799924299C7300599C81 /* Notes.swift in Sources */,
 				FA452CA0242C4EE20069120C /* SearchView.swift in Sources */,
 				FA6AC994243426F200FA9170 /* DetailView.swift in Sources */,
+				FAC8217324BA8AB000C4B88A /* ConnectivityChecker.swift in Sources */,
 				FA0279672428555200599C81 /* AppDelegate.swift in Sources */,
 				FA0279692428555200599C81 /* SceneDelegate.swift in Sources */,
 				FA452CAA242FB2D90069120C /* DiscoverView.swift in Sources */,
