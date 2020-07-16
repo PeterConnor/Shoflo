@@ -130,17 +130,17 @@ class NotificationManager: ObservableObject {
         }
     }
     
-    @Published var check = true
+    @Published var notificationsOff = false
     
     func checkNotificationsSettingsAuthorizationStatus() {
         center.getNotificationSettings { settings in
             DispatchQueue.main.async {
                 if settings.authorizationStatus == .authorized {
                     //print("authorized")
-                    self.check = true
+                    self.notificationsOff = false
                 } else {
                     //print("not authorized")
-                    self.check = false
+                    self.notificationsOff = true
                 }
             }
         }

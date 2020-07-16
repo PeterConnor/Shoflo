@@ -21,7 +21,7 @@ struct DetailView: View {
     var myShows: FetchedResults<MyShow>
     @State private var duplicateShow: Bool = false
     @State private var showSaved: Bool = false
-    var notificationManager = NotificationManager()
+    @ObservedObject var notificationManager = NotificationManager()
     @EnvironmentObject var nextAirDate: NextAirDate
 
     var name: String
@@ -68,6 +68,8 @@ struct DetailView: View {
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 5))
 
         
+                    }.alert(isPresented: self.$notificationManager.notificationsOff) {
+                    Alert(title: Text("Notifications Disabled"), message: Text("To receive release date notifications, please go to Settings -> Showflo -> Notifications on your device."), dismissButton: .default(Text("Okay")))
                     }
                     Divider()
                         GeometryReader { geo in
@@ -82,7 +84,7 @@ struct DetailView: View {
                             }.frame(width: geo.size.width, height: geo.size.height * 1.0)
                         
                             .alert(isPresented: self.$showSaved) {
-                            Alert(title: Text("Show Saved!"), message: nil, dismissButton: .default(Text("Okay")))
+                            Alert(title: Text("Saved to Favorites!"), message: Text("You will be notified if a new season of this show is announced."), dismissButton: .default(Text("Okay")))
                         }
                     }
                 }
@@ -247,6 +249,7 @@ struct DetailView: View {
                 .alert(isPresented: $duplicateShow) {
                         Alert(title: Text("Duplicate Show!"), message: Text("Show already saved to favorites"), dismissButton: .default(Text("Okay")))
                     }.onAppear {
+                        self.notificationManager.checkNotificationsSettingsAuthorizationStatus()
                     //print("this did appear")
                     //print(self.nextAirDate.newAirDateAndEnteredForeground)
                 }
@@ -260,10 +263,9 @@ struct DetailView: View {
                                     ////print("already exists")
                                     return
                                 }
-                                else {
-                                    self.showSaved = true
-                                }
+                                
                             }
+                            self.showSaved = true
                         } else {
                             self.showSaved = true
                     }

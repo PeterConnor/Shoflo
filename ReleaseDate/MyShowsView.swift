@@ -110,12 +110,12 @@ struct MyShowsView: View {
                 self.notificationManager.checkNotificationsSettingsAuthorizationStatus()
             UITableView.appearance().separatorStyle = .none
                 }
-                .navigationBarItems(trailing: !notificationManager.check ? Button("!") {
+                .navigationBarItems(trailing: notificationManager.notificationsOff ? Button("!") {
                     self.notificationsAlert.toggle()
                     
                 }.foregroundColor(Color.red) : nil
             ).alert(isPresented: $notificationsAlert) {
-                Alert(title: Text("Notifications Disabled"), message: Text("To receive notifications, please go to Settings -> Release Date -> Notifications"), dismissButton: .default(Text("Okay")))
+                Alert(title: Text("Notifications Disabled"), message: Text("To receive release date notifications, please go to Settings -> Showflo -> Notifications on your device."), dismissButton: .default(Text("Okay")))
                 
             }.navigationBarTitle("Favorites")
         }.navigationViewStyle(StackNavigationViewStyle())
