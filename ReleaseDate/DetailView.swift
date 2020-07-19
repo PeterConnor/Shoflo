@@ -278,7 +278,8 @@ struct DetailView: View {
                         show.vote_average = self.detailServices.vote_average
                         if self.detailServices.showDetail?.next_episode_to_air?.episode_number != nil {
                             if self.detailServices.showDetail?.next_episode_to_air!.episode_number == 1 {
-                                show.air_date = self.detailServices.showDetail?.next_episode_to_air?.air_date ?? "N/A"
+                                //uncomment this
+                                //show.air_date = self.detailServices.showDetail?.next_episode_to_air?.air_date ?? "N/A"
                                 }
                             }
                         show.episode_number = Int32(self.detailServices.showDetail?.next_episode_to_air?.episode_number ?? 0)

@@ -60,7 +60,8 @@ class NotificationManager: ObservableObject {
         let content = UNMutableNotificationContent()
         //pass these into the function as parameters
         content.title = "\(myShow.name!)"
-        content.body = "The first episode of a new season of \(myShow.name!) is scheduled to air on \(getDateString(dateString: myShow.air_date!))"
+        //uncomment this
+        //content.body = "The first episode of a new season of \(myShow.name!) is scheduled to air on \(getDateString(dateString: myShow.air_date!))"
         content.sound = .default
         
             
