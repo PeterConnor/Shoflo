@@ -9,10 +9,7 @@
 /*
 
  ***To Do***
- -remove uncomments
  -change notification back (changed it for screenshots)
- -take 1 more pic of an actual notification for the boys for iphone 11 pro max 6.5".
- -repeat pics for the other device sizes.
  -console messages
  
  ***Post MVP***
