@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         notificationManager.requestNotificationAuthorization()
         
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.c0nman.ReleaseDate.fetch",
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.c0nman.Shows.fetch",
                                         using: nil) { (task) in
           self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
         //print("task scheduled")
@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func scheduleBackgroundFetch() {
-        let fetchTask = BGAppRefreshTaskRequest(identifier: "com.c0nman.ReleaseDate.fetch")
+        let fetchTask = BGAppRefreshTaskRequest(identifier: "com.c0nman.Shows.fetch")
         fetchTask.earliestBeginDate = Date(timeIntervalSinceNow: 60)
         do {
           try BGTaskScheduler.shared.submit(fetchTask)
