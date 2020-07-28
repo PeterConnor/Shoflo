@@ -9,7 +9,7 @@
 /*
 
  ***To Do***
- -change notification back (changed it for screenshots)
+rename project -> https://www.youtube.com/watch?v=6P6ya2vdC8M
  -console messages
  
  ***Post MVP***
