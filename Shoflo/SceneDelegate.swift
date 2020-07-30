@@ -5,6 +5,9 @@
 //  Created by Pete Connor on 3/22/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
+// refactor - done
 
 import UIKit
 import SwiftUI
@@ -45,12 +48,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         self.nextAirDate.getCoreDataAndCheckNextAirDate(backgroundTrueForegroundFalse: false)
-        
-//        This works
-//        let alert = UIAlertController(title: "Test", message:"Message", preferredStyle: UIAlertController.Style.alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-//        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
-        
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -70,7 +67,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
         (UIApplication.shared.delegate as? AppDelegate)?.scheduleBackgroundFetch()
     }
-
-
 }
-

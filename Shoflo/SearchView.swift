@@ -5,6 +5,8 @@
 //  Created by Pete Connor on 3/25/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
 
 import SwiftUI
 
@@ -38,7 +40,7 @@ struct SearchView: View {
                                         Text("⭐️ \(show.vote_average, specifier: "%.1f")")
                                             .padding(.trailing, 5)
                                     }.padding(.top, 5)
-                                    HStack{
+                                    HStack {
                                         Text(show.overview ?? "")
                                         Spacer()
                                         VStack {

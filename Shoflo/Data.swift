@@ -5,6 +5,8 @@
 //  Created by Pete Connor on 3/25/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
 
 import SwiftUI
 
@@ -26,13 +28,13 @@ public class Fetcher: ObservableObject {
         guard let url = URL(string: "https://api.themoviedb.org/3/tv/69740?api_key=\(apiKey)&language=en-US") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             do {
-                if let d = data {
-                    let decodedLists = try JSONDecoder().decode(Show.self, from: d)
+                if let responseData = data {
+                    let decodedLists = try JSONDecoder().decode(Show.self, from: responseData)
                     DispatchQueue.main.async {
                         self.shows = [decodedLists]
-                        ////print(self.shows[0].name)
-                        ////print((type(of: self.shows)))
-                        ////print(type(of: decodedLists))
+                        //print(self.shows[0].name)
+                        //print((type(of: self.shows)))
+                        //print(type(of: decodedLists))
                     }
                 } else {
                 //print("No Data")
@@ -40,7 +42,6 @@ public class Fetcher: ObservableObject {
             } catch {
                 //print(error.localizedDescription)
             }
-
         }
         .resume()
     }

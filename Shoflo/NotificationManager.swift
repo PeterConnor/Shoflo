@@ -5,6 +5,8 @@
 //  Created by Pete Connor on 5/14/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
 
 import UserNotifications
 
@@ -44,29 +46,17 @@ class NotificationManager: ObservableObject {
                 //print("Notification Not Authorized")
                 self.isAuthorized = false
             }
-        }
-        
-        //center.delegate = self do i need this?
+        }        
     }
 
     func scheduleNotification(myShow: MyShow, date: Date) {
-        
-        //once this works, i need to put date: Date parameter into this fuction (like in outfit tracker), so it fires off of the show next air date.
-        
-        
-        
+
         requestNotificationAuthorization()
         
         let content = UNMutableNotificationContent()
-        //pass these into the function as parameters
         content.title = "\(myShow.name!)"
         content.body = "The first episode of a new season of \(myShow.name!) is scheduled to air on \(getDateString(dateString: myShow.air_date!))"
         content.sound = .default
-        
-            
-        //content.categoryIdentifier = "alarm" //Do I need this?
-        //content.userInfo = ["customData": "fizzbuzz"] //Do I need this?
-        //content.sound = UNNotificationSound.default //Do I need this?
         
         let subtractedDate = Calendar.current.date(byAdding: .day, value: -1, to: date)
         let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: subtractedDate!)
@@ -121,12 +111,11 @@ class NotificationManager: ObservableObject {
         let request3 = UNNotificationRequest(identifier: "\(myShow.id)" + "3", content: content, trigger: trigger3)
         center.add(request3) { (error: Error?) in
             
-//            if error == nil {
-//                //print("Notification Scheduled", trigger ?? "Date Nil")
-//                self.getPending()
-//            } else {
-//                //print("Error scheduling notification", error?.localizedDescription ?? "")
-//            }
+            if error == nil {
+                //print("Notification Scheduled", trigger ?? "Date Nil")
+            } else {
+                //print("Error scheduling notification", error?.localizedDescription ?? "")
+            }
         }
     }
     
@@ -193,16 +182,3 @@ class NotificationManager: ObservableObject {
         
     }
 }
-
-
-/*
- 
- let date = Date()
-
- let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
- let newDate = Calendar.current.date(byAdding: .day, value: -30, to: Date())
- //print(calendarDate)
- //print(newDate)
- //print("Hello")
- 
- */

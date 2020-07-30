@@ -5,6 +5,8 @@
 //  Created by Pete Connor on 4/11/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
 
 import SwiftUI
 import CoreData
@@ -14,7 +16,7 @@ public class DiscoverServices: ObservableObject {
     var myShows = [MyShow]()
   
     func getCoreData() {
-  //1
+        //1
         guard let appDelegate =
         UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -33,7 +35,7 @@ public class DiscoverServices: ObservableObject {
         //3
         do {
             myShows = try managedContext.fetch(fetchRequest)
-            ////print("myshows: \(myShows)")
+            //print("myshows: \(myShows)")
         } catch _ as NSError {
             //print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -41,27 +43,24 @@ public class DiscoverServices: ObservableObject {
         
     @Published var shows = [Result]() {
         didSet {
-            ////print("didSet shows - shows.count: \(shows.count)")
+            //print("didSet shows - shows.count: \(shows.count)")
             imageList.removeAll()
             if shows.count > 0 {
-                for (index, i) in shows.enumerated() {
-                    getImage(path: i.poster_path ?? "", index: index)
+                for (index, item) in shows.enumerated() {
+                    getImage(path: item.poster_path ?? "", index: index)
                     //imageList.append(UIImage(systemName: "magnifyingglass")) this was just to check to see if the for loop puts an image in each row, which it does.
                 }
-                ////print("imageList.count: \(imageList.count)")
+                //print("imageList.count: \(imageList.count)")
             }
         }
     }
     @Published var imageList: [UIImage?] = [UIImage]()
 
-    
-    //@Published var query = "farscape"
-
     @Published var discoverNumber = 0 {
             didSet {
                 //print("this did change")
                 load(num: self.discoverNumber, id: showID)
-                ////print(self.discoverNumber)
+                //print(self.discoverNumber)
             }
         }
     
@@ -71,12 +70,12 @@ public class DiscoverServices: ObservableObject {
         didSet {
             getCoreData()
             //print("myshowindex: \(self.myShowIndex)")
-            ////print(myShows.count)
+            //print(myShows.count)
             if myShows.count > 0 /*&& myShows != nil*/ {
                self.showID = Int(self.myShows[myShowIndex].id)
             }
             
-            ////print(showID)
+            //print(showID)
             load(num: self.discoverNumber, id: showID)
         }
     }
@@ -108,11 +107,11 @@ init() {
         }
     URLSession.shared.dataTask(with: url) { (data, response, error) in
         do {
-            if let d = data {
-                let response = try JSONDecoder().decode(Response.self, from: d)
+            if let responseData = data {
+                let response = try JSONDecoder().decode(Response.self, from: responseData)
                 DispatchQueue.main.async {
                     self.shows = response.results
-                    ////print(response)
+                    //print(response)
                 }
             } else {
             //print("No Data")
@@ -135,7 +134,7 @@ init() {
                             if let image = UIImage(data: data) {
                                 DispatchQueue.main.async {
                                     self?.imageList[index] = image
-                                    ////print("finalImage changed")
+                                    //print("finalImage changed")
                         }
                     } else {
                         //print("xxxno image")
@@ -150,7 +149,5 @@ init() {
         } else {
             //print("xxxno imagePath")
         }
-    }
-    
-    
+    }  
 }

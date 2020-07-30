@@ -5,6 +5,8 @@
 //  Created by Pete Connor on 5/27/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
 
 import Foundation
 import CoreData
@@ -49,14 +51,14 @@ class NextAirDate: ObservableObject {
         //3
         do {
             myShows = try managedContext.fetch(fetchRequest)
-            for i in myShows {
-                if i.air_date == nil || i.air_date == "N/A" {
-                    getNextAirDate(show: i, backgroundTrueForegroundFalse: backgroundOrForegroundCheck)
-                } else if i.air_date != nil && i.air_date != "N/A" {
-                    if getDate(dateString: i.air_date!) != nil {
-                        if getDate(dateString: i.air_date!)! < Date() || i.episode_number == 0 || i.episode_number > 1 {
-                            i.air_date = nil
-                            self.notificationManager.center.removePendingNotificationRequests(withIdentifiers: ["\(i.id)", "\(i.id)" + "2", "\(i.id)" + "3"])
+            for item in myShows {
+                if item.air_date == nil || item.air_date == "N/A" {
+                    getNextAirDate(show: item, backgroundTrueForegroundFalse: backgroundOrForegroundCheck)
+                } else if item.air_date != nil && item.air_date != "N/A" {
+                    if getDate(dateString: item.air_date!) != nil {
+                        if getDate(dateString: item.air_date!)! < Date() || item.episode_number == 0 || item.episode_number > 1 {
+                            item.air_date = nil
+                            self.notificationManager.center.removePendingNotificationRequests(withIdentifiers: ["\(item.id)", "\(item.id)" + "2", "\(item.id)" + "3"])
                             do {
                                 try self.managedContext.save()
                             } catch {
@@ -75,8 +77,8 @@ class NextAirDate: ObservableObject {
         guard let url = URL(string: "https://api.themoviedb.org/3/tv/\(show.id)?api_key=dd1fed7eede948d0697c67af77a4e3af&language=en-US") else { return }
                 URLSession.shared.dataTask(with: url) { (data, response, error) in
                     do {
-                        if let d = data {
-                            let response = try JSONDecoder().decode(DetailResponse.self, from: d)
+                        if let responseData = data {
+                            let response = try JSONDecoder().decode(DetailResponse.self, from: responseData)
                             DispatchQueue.main.async {
                                 self.showDetail = response
                                 if response.next_episode_to_air?.air_date != nil {
@@ -115,8 +117,6 @@ class NextAirDate: ObservableObject {
                                 } catch {
                                     //print("error saving managedObjectContext in detail view")
                                 }
-                                
-                                
                             }
                         } else {
                         //print("No Data")

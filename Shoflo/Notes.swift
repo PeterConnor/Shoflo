@@ -5,11 +5,17 @@
 //  Created by Pete Connor on 3/23/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
-
 /*
 
  ***To Do***
-rename project -> https://www.youtube.com/watch?v=6P6ya2vdC8M
+ remove swiftlint, along with the following 3 commands...
+ // swiftlint:disable superfluous_disable_command
+ // swiftlint:disable line_length
+ // swiftlint:disable trailing_whitespace
+ remove
+ // refactor - done
+ 
+SwiftLint installation -> https://medium.com/developerinsider/how-to-use-swiftlint-with-xcode-to-enforce-swift-style-and-conventions-368e49e910
  -console messages
  
  ***Post MVP***

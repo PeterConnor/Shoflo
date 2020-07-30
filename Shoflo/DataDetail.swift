@@ -5,6 +5,10 @@
 //  Created by Pete Connor on 4/1/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
+// swiftlint:disable identifier_name
+// swiftlint:disable type_name
 
 import SwiftUI
 
@@ -72,8 +76,8 @@ class DetailServices: ObservableObject {
 ) else { return }
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 do {
-                    if let d = data {
-                        let response = try JSONDecoder().decode(DetailResponse.self, from: d)
+                    if let responseData = data {
+                        let response = try JSONDecoder().decode(DetailResponse.self, from: responseData)
                         DispatchQueue.main.async {
                             self.showDetail = response
                             //print(response)

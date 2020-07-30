@@ -5,6 +5,9 @@
 //  Created by Pete Connor on 3/22/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
+// refactor - done
 
 import UIKit
 import CoreData
@@ -20,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let container = NSPersistentContainer(name: "DataModel")
         container.loadPersistentStores { (description, error) in
             if let error = error {
-                ////print("error loading persistentContainer")
+                //print("error loading persistentContainer")
             }
         }
         return container
@@ -32,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 try context.save()
             } catch {
-                ////print("error saving context")
+                //print("error saving context")
             }
         }
     }
@@ -54,14 +57,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func handleAppRefreshTask(task: BGAppRefreshTask) {
         task.expirationHandler = {
             task.setTaskCompleted(success: false)
-          //PokeManager.urlSession.invalidateAndCancel()
         }
         //print("handle app refresh")
         
-        //notificationManager.scheduleTestNotification()
         nextAirDate.getCoreDataAndCheckNextAirDate(backgroundTrueForegroundFalse: true)
         task.setTaskCompleted(success: true)
-//
         
         scheduleBackgroundFetch()
     }
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fetchTask.earliestBeginDate = Date(timeIntervalSinceNow: 60)
         do {
           try BGTaskScheduler.shared.submit(fetchTask)
-            ////print("background fetch scheduled")
+            //print("background fetch scheduled")
         } catch {
           //print("Unable to submit task: \(error.localizedDescription)")
         }
@@ -90,7 +90,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
-

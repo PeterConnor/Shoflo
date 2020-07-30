@@ -5,6 +5,8 @@
 //  Created by Pete Connor on 3/25/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
 
 import SwiftUI
 
@@ -20,11 +22,10 @@ struct MyShowsView: View {
     var myShows: FetchedResults<MyShow>
     @EnvironmentObject var nextAirDate: NextAirDate
 
-    
     @ObservedObject var notificationManager = NotificationManager()
     @State var notificationsAlert = false
     
-    func getImageFromData(show: MyShow) -> UIImage  {
+    func getImageFromData(show: MyShow) -> UIImage {
         //this is just a placeholder
         var finalImage = (UIImage(named: "imagenotavailable"))
         if let data = show.image {
@@ -49,8 +50,8 @@ struct MyShowsView: View {
             managedObjectContext.delete(myShow)
             do {
                 try self.managedObjectContext.save()
-                ////print("save successful")
-                ////print("myShows: \(myShows)")
+                //print("save successful")
+                //print("myShows: \(myShows)")
             } catch {
                 //"error saving managedObjectContext in detail view"
             }
@@ -82,7 +83,7 @@ struct MyShowsView: View {
                                         Text("⭐️ \(show.vote_average, specifier: "%.1f")")
                                             .padding(.trailing, 5)
                                     }.padding(.top, 5)
-                                    HStack{
+                                    HStack {
                                         Text(show.overview ?? "")
                                         Spacer()
                                         VStack {
@@ -93,8 +94,6 @@ struct MyShowsView: View {
                                 .alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
                                     Alert(title: Text("New Air Date Available"), message: Text("The first episode of a new season of \(self.nextAirDate.showForAlert) has been released! See Favorites for details."), dismissButton: .default(Text("Okay")))
                                 }
-                                
-                            
                         }
                         .frame(height: 120)
                         .background(Color(.systemBackground))

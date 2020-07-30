@@ -5,6 +5,8 @@
 //  Created by Pete Connor on 3/31/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
 
 import SwiftUI
 
@@ -28,8 +30,8 @@ struct DetailView: View {
     
     func getRunTime(list: [Int]) -> Int {
         var count = 0
-        for i in list {
-            count += i
+        for item in list {
+            count += item
         }
         return count / list.count
     }
@@ -66,8 +68,6 @@ struct DetailView: View {
                         .cornerRadius(10)
                         .shadow(color: Color(.secondaryLabel), radius: 5, x: 0, y: 1)
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 5))
-
-        
                     }.alert(isPresented: self.$notificationManager.notificationsOff) {
                     Alert(title: Text("Notifications Disabled"), message: Text("To receive release date notifications, please go to Settings -> Showflo -> Notifications on your device."), dismissButton: .default(Text("Okay")))
                     }
@@ -256,11 +256,11 @@ struct DetailView: View {
                 }.navigationBarTitle(name)
             .navigationBarItems(trailing:
                 Button("Save") {
-                        if self.myShows.count > 0 /*&& self.myShows != nil*/ {
-                            for i in self.myShows {
-                                if i.id == self.detailServices.showID {
+                        if self.myShows.count > 0 {
+                            for item in self.myShows {
+                                if item.id == self.detailServices.showID {
                                     self.duplicateShow = true
-                                    ////print("already exists")
+                                    //print("already exists")
                                     return
                                 }
                                 
@@ -269,8 +269,6 @@ struct DetailView: View {
                         } else {
                             self.showSaved = true
                     }
-                    
-                        
                     
                         let show = MyShow(context: self.managedObjectContext)
                         show.name = self.name
@@ -331,11 +329,8 @@ struct DetailView: View {
     }
 }
         
-
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         DetailView(detailServices: DetailServices(showID: 55555, poster_path: "jjj", vote_average: 0.0), name: "Name")
     }
 }
-
-

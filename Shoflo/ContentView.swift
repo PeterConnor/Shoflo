@@ -5,6 +5,8 @@
 //  Created by Pete Connor on 3/22/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
 
 import SwiftUI
 
@@ -13,7 +15,7 @@ struct ContentView: View {
     @ObservedObject var connectivityChecker = ConnectivityChecker()
 
     var body: some View {
-        ZStack{
+        ZStack {
             TabView {
                 SearchView()
                     .tabItem {

@@ -5,6 +5,8 @@
 //  Created by Pete Connor on 3/28/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
 
 import SwiftUI
 
@@ -25,7 +27,6 @@ struct DiscoverView: View {
     @State var needsRefresh = false
 
     
-    //need to remove this. for testing notifications...
     var notificationManager = NotificationManager()
     
     var body: some View {
@@ -51,16 +52,16 @@ struct DiscoverView: View {
                                 //print(self.notificationManager.checkNotificationsSettingsAuthorizationStatus())
                                 self.needsRefresh.toggle()
                                 UITableView.appearance().separatorStyle = .none
-                                ////print("onappear")
-                                ////print(self.myShows)
+                                //print("onappear")
+                                //print(self.myShows)
                 //                for i in self.myShows {
                 //                    ////print("air date \(i.air_date)")
                 //                }
                                 
                                 //self.notificationManager.getPending()
                 //                for i in self.myShows {
-                //                    ////print("saved air date")
-                //                    ////print(i.air_date)
+                //                    //print("saved air date")
+                //                    //print(i.air_date)
                 //                }
                                 
 //                                if self.myShows.count > 2 {
@@ -75,8 +76,8 @@ struct DiscoverView: View {
                         Spacer()
                     } else {
                         Picker(selection: $discoverServices.myShowIndex, label: Text("Select Show")) {
-                                ForEach(0..<myShows.count) { i in
-                                    Text("\(self.myShows[i].name!)")
+                                ForEach(0..<myShows.count) { item in
+                                    Text("\(self.myShows[item].name!)")
                             }
                         }.pickerStyle(WheelPickerStyle())
                             .labelsHidden()
@@ -107,7 +108,7 @@ struct DiscoverView: View {
                                             Text("⭐️ \(show.vote_average, specifier: "%.1f")")
                                                 .padding(.trailing, 5)
                                         }.padding(.top, 5)
-                                        HStack{
+                                        HStack {
                                             Text(show.overview ?? "")
                                             Spacer()
                                             VStack {

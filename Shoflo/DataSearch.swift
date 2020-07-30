@@ -5,13 +5,15 @@
 //  Created by Pete Connor on 3/26/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
+// swiftlint:disable trailing_whitespace
+// swiftlint:disable identifier_name
 
 import SwiftUI
 
 struct Response: Decodable {
     public var results: [Result]
 }
-
 
 struct Result: Decodable, Identifiable {
     let id: Int
@@ -20,7 +22,6 @@ struct Result: Decodable, Identifiable {
     let vote_average: Double
     let overview: String?
 }
-
 
 public class Services: ObservableObject {
     @Published var shows = [Result]() {
@@ -36,14 +37,12 @@ public class Services: ObservableObject {
             }
         }
     }
-    
-    
+     
     @Published var query: String = ""
     @Published var imageList: [UIImage?] = [UIImage]()
     
     init() {
         load()
-        
     }
     
     func load() {

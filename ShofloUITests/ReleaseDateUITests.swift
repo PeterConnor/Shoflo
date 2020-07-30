@@ -5,6 +5,7 @@
 //  Created by Pete Connor on 3/22/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import XCTest
 
