@@ -8,6 +8,15 @@
 /*
 
  ***To Do***
+ 
+ need to resubmit app with proper name!
+ 
+ fix pyramids of doom (mostly in services files)
+ refactor views
+ fix previews
+ console messages?
+ 
+ 
  remove swiftlint, along with the following 3 commands...
  // swiftlint:disable superfluous_disable_command
  // swiftlint:disable line_length
@@ -16,7 +25,6 @@
  // refactor - done
  
 SwiftLint installation -> https://medium.com/developerinsider/how-to-use-swiftlint-with-xcode-to-enforce-swift-style-and-conventions-368e49e910
- -console messages
  
  ***Post MVP***
  -menu with instructions, feedback, ratings,
@@ -46,15 +54,9 @@ SwiftLint installation -> https://medium.com/developerinsider/how-to-use-swiftli
 
  
  ***QUESTIONS***
- -what's the difference between list and forEach? (can't manipulate each item in list?). DOES IMAGE WORK WITH FOREACH?
  -Why does navigationlink load detailview for each item in list?
- -difference between global async vs main async
- */
-
-/*
  
- 
- Background Tasks
+ Testing Background Tasks
  e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.c0nman.Shows.fetch"]
  
  */

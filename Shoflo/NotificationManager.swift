@@ -7,6 +7,7 @@
 //
 // swiftlint:disable line_length
 // swiftlint:disable trailing_whitespace
+// refactor - done
 
 import UserNotifications
 
@@ -145,20 +146,14 @@ class NotificationManager: ObservableObject {
 //    }
     
     func scheduleImmediateNotification(myShow: MyShow) {
-        //print("ScheduleImmediateNotification Run")
-        
-        //once this works, i need to put date: Date parameter into this fuction (like in outfit tracker), so it fires off of the show next air date.
+        //print("scheduleImmediateNotification")
         
         requestNotificationAuthorization()
         
         let content = UNMutableNotificationContent()
-        //pass these into the function as parameters
         content.title = "\(myShow.name!)"
         content.body = "The first episode of a new season of \(myShow.name!) is scheduled to air on \(getDateString(dateString: myShow.air_date!))"
         content.sound = .default
-        //content.categoryIdentifier = "alarm" //Do I need this?
-        //content.userInfo = ["customData": "fizzbuzz"] //Do I need this?
-        //content.sound = UNNotificationSound.default //Do I need this?
 
         let date = Date()
         let subtractedDate = Calendar.current.date(byAdding: .minute, value: 1, to: date)

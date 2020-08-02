@@ -7,6 +7,7 @@
 //
 // swiftlint:disable line_length
 // swiftlint:disable trailing_whitespace
+// refactor - done
 
 import Foundation
 import CoreData
@@ -17,7 +18,6 @@ class NextAirDate: ObservableObject {
     var managedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     let notificationManager = NotificationManager()
     var myShows = [MyShow]()
-    var myShowsNilAirDate = [MyShow]()
     var showDetail: DetailResponse?
     var showForAlert = "One of your favorite shows!"
     @Published var newAirDateAndEnteredForeground = false
@@ -35,14 +35,13 @@ class NextAirDate: ObservableObject {
     func getCoreDataAndCheckNextAirDate(backgroundTrueForegroundFalse: Bool) {
     
         let backgroundOrForegroundCheck = backgroundTrueForegroundFalse
-    //1
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
 
         managedContext = appDelegate.persistentContainer.viewContext
 
-        //2
         let fetchRequest = NSFetchRequest<MyShow>(entityName: "MyShow")
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \MyShow.name, ascending: true)

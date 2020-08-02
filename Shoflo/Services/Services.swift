@@ -8,6 +8,7 @@
 // swiftlint:disable line_length
 // swiftlint:disable trailing_whitespace
 // swiftlint:disable identifier_name
+// refactor - done
 
 import SwiftUI
 
@@ -31,7 +32,6 @@ public class Services: ObservableObject {
             if shows.count > 0 {
                 for (index, i) in shows.enumerated() {
                     getImage(path: i.poster_path ?? "", index: index)
-                    //imageList.append(UIImage(systemName: "magnifyingglass")) this was just to check to see if the for loop puts an image in each row, which it does.
                 }
                 //print("imageList.count: \(imageList.count)")
             }
@@ -80,17 +80,17 @@ public class Services: ObservableObject {
                             //print("finalImage changed")
                         }
                     } else {
-                        //print("xxxno image")
+                        //print("no image")
                     }
                 } else {
-                    //print("xxxno data")
+                    //print("no data")
                 }
                 }
             } else {
-                //print("xxxno imageURL")
+                //print("no imageURL")
             }
         } else {
-            //print("xxxno imagePath")
+            //print("no imagePath")
         }
     }
 }

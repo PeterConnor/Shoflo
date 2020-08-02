@@ -9,6 +9,7 @@
 // swiftlint:disable trailing_whitespace
 // swiftlint:disable identifier_name
 // swiftlint:disable type_name
+// refactor - done
 
 import SwiftUI
 
@@ -34,7 +35,6 @@ struct DetailResponse: Decodable {
     let original_language: String
     let last_episode_to_air: Last_Episode_To_Air?
     let type: String
-    
 }
 
 struct Next_Episode_To_Air: Decodable {
@@ -68,7 +68,7 @@ class DetailServices: ObservableObject {
         self.vote_average = vote_average ?? 0.0
         load()
         getImage(path: poster_path ?? "placeholder")
-        ////print("detailServices showID: \(showID)")
+        //print("detailServices showID: \(showID)")
     }
     
     func load() {
@@ -94,22 +94,16 @@ class DetailServices: ObservableObject {
     
     func getImage(path: String?) {
         if let imagePath = path {
-            ////print(1)
             let imageURL = URL(string: "http://image.tmdb.org/t/p/w500" + imagePath)
             DispatchQueue.global().async { [weak self] in
                 if let data = try? Data(contentsOf: imageURL!) {
-                    ////print(2)
                     if let image = UIImage(data: data) {
-                        ////print(3)
                         DispatchQueue.main.async {
-                            ////print(4)
                             self?.showImage = image
                         }
                     }
                 }
             }
-            ////print(5)
-            //I've tried returning a UIImage, which doesn't work.
         }
     }
 }

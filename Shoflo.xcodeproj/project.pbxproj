@@ -16,14 +16,13 @@
 		FA02797E2428555500599C81 /* ReleaseDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA02797D2428555500599C81 /* ReleaseDateTests.swift */; };
 		FA0279892428555500599C81 /* ReleaseDateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0279882428555500599C81 /* ReleaseDateUITests.swift */; };
 		FA02799924299C7300599C81 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA02799824299C7300599C81 /* Notes.swift */; };
-		FA1D4C072442417F00DFA28B /* DataDiscover.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D4C062442417F00DFA28B /* DataDiscover.swift */; };
-		FA452C9E242C02310069120C /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA452C9D242C02300069120C /* Data.swift */; };
+		FA1D4C072442417F00DFA28B /* DiscoverServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D4C062442417F00DFA28B /* DiscoverServices.swift */; };
 		FA452CA0242C4EE20069120C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA452C9F242C4EE20069120C /* SearchView.swift */; };
 		FA452CA2242C4FDE0069120C /* MyShowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA452CA1242C4FDE0069120C /* MyShowsView.swift */; };
-		FA452CA6242D6FBA0069120C /* DataSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA452CA5242D6FBA0069120C /* DataSearch.swift */; };
+		FA452CA6242D6FBA0069120C /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA452CA5242D6FBA0069120C /* Services.swift */; };
 		FA452CAA242FB2D90069120C /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA452CA9242FB2D90069120C /* DiscoverView.swift */; };
 		FA6AC994243426F200FA9170 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC993243426F200FA9170 /* DetailView.swift */; };
-		FA6AC998243588F600FA9170 /* DataDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC997243588F600FA9170 /* DataDetail.swift */; };
+		FA6AC998243588F600FA9170 /* DetailServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC997243588F600FA9170 /* DetailServices.swift */; };
 		FA6AC99B243BDEEF00FA9170 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */; };
 		FAC8217324BA8AB000C4B88A /* ConnectivityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC8217124BA7A3A00C4B88A /* ConnectivityChecker.swift */; };
 		FAE8BF7B246E3ACE000C98CB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8BF7A246E3ACD000C98CB /* NotificationManager.swift */; };
@@ -63,14 +62,13 @@
 		FA0279882428555500599C81 /* ReleaseDateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDateUITests.swift; sourceTree = "<group>"; };
 		FA02798A2428555500599C81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA02799824299C7300599C81 /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
-		FA1D4C062442417F00DFA28B /* DataDiscover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDiscover.swift; sourceTree = "<group>"; };
-		FA452C9D242C02300069120C /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		FA1D4C062442417F00DFA28B /* DiscoverServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverServices.swift; sourceTree = "<group>"; };
 		FA452C9F242C4EE20069120C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		FA452CA1242C4FDE0069120C /* MyShowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShowsView.swift; sourceTree = "<group>"; };
-		FA452CA5242D6FBA0069120C /* DataSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSearch.swift; sourceTree = "<group>"; };
+		FA452CA5242D6FBA0069120C /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		FA452CA9242FB2D90069120C /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		FA6AC993243426F200FA9170 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		FA6AC997243588F600FA9170 /* DataDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetail.swift; sourceTree = "<group>"; };
+		FA6AC997243588F600FA9170 /* DetailServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailServices.swift; sourceTree = "<group>"; };
 		FA6AC99A243BDEEF00FA9170 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		FAC8217124BA7A3A00C4B88A /* ConnectivityChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityChecker.swift; sourceTree = "<group>"; };
 		FAE8BF7A246E3ACD000C98CB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -125,24 +123,17 @@
 		FA0279652428555200599C81 /* Shoflo */ = {
 			isa = PBXGroup;
 			children = (
-				FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */,
+				FA6C56EF24D3BE1F0072B707 /* Services */,
+				FA6C56F024D3BE460072B707 /* Views */,
 				FA0279662428555200599C81 /* AppDelegate.swift */,
 				FA0279682428555200599C81 /* SceneDelegate.swift */,
 				FAC8217124BA7A3A00C4B88A /* ConnectivityChecker.swift */,
 				FAE8BF7C247F5DB5000C98CB /* NextAirDate.swift */,
 				FAE8BF7A246E3ACD000C98CB /* NotificationManager.swift */,
-				FA452CA5242D6FBA0069120C /* DataSearch.swift */,
-				FA1D4C062442417F00DFA28B /* DataDiscover.swift */,
-				FA6AC997243588F600FA9170 /* DataDetail.swift */,
-				FA452C9D242C02300069120C /* Data.swift */,
-				FA02796A2428555200599C81 /* ContentView.swift */,
-				FA452C9F242C4EE20069120C /* SearchView.swift */,
-				FA452CA1242C4FDE0069120C /* MyShowsView.swift */,
-				FA452CA9242FB2D90069120C /* DiscoverView.swift */,
-				FA6AC993243426F200FA9170 /* DetailView.swift */,
 				FA02799824299C7300599C81 /* Notes.swift */,
 				FA02796C2428555500599C81 /* Assets.xcassets */,
 				FA0279712428555500599C81 /* LaunchScreen.storyboard */,
+				FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */,
 				FA0279742428555500599C81 /* Info.plist */,
 				FA02796E2428555500599C81 /* Preview Content */,
 			);
@@ -175,6 +166,28 @@
 			path = ShofloUITests;
 			sourceTree = "<group>";
 		};
+		FA6C56EF24D3BE1F0072B707 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FA452CA5242D6FBA0069120C /* Services.swift */,
+				FA1D4C062442417F00DFA28B /* DiscoverServices.swift */,
+				FA6AC997243588F600FA9170 /* DetailServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FA6C56F024D3BE460072B707 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA02796A2428555200599C81 /* ContentView.swift */,
+				FA452C9F242C4EE20069120C /* SearchView.swift */,
+				FA452CA1242C4FDE0069120C /* MyShowsView.swift */,
+				FA452CA9242FB2D90069120C /* DiscoverView.swift */,
+				FA6AC993243426F200FA9170 /* DetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,7 +198,6 @@
 				FA02795F2428555200599C81 /* Sources */,
 				FA0279602428555200599C81 /* Frameworks */,
 				FA0279612428555200599C81 /* Resources */,
-				FA6C56EE24D0F6A10072B707 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -302,35 +314,14 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		FA6C56EE24D0F6A10072B707 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		FA02795F2428555200599C81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA1D4C072442417F00DFA28B /* DataDiscover.swift in Sources */,
-				FA6AC998243588F600FA9170 /* DataDetail.swift in Sources */,
+				FA1D4C072442417F00DFA28B /* DiscoverServices.swift in Sources */,
+				FA6AC998243588F600FA9170 /* DetailServices.swift in Sources */,
 				FA452CA2242C4FDE0069120C /* MyShowsView.swift in Sources */,
-				FA452C9E242C02310069120C /* Data.swift in Sources */,
 				FAE8BF7B246E3ACE000C98CB /* NotificationManager.swift in Sources */,
 				FA02799924299C7300599C81 /* Notes.swift in Sources */,
 				FA452CA0242C4EE20069120C /* SearchView.swift in Sources */,
@@ -340,7 +331,7 @@
 				FA0279692428555200599C81 /* SceneDelegate.swift in Sources */,
 				FA452CAA242FB2D90069120C /* DiscoverView.swift in Sources */,
 				FA6AC99B243BDEEF00FA9170 /* DataModel.xcdatamodeld in Sources */,
-				FA452CA6242D6FBA0069120C /* DataSearch.swift in Sources */,
+				FA452CA6242D6FBA0069120C /* Services.swift in Sources */,
 				FAE8BF7D247F5DB6000C98CB /* NextAirDate.swift in Sources */,
 				FA02796B2428555200599C81 /* ContentView.swift in Sources */,
 			);
@@ -508,6 +499,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoflo/Preview Content\"";
 				DEVELOPMENT_TEAM = NGAX96LNTZ;
 				ENABLE_PREVIEWS = YES;
@@ -516,6 +508,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.c0nman.shows;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -528,6 +521,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoflo/Preview Content\"";
 				DEVELOPMENT_TEAM = NGAX96LNTZ;
 				ENABLE_PREVIEWS = YES;
@@ -536,6 +530,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.c0nman.shows;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

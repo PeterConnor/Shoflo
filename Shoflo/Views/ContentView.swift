@@ -7,11 +7,11 @@
 //
 // swiftlint:disable line_length
 // swiftlint:disable trailing_whitespace
+// refactor - done
 
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var fetcher = Fetcher()
     @ObservedObject var connectivityChecker = ConnectivityChecker()
 
     var body: some View {

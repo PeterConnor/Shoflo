@@ -7,6 +7,7 @@
 //
 // swiftlint:disable line_length
 // swiftlint:disable trailing_whitespace
+// refactor - done
 
 import SwiftUI
 import CoreData
@@ -16,7 +17,7 @@ public class DiscoverServices: ObservableObject {
     var myShows = [MyShow]()
   
     func getCoreData() {
-        //1
+        
         guard let appDelegate =
         UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -25,14 +26,12 @@ public class DiscoverServices: ObservableObject {
         let managedContext =
         appDelegate.persistentContainer.viewContext
 
-        //2
         let fetchRequest =
         NSFetchRequest<MyShow>(entityName: "MyShow")
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \MyShow.name, ascending: true)
         ]
 
-        //3
         do {
             myShows = try managedContext.fetch(fetchRequest)
             //print("myshows: \(myShows)")
@@ -71,7 +70,7 @@ public class DiscoverServices: ObservableObject {
             getCoreData()
             //print("myshowindex: \(self.myShowIndex)")
             //print(myShows.count)
-            if myShows.count > 0 /*&& myShows != nil*/ {
+            if myShows.count > 0 {
                self.showID = Int(self.myShows[myShowIndex].id)
             }
             
@@ -137,17 +136,17 @@ init() {
                                     //print("finalImage changed")
                         }
                     } else {
-                        //print("xxxno image")
+                        //print("no image")
                     }
                 } else {
-                    //print("xxxno data")
+                    //print("no data")
                 }
                 }
             } else {
-                //print("xxxno imageURL")
+                //print("no imageURL")
             }
         } else {
-            //print("xxxno imagePath")
+            //print("no imagePath")
         }
     }  
 }
