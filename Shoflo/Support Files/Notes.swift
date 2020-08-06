@@ -8,14 +8,11 @@
 /*
 
  ***To Do***
- 
- need to resubmit app with proper name!
- 
+  
  fix pyramids of doom (mostly in services files)
  refactor views
  fix previews
  console messages?
- 
  
  remove swiftlint, along with the following 3 commands...
  // swiftlint:disable superfluous_disable_command

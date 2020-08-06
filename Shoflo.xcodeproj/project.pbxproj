@@ -123,18 +123,11 @@
 		FA0279652428555200599C81 /* Shoflo */ = {
 			isa = PBXGroup;
 			children = (
-				FA6C56EF24D3BE1F0072B707 /* Services */,
+				FAEE516924D8FCE900F639E2 /* Startup */,
+				FA6C56EF24D3BE1F0072B707 /* Networking */,
 				FA6C56F024D3BE460072B707 /* Views */,
-				FA0279662428555200599C81 /* AppDelegate.swift */,
-				FA0279682428555200599C81 /* SceneDelegate.swift */,
-				FAC8217124BA7A3A00C4B88A /* ConnectivityChecker.swift */,
-				FAE8BF7C247F5DB5000C98CB /* NextAirDate.swift */,
-				FAE8BF7A246E3ACD000C98CB /* NotificationManager.swift */,
-				FA02799824299C7300599C81 /* Notes.swift */,
-				FA02796C2428555500599C81 /* Assets.xcassets */,
-				FA0279712428555500599C81 /* LaunchScreen.storyboard */,
-				FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */,
-				FA0279742428555500599C81 /* Info.plist */,
+				FAEE516A24D8FD3100F639E2 /* Managers */,
+				FAEE516824D8FBEA00F639E2 /* Support Files */,
 				FA02796E2428555500599C81 /* Preview Content */,
 			);
 			path = Shoflo;
@@ -166,14 +159,14 @@
 			path = ShofloUITests;
 			sourceTree = "<group>";
 		};
-		FA6C56EF24D3BE1F0072B707 /* Services */ = {
+		FA6C56EF24D3BE1F0072B707 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				FA452CA5242D6FBA0069120C /* Services.swift */,
 				FA1D4C062442417F00DFA28B /* DiscoverServices.swift */,
 				FA6AC997243588F600FA9170 /* DetailServices.swift */,
 			);
-			path = Services;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		FA6C56F024D3BE460072B707 /* Views */ = {
@@ -186,6 +179,37 @@
 				FA6AC993243426F200FA9170 /* DetailView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FAEE516824D8FBEA00F639E2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA0279712428555500599C81 /* LaunchScreen.storyboard */,
+				FA02796C2428555500599C81 /* Assets.xcassets */,
+				FA6AC999243BDEEF00FA9170 /* DataModel.xcdatamodeld */,
+				FA02799824299C7300599C81 /* Notes.swift */,
+				FA0279742428555500599C81 /* Info.plist */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		FAEE516924D8FCE900F639E2 /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				FA0279662428555200599C81 /* AppDelegate.swift */,
+				FA0279682428555200599C81 /* SceneDelegate.swift */,
+			);
+			path = Startup;
+			sourceTree = "<group>";
+		};
+		FAEE516A24D8FD3100F639E2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FAC8217124BA7A3A00C4B88A /* ConnectivityChecker.swift */,
+				FAE8BF7C247F5DB5000C98CB /* NextAirDate.swift */,
+				FAE8BF7A246E3ACD000C98CB /* NotificationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,7 +527,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Shoflo/Preview Content\"";
 				DEVELOPMENT_TEAM = NGAX96LNTZ;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Shoflo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Shoflo/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -525,7 +549,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Shoflo/Preview Content\"";
 				DEVELOPMENT_TEAM = NGAX96LNTZ;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Shoflo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Shoflo/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

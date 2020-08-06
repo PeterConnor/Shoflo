@@ -7,6 +7,7 @@
 //
 // swiftlint:disable line_length
 // swiftlint:disable trailing_whitespace
+// refactor - done
 
 import SwiftUI
 
@@ -23,51 +24,49 @@ struct DiscoverView: View {
     var myShows: FetchedResults<MyShow>
     @EnvironmentObject var nextAirDate: NextAirDate
     
-    //this is a hack to refresh the list. if user saves show and goes to discover view, the list is not updated, even though the new show is in the picker view.
+    //this is a hack to refresh the list. if user saves a show and goes to discover view, the list is not updated, even though the new show is in the picker view.
     @State var needsRefresh = false
 
-    
     var notificationManager = NotificationManager()
     
     var body: some View {
         NavigationView {
             VStack {
-            Picker(selection: $discoverServices.discoverNumber, label: Text("Discover Shows")) {
+                Picker(selection: $discoverServices.discoverNumber, label: Text("Discover Shows")) {
                    Text("Recommended").tag(0)
                    Text("Popular").tag(1)
                    Text("Top Rated").tag(2)
                }.pickerStyle(SegmentedPickerStyle())
                 .onAppear {
-                
                     if self.myShows.count > 0 {
                         self.discoverServices.myShowIndex = 0
                     }
                     
                     //print(self.myShows.count)
                     //print(self.discoverServices.discoverNumber)
-                                if self.myShows.count == 0 {
-                                    self.discoverServices.discoverNumber = 1
-                                }
+                    if self.myShows.count == 0 {
+                        self.discoverServices.discoverNumber = 1
+                    }
+        
+                    //print(self.notificationManager.checkNotificationsSettingsAuthorizationStatus())
+                    self.needsRefresh.toggle()
+                    UITableView.appearance().separatorStyle = .none
+                    //print("onappear")
+                    //print(self.myShows)
+//                  for i in self.myShows {
+//                  print("air date \(i.air_date)")
+//                  }
                     
-                                //print(self.notificationManager.checkNotificationsSettingsAuthorizationStatus())
-                                self.needsRefresh.toggle()
-                                UITableView.appearance().separatorStyle = .none
-                                //print("onappear")
-                                //print(self.myShows)
-                //                for i in self.myShows {
-                //                    ////print("air date \(i.air_date)")
-                //                }
-                                
-                                //self.notificationManager.getPending()
-                //                for i in self.myShows {
-                //                    //print("saved air date")
-                //                    //print(i.air_date)
-                //                }
-                                
-//                                if self.myShows.count > 2 {
-//                                    self.discoverServices.myShowIndex = 1
-//                                }
-                            }
+                    //self.notificationManager.getPending()
+//                  for i in self.myShows {
+                    //print("saved air date")
+                    //print(i.air_date)
+//                  }
+                    
+//                   if self.myShows.count > 2 {
+//                   self.discoverServices.myShowIndex = 1
+//                   }
+                }
             if discoverServices.discoverNumber == 0 {
                 VStack {
                     if myShows.count == 0 && discoverServices.discoverNumber == 0 {
@@ -79,8 +78,9 @@ struct DiscoverView: View {
                                 ForEach(0..<myShows.count) { item in
                                     Text("\(self.myShows[item].name!)")
                             }
-                        }.pickerStyle(WheelPickerStyle())
-                            .labelsHidden()
+                        }
+                        .pickerStyle(WheelPickerStyle())
+                        .labelsHidden()
                         .frame(height: 60)
                         .clipped()
                     }
@@ -107,7 +107,8 @@ struct DiscoverView: View {
                                                 .foregroundColor(.primary)
                                             Text("⭐️ \(show.vote_average, specifier: "%.1f")")
                                                 .padding(.trailing, 5)
-                                        }.padding(.top, 5)
+                                        }
+                                        .padding(.top, 5)
                                         HStack {
                                             Text(show.overview ?? "")
                                             Spacer()
@@ -116,7 +117,8 @@ struct DiscoverView: View {
                                             }
                                         }
                                         
-                                    }.alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
+                                    }
+                                    .alert(isPresented: self.$nextAirDate.newAirDateAndEnteredForeground) {
                                         Alert(title: Text("New Air Date Available"), message: Text("The first episode of a new season of \(self.nextAirDate.showForAlert) has been released! See Favorites for details."), dismissButton: .default(Text("Okay")))
                                     }
                                 }
@@ -131,9 +133,10 @@ struct DiscoverView: View {
                         .shadow(color: Color(.secondaryLabel), radius: 4, x: 0, y: 1)
                     }
                 }
-            
-        }.navigationBarTitle("Discover")
-        }.navigationViewStyle(StackNavigationViewStyle())
+            }
+            .navigationBarTitle("Discover")
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

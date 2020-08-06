@@ -7,6 +7,7 @@
 //
 // swiftlint:disable line_length
 // swiftlint:disable trailing_whitespace
+// refactor - done
 
 import SwiftUI
 
@@ -26,7 +27,6 @@ struct MyShowsView: View {
     @State var notificationsAlert = false
     
     func getImageFromData(show: MyShow) -> UIImage {
-        //this is just a placeholder
         var finalImage = (UIImage(named: "imagenotavailable"))
         if let data = show.image {
             if let image = UIImage(data: data as Data) {
@@ -82,7 +82,8 @@ struct MyShowsView: View {
                                             .foregroundColor(.primary)
                                         Text("⭐️ \(show.vote_average, specifier: "%.1f")")
                                             .padding(.trailing, 5)
-                                    }.padding(.top, 5)
+                                    }
+                                    .padding(.top, 5)
                                     HStack {
                                         Text(show.overview ?? "")
                                         Spacer()
@@ -99,25 +100,32 @@ struct MyShowsView: View {
                         .background(Color(.systemBackground))
                         .cornerRadius(10)
                         .shadow(color: Color(.secondaryLabel), radius: 4, x: 0, y: 1)
+                        
                         NavigationLink(destination: DetailView(detailServices: DetailServices(showID: Int(show.id), poster_path: show.poster_path, vote_average: show.vote_average), name: show.name ?? "")) {
                             EmptyView()
                         }
                     }
-                }.onDelete(perform: removeMyShow)
-            }.onAppear {
+                }
+                .onDelete(perform: removeMyShow)
+            }
+            .onAppear {
                 //print("onappear")
                 self.notificationManager.checkNotificationsSettingsAuthorizationStatus()
-            UITableView.appearance().separatorStyle = .none
+                UITableView.appearance().separatorStyle = .none
                 }
                 .navigationBarItems(trailing: notificationManager.notificationsOff ? Button("!") {
                     self.notificationsAlert.toggle()
                     
-                }.foregroundColor(Color.red) : nil
-            ).alert(isPresented: $notificationsAlert) {
+                }
+                .foregroundColor(Color.red) : nil
+            )
+                .alert(isPresented: $notificationsAlert) {
                 Alert(title: Text("Notifications Disabled"), message: Text("To receive release date notifications, please go to Settings -> Showflo -> Notifications on your device."), dismissButton: .default(Text("Okay")))
                 
-            }.navigationBarTitle("Favorites")
-        }.navigationViewStyle(StackNavigationViewStyle())
+            }
+            .navigationBarTitle("Favorites")
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
         //You can delete with swipe, but maybe add
         //.navigationBarItems(trailing: EditButton())
     }
