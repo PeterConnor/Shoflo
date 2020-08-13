@@ -5,10 +5,6 @@
 //  Created by Pete Connor on 7/11/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
-// swiftlint:disable superfluous_disable_command
-// swiftlint:disable line_length
-// swiftlint:disable trailing_whitespace
-// refactor - done
 
 import Foundation
 import Network

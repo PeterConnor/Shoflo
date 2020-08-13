@@ -5,11 +5,6 @@
 //  Created by Pete Connor on 4/1/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
-// swiftlint:disable line_length
-// swiftlint:disable trailing_whitespace
-// swiftlint:disable identifier_name
-// swiftlint:disable type_name
-// refactor - done
 
 import SwiftUI
 

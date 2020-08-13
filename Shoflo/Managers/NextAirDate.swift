@@ -5,9 +5,6 @@
 //  Created by Pete Connor on 5/27/20.
 //  Copyright © 2020 Pete Connor. All rights reserved.
 //
-// swiftlint:disable line_length
-// swiftlint:disable trailing_whitespace
-// refactor - done
 
 import Foundation
 import CoreData
