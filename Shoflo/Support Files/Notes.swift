@@ -29,18 +29,19 @@ SwiftLint installation -> https://medium.com/developerinsider/how-to-use-swiftli
  -add comments
  -maybe just do recommended based off all shows, and filter out dupes.
  -watched, to watch.
+ -see all upcoming premieres
  -your rating, with ability to submit rating.
  -simple animations
  -improve the picker on discover. Maybe put 'Favorite Shows' on left
  -Look at similar apps for ideas! (There are a lot out there)
- -Polish ( neumorphism)
+ -Polish ( neumorphism / neumorphic design)
  -make font bigger, especially in detail view
  -add sort to the lists, so no image availables go to bottom (should i filter those out altogether?).
  -more pages in results
  -add other ways to sort
  -progress bar
- -news updates
- have related shows in detail page, rather than needing user to save show.
+ -news updates?
+-have related shows in detail page, rather than needing user to save show.
  -custom alerts / on-off
  -to watch list
  -BGRefresh doesnt get triggered in low battery mode.
