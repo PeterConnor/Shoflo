@@ -32,9 +32,8 @@ SwiftLint installation -> https://medium.com/developerinsider/how-to-use-swiftli
  -see all upcoming premieres
  -your rating, with ability to submit rating.
  -simple animations
- -improve the picker on discover. Maybe put 'Favorite Shows' on left
  -Look at similar apps for ideas! (There are a lot out there)
- -Polish ( neumorphism / neumorphic design)
+ -Polish using design code
  -make font bigger, especially in detail view
  -add sort to the lists, so no image availables go to bottom (should i filter those out altogether?).
  -more pages in results
@@ -49,7 +48,7 @@ SwiftLint installation -> https://medium.com/developerinsider/how-to-use-swiftli
  -if there are 2 new air dates when the app comes into foreground, only 1 alert is shown. not a big deal, but not ideal.
  -i probably need to add a property to each show, like notificationSet = true for the edge case when the user saves a show, but notifications are disabled. Or maybe the workaround is to not save the ep 1 show, so if the user does enable notifications the BG/Foreground check will catch it.
  -add !notificationManager.check to views other than myfavs (this is the notification authorization check)
-
+-fix preview
  
  ***QUESTIONS***
  -Why does navigationlink load detailview for each item in list?

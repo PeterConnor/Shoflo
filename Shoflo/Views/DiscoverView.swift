@@ -71,15 +71,35 @@ struct DiscoverView: View {
                             .foregroundColor((Color(.systemGray3)))
                         Spacer()
                     } else {
-                        Picker(selection: $discoverServices.myShowIndex, label: Text("Select Show")) {
-                                ForEach(0..<myShows.count) { item in
+                        List {
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    ForEach(0..<myShows.count) { item in
                                     Text("\(self.myShows[item].name!)")
+                                        .padding(8)
+                                        .background(Color(.systemGray3))
+                                        .cornerRadius(10)
+                                        .shadow(color: Color(.secondaryLabel), radius: 2)
+                                        .onTapGesture {
+                                            self.discoverServices.myShowIndex = item
+                                        }
+                                        
+                                    }
+                                }
                             }
                         }
-                        .pickerStyle(WheelPickerStyle())
-                        .labelsHidden()
-                        .frame(height: 60)
-                        .clipped()
+                        .frame(height: 44)
+                        
+                        
+//                        Picker(selection: $discoverServices.myShowIndex, label: Text("Select Show")) {
+//                                ForEach(0..<myShows.count) { item in
+//                                    Text("\(self.myShows[item].name!)")
+//                            }
+//                        }
+//                        .pickerStyle(WheelPickerStyle())
+//                        .labelsHidden()
+//                        .frame(height: 60)
+//                        .clipped()
                     }
                 }
             }
