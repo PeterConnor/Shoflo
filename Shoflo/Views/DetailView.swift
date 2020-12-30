@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+ 
 struct DetailView: View {
     @ObservedObject var detailServices: DetailServices
     @Environment(\.managedObjectContext) var managedObjectContext

@@ -102,3 +102,4 @@ class DetailServices: ObservableObject {
         }
     }
 }
+ 

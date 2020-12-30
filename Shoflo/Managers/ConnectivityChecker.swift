@@ -9,7 +9,7 @@
 import Foundation
 import Network
 import SwiftUI
-
+ 
 class ConnectivityChecker: ObservableObject {
     
     @Published var disconnected = false

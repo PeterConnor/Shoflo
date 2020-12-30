@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+ 
 struct DiscoverView: View {
     @ObservedObject var discoverServices = DiscoverServices()
     @Environment(\.managedObjectContext) var managedObjectContext

@@ -20,7 +20,7 @@ class NotificationManager: ObservableObject {
         if let formattedDate = formatter.date(from: dateString) {
             return formattedDate
         } else {
-            return nil
+            return nil 
         }
     }
     
