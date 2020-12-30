@@ -42,7 +42,7 @@ public class Services: ObservableObject {
     }
     
     func load() {
-        let apiKey = "dd1fed7eede948d0697c67af77a4e3af"
+        let apiKey = apiKeyGlobal
         guard let url = URL(string: "https://api.themoviedb.org/3/search/tv?api_key=\(apiKey)&language=en-US&page=1&query=\(query.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil))&include_adult=false") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             do {

@@ -70,7 +70,7 @@ class NextAirDate: ObservableObject {
     }
     
     func getNextAirDate(show: MyShow, backgroundTrueForegroundFalse: Bool) {
-        guard let url = URL(string: "https://api.themoviedb.org/3/tv/\(show.id)?api_key=dd1fed7eede948d0697c67af77a4e3af&language=en-US") else { return }
+        guard let url = URL(string: "https://api.themoviedb.org/3/tv/\(show.id)?api_key=\(apiKeyGlobal)&language=en-US") else { return }
                 URLSession.shared.dataTask(with: url) { (data, response, error) in
                     do {
                         if let responseData = data {

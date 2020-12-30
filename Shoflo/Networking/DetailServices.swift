@@ -67,7 +67,7 @@ class DetailServices: ObservableObject {
     }
     
     func load() {
-        guard let url = URL(string: "https://api.themoviedb.org/3/tv/\(self.showID)?api_key=dd1fed7eede948d0697c67af77a4e3af&language=en-US"
+        guard let url = URL(string: "https://api.themoviedb.org/3/tv/\(self.showID)?api_key=\(apiKeyGlobal)&language=en-US"
 ) else { return }
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 do {
